@@ -178,35 +178,4 @@ export class FlightComponent implements OnInit {
     this.flightService.setDataFlight(flight);  
 
   }
-  bookFlight(flight: any) {
-    this.bookings.email = this.users.email;
-    this.bookings.name = this.users.name;
-    this.bookings.status = 'Active';
-    this.bookings.passengers = 1;
-    this.bookings.airline = flight.airline;
-    this.bookings.origin = flight.origin;
-    this.bookings.destination = flight.destination;
-    this.bookings.price = flight.price;
-    this.bookings.promo_code = flight.reservation_code;
-     
-    this.flightService.createBooking(this.bookings)
-    .subscribe()
-    console.log(this.bookings)
 }
-}
-
-/* let vuelo = this.filteredFlights.map((x) => { return x.boarding_time} )
-
-console.log(vuelo) */
- /* var loc = listaVuelos.indexOf(vuelo); */
-   /*  var index = 0;
-    let esto = true;
-    if(esto && this.filteredFlights.length > 0){
-      index = ++index >= listaVuelos.length ? 0 : index;
-      console.log(listaVuelos[index].boarding_time);
-    } //next
-    
-    if(!esto && this.filteredFlights.length > 0){
-      index = --index <= 0 ? listaVuelos.length - 1 : index;
-      console.log(listaVuelos[index].boarding_time);
-    } //previous */

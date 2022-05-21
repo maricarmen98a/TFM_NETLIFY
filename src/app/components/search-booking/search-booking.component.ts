@@ -52,15 +52,4 @@ export class SearchBookingComponent implements OnInit {
     } 
 
   }
-
 }
-/*   let reserva;
-    let origen1: any = this.filteredFlights.map((x) => { return x.origin} )
-    let origen2 = this.booking.map((x) => { return x.origin} )
-    let destino2 = this.booking.map((x) => { return x.destination} )
-    let destino1: any = this.filteredFlights.map((x) => { return x.destination} )
-    let origenEcontrado = origen2.find(element => element == origen1);
-    let destinoEncontrado = destino2.find(element => element == destino1);
-    reserva = this.booking.filter((x) => {
-        return (x.origin == origen1) &&
-          (x.destination == destino1) })  */
