@@ -1,0 +1,40 @@
+<div class="login">
+  <form class="form-login" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <h3>Registrarse</h3>
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" class="form-control" formControlName="name" />
+    </div>
+    <div class="error" *ngIf="errors?.name">
+      {{ errors?.name }}
+    </div>
+    <div class="form-group">
+      <label>Correo electrónico</label>
+      <input type="email" class="form-control" formControlName="email" />
+    </div>
+    <div class="error" *ngIf="errors?.email">
+      {{ errors?.email }}
+    </div>
+    <div class="form-group">
+      <label>Contraseña</label>
+      <input type="password" class="form-control" formControlName="password" />
+    </div>
+    <div class="error" *ngIf="errors?.password">
+      {{ errors?.password }}
+    </div>
+    <div class="form-group">
+      <label>Confirme contraseña</label>
+      <input
+        type="password"
+        class="form-control"
+        formControlName="password_confirmation"
+      />
+    </div>
+    <div class="error" *ngIf="errors?.password_confirmation">
+      {{ errors?.password_confirmation }}
+    </div>
+    <button type="submit">
+      Registrarse
+    </button>
+  </form>
+</div>

@@ -1,0 +1,26 @@
+<div class="component">
+  <nav class="sesion">
+    <div class="logo-div"><a routerLink="/"><img class="logo" src="../assets/aeriolar.png" alt="logo"></a></div>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon [ngStyle]="{'color':'white'}">person</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button *ngIf="!isSignedIn" class="boton" mat-menu-item>
+        <mat-icon>portrait</mat-icon>
+        <span routerLink="/login" >Iniciar sesión</span>
+      </button>
+      <button *ngIf="!isSignedIn" class="boton" mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+          <span routerLink="/register" >Registrarse</span>
+      </button>
+      <button *ngIf="isSignedIn" class="boton" mat-menu-item>
+        <mat-icon>portrait</mat-icon>
+        <span routerLink="/profile">Perfil de usuario</span>
+      </button>
+      <button  *ngIf="isSignedIn"class="boton" mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <span (click)="signOut()">Cerrar sesión</span>
+      </button>
+    </mat-menu>
+  </nav>
+</div>

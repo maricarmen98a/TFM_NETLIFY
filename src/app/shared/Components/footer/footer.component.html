@@ -1,0 +1,26 @@
+<div class="footer">
+    <div>
+        <div><a routerLink="/"><fa-icon [icon]="faHouse"></fa-icon><div>Inicio</div></a></div>
+    </div>
+    <div>
+        <div><a routerLink="/search-booking"><fa-icon [icon]="faPlane"></fa-icon><div>Mis vuelos</div></a></div>
+    </div>
+    <div>
+        <div><a href="#"><fa-icon [icon]="faBoarding"></fa-icon><div class="tarjetas">Tarjetas de embarque</div></a></div>
+    </div>
+    <div>
+        <div><a class="openNav" onclick="openNav()"><fa-icon [icon]="faMenu"></fa-icon><div>Más</div></a></div>
+    </div>
+</div>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">< Atrás</a>
+    <button onclick="closeNav()" routerLink="/login">Iniciar sesión</button> 
+    <button onclick="closeNav()" routerLink="/register">Registrarse</button> 
+    <button onclick="closeNav()" routerLink="/search-booking">Mis vuelos</button> 
+    <button onclick="closeNav()" routerLink="/">Tarjetas de embarque</button> 
+    <button onclick="closeNav()" routerLink="/">Ofertas especiales</button> 
+    <button onclick="closeNav()" routerLink="/">Sobre nosotros</button> 
+    <button onclick="closeNav()" routerLink="/">Política de cookies y privacidad</button> 
+    <button onclick="closeNav()" routerLink="/">Ayuda</button> 
+  </div>
+  

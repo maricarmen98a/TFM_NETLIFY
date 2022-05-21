@@ -1,0 +1,75 @@
+.footer {
+  padding: 10px;
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-left: 15px;
+  position: fixed; 
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  box-shadow: -5px -5px 5px rgba(0, 0, 0, 0.1);
+}
+.footer a {
+  text-decoration: none;
+  color: var(--button);
+}
+.footer a:hover, .link-activo {
+  color: var(--button-click);
+}
+.footer div {
+  text-align: center;
+}
+.footer img {
+  max-width: 23px;
+  padding-top: 3px;
+}
+.sidenav {
+  height: 82%; 
+  width: 0; 
+  position: fixed; 
+  z-index: 1; 
+  top: 65px; 
+  right: 0;
+  background-color: rgb(255, 255, 255); 
+  overflow-x: hidden; 
+  padding-top: 60px; 
+  transition: 0.5s; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #000000;
+  transition: 0.3s;
+  padding-bottom: 20px;
+}
+.sidenav a:hover {
+  color: var(--button);
+}
+.sidenav .closebtn {
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  font-size: 1.2rem;
+  padding-top: 20px;
+  text-decoration: underline;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.sidenav button {
+  margin-bottom: 20px;
+  width: 200px;
+  height: 50px;
+  font-size: 1.1rem;
+}
+.openNav:hover {
+  cursor: pointer;
+}

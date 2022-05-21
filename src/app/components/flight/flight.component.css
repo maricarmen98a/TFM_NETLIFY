@@ -1,0 +1,91 @@
+select {
+    max-height: 20px;
+}
+.caja-mat {
+    height: 480px;
+    padding: 10px;
+    display: block;
+    text-align: center;
+}
+.caja__boton {
+    padding-top: 20px;
+}
+.boton-cambiar {
+    max-width: 20px;
+}
+.boton-buscar, .bookingStatus {
+    margin-top: 20px;
+}
+.form-flight {
+    display: contents;
+}
+@media screen and (min-width: 540px) {
+    .caja-mat__flex, .caja-mat {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      
+    }
+}
+#startDate, #endDate {
+    text-align: center;
+}
+.form-date {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form-date__label {
+    font-family: "Helvetica", arial, sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    padding-bottom: 8px;
+}
+.bookingBox, .table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.form-userinfo {
+    padding: 10px;
+}
+.form-userinfo form {
+    padding: 10px;
+}
+.form-userinfo form button {
+    margin-top: 10px;
+}
+.bt-search {
+    width: 150px;
+    border-radius: 0;
+    border-top-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    transition: none;
+    transform: none;
+    font-size: larger;
+}
+
+input[type="date"] {
+    appearance: none;
+    color: #95a5a6;
+    font-family: "Helvetica", arial, sans-serif;
+    font-size: 18px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.7);
+    padding: 5px;
+    display: inline-block !important;
+    visibility: visible !important;
+    width: 180px;
+}
+
+input[type="date"], focus {
+    color: #95a5a6;
+    box-shadow: none;
+}

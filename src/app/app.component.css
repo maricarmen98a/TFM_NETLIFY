@@ -1,0 +1,34 @@
+:root {
+    --button: #BB1D1D;
+}
+
+
+/* HEADER */
+.sesion {
+    margin-top: 20px;
+    margin-right: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+.logo {
+    max-width: 150px;
+    margin-right: 90px;
+}
+.circle-icon {
+    background: #BB1D1D;
+    opacity: 88%;
+    padding: 9px;
+    border-radius: 100%;
+    color: #FFFFFF;
+}
+.class1 {
+    background-color: #F2B71C;
+}
+
+/* GENERAL */
+
+button {
+    background-color: var(--button);
+    height: 30px;
+    width: 120px;
+}

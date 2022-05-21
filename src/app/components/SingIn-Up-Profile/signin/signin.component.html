@@ -1,0 +1,28 @@
+<div class="login">
+    <form class="form-login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <h3>Iniciar sesión</h3>
+        <div class="error" *ngIf="errors?.error">
+            {{ errors?.error }}
+        </div>
+        <div class="form-group">
+            <label>Correo electrónico*</label>
+            <input type="email" class="form-control" formControlName="email">
+        </div>
+        <div class="error" *ngIf="errors?.email">
+            {{ errors?.email }}
+        </div>
+        <div class="form-group">
+            <label>Contraseña*</label>
+            <input type="password" class="form-control" formControlName="password">
+        </div>
+        <div class="error" *ngIf="errors?.password">
+            {{ errors?.password }}
+        </div>
+        <button type="submit">Iniciar sesión</button>
+        <div class="info-form">
+            <div><a routerLink="/request-password">He olvidado mi contraseña</a></div>
+            <div>¿No está registrado? Haga clic <a routerLink="/register">aquí</a></div>
+            <div>*Todos los campos marcados son obligatorios</div>
+        </div>
+    </form>
+</div>

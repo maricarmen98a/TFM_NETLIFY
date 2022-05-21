@@ -1,0 +1,70 @@
+.planeSearch {
+    max-width: 220px;
+    object-fit: contain;
+}
+.planeSearch2 {
+    max-width: 50px;
+}
+.container-plane {
+    display: flex;
+    justify-content: center;
+}
+.results__info {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+}
+h2 {
+    font-size: 1.6rem;
+}
+h3 {
+    margin-bottom: 0;
+    padding-top: 10px;
+}
+.results {
+    background-color: white;
+    color: black;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    height: 140px;
+}
+a {
+    color: black;
+}
+.link-extras {
+    padding-top: 10px;
+}
+a:hover {
+    color: red;
+}
+.main-container {
+    color: white;
+    text-align: center;
+}
+.noFlights {
+    padding-top: 20px;
+    font-size: 1.1rem;
+}
+.search-booking {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: black;
+    padding: 20px;
+    margin-top: 30px;
+    width: 100%;
+    height: 240px;
+    position: absolute;
+    bottom: 0px;
+    margin-bottom: 60px;
+}
+input {
+    margin-bottom: 20px;
+    width: 80%;
+    height: 30px;
+}
+mat-error {
+    padding-bottom: 20px;
+}

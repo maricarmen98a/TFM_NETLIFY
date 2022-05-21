@@ -1,0 +1,24 @@
+.home-banner {
+    display: flex;
+    justify-content: center;
+    background-image: url("../../../assets/avion.jpeg");
+    background-size: 100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+    padding-top: 200px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.caja-vuelos {
+    background-color: white;
+    width: 400px;
+    margin: 30px;
+    border-radius: 20px;
+
+}
+@media screen and (min-width: 540px) {
+    .home-banner {
+        display: flex;
+    }  
+
+}

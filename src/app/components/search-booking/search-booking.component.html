@@ -1,0 +1,40 @@
+<div class="main-container">
+    <h2>Mis vuelos</h2>
+    <div *ngIf="!userHasBooking">
+        <div class="container-plane">
+            <img class="planeSearch" src="assets/transportColor.png" alt="Imagen de dos aviones formando un círculo">
+        </div>
+        <div class="noFlights">
+            <p>No tiene ningún vuelo planificado todavía.</p>
+        </div>
+    </div>
+    <div *ngIf="userHasBooking">
+        <div class="results" *ngIf="searchStatus">
+            <div>Resultados:</div>
+            <div class="results__info" *ngFor="let reservation of filteredReservations">
+                <h3>{{ reservation.origin }}</h3> 
+                <div>
+                    <img class="planeSearch2" src="assets/twoPlanes.png" alt="">
+                </div>
+                <h3>{{ reservation.destination }}</h3>
+            </div> 
+            <div class="link-extras">               
+                <a routerLink="/extras">Añadir extras de viaje</a>
+            </div>
+        </div>
+    </div>
+    <div class="search-booking">
+        <h3>Localizador de reserva</h3>
+        <input type="text" name="bookingSearch" placeholder="Ej.:DE6DuVdJ3f" [formControl]="bookingSearch">
+        <mat-error *ngIf="bookingSearch.hasError('required') && (bookingSearch.dirty || bookingSearch.touched)">
+            El código es <strong>obligatorio</strong>
+        </mat-error>
+        <mat-error *ngIf="emptyArray">
+            El código proporcionado <strong>no existe</strong>
+        </mat-error>
+        <div>
+            <button (click)="search()">Buscar</button>
+        </div>
+        
+    </div>
+</div>

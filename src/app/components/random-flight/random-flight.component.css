@@ -1,0 +1,74 @@
+.random-flight {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.crossedPrice {
+    text-decoration: line-through;
+}
+.specialPrice {
+    color: var(--button);
+    font-size: larger;
+}
+.mat-card {
+    max-width: 400px;
+    margin-bottom: 20px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 20px
+}
+ .vuelosAleatorios {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+}
+.randomText, .randomLogo {
+    padding: 5%;
+    text-align: center;
+    color: white;
+}
+.randomLogo img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+.buscarOfertas {
+    margin: 20px;
+}
+.content--div {
+    display: flex;
+} 
+.content--div button {
+    margin-bottom: 10px;
+}
+@media screen and (min-width: 540px) {
+    .vuelosAleatorios {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    }   
+    .content--div {
+        display: flex;
+    }
+    .mat-card {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}

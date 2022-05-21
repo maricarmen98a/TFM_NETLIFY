@@ -1,0 +1,61 @@
+.error {
+    color: red;
+}
+.asterisco, .error {
+    margin-left: 20px;
+    margin-right: 5px;
+}
+.class1 {
+    background-color: #F2B71C;
+}
+.login {
+    padding-top: 30px;
+    background-image: url(../../../../assets/sky.jpg);
+    height: 680px;
+    background-size: cover;
+    background-position: center bottom;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+}
+.form-login {
+    background-color: white;
+    max-height: 570px;
+    width: 400px;
+    max-width: 700px;
+    flex: 50%;
+    margin: 30px;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;    
+}
+.form-group, h3, button {
+    margin: 20px;
+}
+.form-group {
+    margin-top: 0;
+}
+h3 {
+    text-align: center;
+    margin-bottom: 0;
+}
+.button {
+    display: grid;
+    text-align: center;
+}
+input {
+    width: 100%;
+    height: 30px;
+}
+/* button {
+    height: 30px;
+    width: 120px;
+} */
+label {
+    display: block;
+    padding: 10px;
+    padding-left: 0;
+}

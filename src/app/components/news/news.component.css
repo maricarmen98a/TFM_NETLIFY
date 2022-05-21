@@ -1,0 +1,112 @@
+.covid-info {
+    padding: 5px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: var(--button);
+    color: white;
+    text-decoration: underline;
+   
+}
+
+.covid-info a {
+    color: white;
+}
+.covid-info a:hover {
+    color: black;
+}
+.content {
+    padding: 16px;
+    margin-bottom: 20px;
+}
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 20px
+}
+.mat-card {
+    max-width: 400px;
+    margin-bottom: 20px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.mat-card-header {
+    padding-bottom: 10px;
+    text-align: center;
+    display: block;
+}
+.news {
+    padding-bottom: 50px;
+    width: 100%;
+
+}
+.mat-card {
+    max-width: 400px;
+    margin-bottom: 20px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 20px
+}
+ .noticias {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+}
+
+
+.content--div {
+    display: flex;
+} 
+.content div {
+    width: 100%;
+    justify-content: center;
+}
+.content div:nth-child(1) {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+}
+@media screen and (min-width: 768px) {
+    .noticias {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    }   
+    .content--div {
+        display: flex;
+    }
+    .mat-card {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+@media screen and (max-width: 768px ) {
+    .content div:nth-child(1) {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,31 @@
+<div id="ofertas" class="random-flight">
+    <div class="randomLogo"><img src="assets/aeriolar.png" alt="Aer Iolar"></div>
+    <div class="randomText">¿No sabes qué elegir? Prueba nuestras ofertas de vuelos aleatorios. Haz clic en el botón <strong>Buscar ofertas</strong>  y descubre tu próximo viaje y encima, a un precio reducido.</div>
+    <div class="buscarOfertas">
+        <button (click)="getRandomFlight()">Buscar ofertas</button>
+    </div>
+    <div class="vuelosAleatorios" *ngIf="vuelosAleatorios">
+        <div class="content">
+        <div fxLayout="row wrap" fxLayoutGap="16px grid">
+            <div class="content--div" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let flight of selectedRandom">
+                <mat-card class="mat-elevation-z4">
+                    <mat-card-header>
+                    <mat-card-title>Número de vuelo: {{ flight.flight_number }}AI</mat-card-title>
+                    <mat-card-subtitle>Ida: {{ flight.boarding_time }} - Llegada: {{ flight.arrival_time }}</mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image src="assets/ofertas.jpg" alt="avion">
+                    <mat-card-content>
+                        <h3>De {{ flight.origin }} a {{ flight.destination }} </h3>
+                        <p>
+                            Disfrute de un viaje a {{ flight.destination }} por solamente <span class="crossedPrice">{{ flight.price | currency: 'EUR'}} </span> <span class="specialPrice"> {{ flight.price - 50 | number: '1.0-0' | currency: 'EUR' }}</span>
+                        </p>
+                        </mat-card-content>
+                    <mat-card-actions>
+                    <button mat-button>Seleccionar</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
