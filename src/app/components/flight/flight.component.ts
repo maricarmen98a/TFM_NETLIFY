@@ -48,8 +48,8 @@ export class FlightComponent implements OnInit {
   bookings: BookingDTO;
   reservas!: BookingDTO;
   userConfirmado: boolean = false;
-  @Output() redirect:EventEmitter<any> = new EventEmitter();
-
+/*   @Output() redirect:EventEmitter<any> = new EventEmitter();
+ */
   constructor(public flightService: FlightService,
     public router: Router,
     public fb: FormBuilder,
@@ -176,6 +176,5 @@ export class FlightComponent implements OnInit {
   }
   setFlight(flight: any) {
     this.flightService.setDataFlight(flight);  
-
   }
 }

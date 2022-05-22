@@ -1,0 +1,173 @@
+.seatmap {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    background-image: url('src/assets/seatmap-laptop.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.seatmap img {
+    object-fit: contain;
+    width: 100%;
+}
+.plane {
+    margin: 20px auto;
+    max-width: 300px;
+    height: 2500px;
+}
+.cockpit {
+    height: 360px; 
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+ol {
+    list-style :none;
+    padding: 0;
+    margin: 0;
+} 
+.seats {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-left: 4px;
+    width: 215px;
+    justify-content: flex-start;  
+}
+.seat {
+    display: flex;
+    flex: 0 0 14.28571428571429%;
+    padding: 3px;
+    position: relative;
+    margin-bottom: 10px;
+    justify-content: center; 
+} 
+input[type=checkbox] {
+    position: absolute;
+    opacity: 0;
+}
+input[type=checkbox]:checked + label {
+    background: #bada55;      
+    -webkit-animation-name: rubberBand;
+    animation-name: rubberBand;
+    animation-duration: 300ms;
+    animation-fill-mode: both;
+}  
+input[type=checkbox]:disabled + label {
+    background: #dddddd;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+input[type=checkbox]:disabled + label:after {
+    content: "X";
+    text-indent: 0;
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+input[type=checkbox]:disabled + label:hover {
+    box-shadow: none;
+    cursor: not-allowed;
+}
+label {    
+    display: block;
+    position: relative;    
+    width: 100%;    
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.3rem;
+    padding: 6px 2px;
+    background: #F42536;
+    border-radius: 5px;
+    animation-duration: 300ms;
+    animation-fill-mode: both;
+}
+label:before {
+    content: "";
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    top: 1px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background: rgba(255,255,255,.4);
+    border-radius: 3px;
+}
+label:hover {
+    cursor: pointer;
+    box-shadow: 0 0 0px 2px #5C6AFF;
+}
+.row--1 .seat:nth-child(3), .row--2 .seat:nth-child(3), .row--3 .seat:nth-child(3), .row--4 .seat:nth-child(3) {
+    margin-right: 0;
+}
+.row--1 .seat:nth-child(2), .row--2 .seat:nth-child(2), .row--3 .seat:nth-child(2), .row--4 .seat:nth-child(2) {
+    margin-right: 10%;
+}
+.row--1 .seat:nth-child(1), .row--2 .seat:nth-child(1), .row--3 .seat:nth-child(1), .row--4 .seat:nth-child(1) {
+    margin-left: 7px;
+}
+.row--1 .seat label, .row--2 .seat label, .row--3 .seat label, .row--4 .seat label {
+    font-size: 17px;
+    line-height: 1.8rem;
+    padding: 8px 8px;
+}
+.ocupado {
+    width: 38px;
+}
+.row--1 {
+    margin-top: 10px;
+}
+.row--3 {
+    margin-top: 60px;
+}
+.row--4 {
+    margin-bottom: 170px;
+}
+.row--5, .row--11 {
+    padding-top: 18px;
+}
+.row--15 {
+    padding-top: 90px;
+}
+@keyframes rubberBand {
+    0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+    }
+  
+    30% {
+      -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+    }
+  
+    40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1);
+    }
+  
+    50% {
+      -webkit-transform: scale3d(1.15, 0.85, 1);
+    transform: scale3d(1.15, 0.85, 1);
+    }
+  
+    65% {
+    -webkit-transform: scale3d(.95, 1.05, 1);
+    transform: scale3d(.95, 1.05, 1);
+    }
+  
+    75% {
+    -webkit-transform: scale3d(1.05, .95, 1);
+    transform: scale3d(1.05, .95, 1);
+    }
+  
+    100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+    }
+}
+.rubberBand {
+    -webkit-animation-name: rubberBand;
+    animation-name: rubberBand;
+}

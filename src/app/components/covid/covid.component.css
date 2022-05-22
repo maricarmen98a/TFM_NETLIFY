@@ -1,0 +1,65 @@
+.covid-container {
+    color: white;
+    padding-bottom: 80px;
+}
+.covid-container p, .covid-container ol {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+h2 {
+    text-align: center;
+}
+ul li, ol li {
+    list-style-type: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+
+}
+a {
+    box-shadow: inset 0 0 0 0 #de3e3e;
+    color: #ffffff;
+    margin: 0 -.25rem;
+    padding: 0 .25rem;
+    text-decoration: none;
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+}
+a:hover {
+    box-shadow: inset 100px 0 0 0 var(--button);
+    color: white;
+}
+ol li {
+    list-style-type: none;
+    counter-increment: item;
+}
+  
+ol li:before {
+    content: counter(item);
+    margin-right: 5px;
+    font-size: 80%;
+    background-color: var(--button);
+    color: white;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 3px;
+}
+.img-container {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+.img-container img {
+    object-fit: contain;
+    width: 100%;
+}
+.flex {
+    display: flex;
+    justify-content: space-around;
+}
+.flex li {
+    padding-left: 10px;
+    padding-right: 10px;
+}

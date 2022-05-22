@@ -8,4 +8,16 @@
     padding-top: 200px;
     flex-direction: row;
     flex-wrap: wrap;
+    padding-bottom: 80px;
+}
+h2,.home-banner {
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+} 
+.home-banner h3 {
+    margin-top: 60px;
+}
+h2 {
+    text-align: center;
 }

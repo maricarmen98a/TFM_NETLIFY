@@ -27,15 +27,15 @@
   padding-top: 3px;
 }
 .sidenav {
-  height: 84%; 
+  height: 92%; 
   width: 0; 
   position: fixed; 
   z-index: 1; 
-  top: 65px; 
+  bottom: 65px; 
   right: 0;
   background-color: rgb(255, 255, 255); 
   overflow-x: hidden; 
-  padding-top: 60px; 
+  padding-top: 80px; 
   transition: 0.5s; 
   display: flex;
   flex-direction: column;
@@ -54,7 +54,7 @@
 }
 .sidenav .closebtn {
   position: absolute;
-  top: 10px;
+  top: 20px;
   left: 5px;
   font-size: 1.2rem;
   padding-top: 20px;
@@ -67,8 +67,8 @@
 .sidenav button {
   margin-bottom: 20px;
   width: 200px;
-  height: 50px;
-  font-size: 1.1rem;
+  height: 45px;
+  font-size: 1rem;
 }
 .openNav:hover {
   cursor: pointer;

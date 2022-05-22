@@ -1,12 +1,12 @@
 <div class="footer">
     <div>
-        <div><a routerLink="/"><fa-icon [icon]="faHouse"></fa-icon><div>Inicio</div></a></div>
+        <div><a onclick="closeNav()" routerLink="/"><fa-icon [icon]="faHouse"></fa-icon><div>Inicio</div></a></div>
     </div>
     <div>
-        <div><a routerLink="/search-booking"><fa-icon [icon]="faPlane"></fa-icon><div>Mis vuelos</div></a></div>
+        <div><a onclick="closeNav()" routerLink="/search-booking"><fa-icon [icon]="faPlane"></fa-icon><div>Mis vuelos</div></a></div>
     </div>
     <div>
-        <div><a href="#"><fa-icon [icon]="faBoarding"></fa-icon><div class="tarjetas">Tarjetas de embarque</div></a></div>
+        <div><a onclick="closeNav()" href="#"><fa-icon [icon]="faBoarding"></fa-icon><div class="tarjetas">Tarjetas de embarque</div></a></div>
     </div>
     <div>
         <div><a class="openNav" onclick="openNav()"><fa-icon [icon]="faMenu"></fa-icon><div>Más</div></a></div>
@@ -21,6 +21,7 @@
     <button onclick="closeNav()" routerLink="/">Ofertas especiales</button> 
     <button onclick="closeNav()" routerLink="/">Sobre nosotros</button> 
     <button onclick="closeNav()" routerLink="/policy">Política de cookies y privacidad</button> 
+    <button onclick="closeNav()" routerLink="/covid">Información COVID</button> 
     <button onclick="closeNav()" routerLink="/">Ayuda</button> 
   </div>
   

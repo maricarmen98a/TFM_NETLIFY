@@ -41,6 +41,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { CookiesComponent } from './components/cookies/cookies.component';
+import { CovidComponent } from './components/covid/covid.component';
+import { SelectSeatComponent } from './components/select-seat/select-seat.component';
 
 registerLocaleData(localeEs);
 
@@ -63,7 +65,9 @@ registerLocaleData(localeEs);
     BookingFlightComponent,
     SearchBookingComponent,
     ExtrasComponent,
-    CookiesComponent
+    CookiesComponent,
+    CovidComponent,
+    SelectSeatComponent
   ],
   imports: [
     BrowserModule,

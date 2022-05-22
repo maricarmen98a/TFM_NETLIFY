@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BookingDTO } from 'src/app/Models/booking.dto';
 import { UnregUserDTO } from 'src/app/Models/unregisteredUser';
 import { FlightService } from 'src/app/shared/Services/flight.service';
+import { TokenService } from 'src/app/shared/Services/token.service';
 import { UserService } from 'src/app/shared/Services/user.service';
 
 @Component({
@@ -21,7 +23,10 @@ export class BookingFlightComponent implements OnInit {
   phone: FormControl; 
   userForm: FormGroup;
 
-  constructor(private flightService: FlightService, private fb: FormBuilder) {
+  constructor(private flightService: FlightService, 
+    private fb: FormBuilder,
+    public tokenService: TokenService, 
+    public router: Router) {
     this.bookings = new BookingDTO(1,'','','',1,'', new Date, '', '', 1, '' )
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.name = new FormControl('', [Validators.required]);
@@ -40,16 +45,19 @@ export class BookingFlightComponent implements OnInit {
     
     this.users = this.flightService.getData();
     if(this.users == undefined) {
-      alert('Tiene que elegir un vuelo antes de rellenar esta información.');
+      this.handleAuthError();
     }
     this.flight = this.flightService.getDataFlight();
     console.log(this.users) 
     console.log(this.flight)  
     this.userForm.get('name')?.setValue(this.users.name)  
     this.userForm.get('email')?.setValue(this.users.email)  
-    
-
   } 
+  private handleAuthError() {
+    this.tokenService.removeToken();
+    this.router.navigateByUrl('login');
+    alert('Tiene que iniciar sesión.')
+  }
 
   bookFlight() {
     this.validateForm = true;
