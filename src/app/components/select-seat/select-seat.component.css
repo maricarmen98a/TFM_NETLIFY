@@ -1,3 +1,7 @@
+h2 {
+    color: white;
+    text-align: center;
+}
 .seatmap {
     max-width: 100%;
     display: flex;
@@ -10,49 +14,77 @@
     object-fit: contain;
     width: 100%;
 }
-.plane {
+
+.plane-container {
     margin: 20px auto;
     max-width: 300px;
     height: 2500px;
+    width: 220px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(23, 60px);
 }
-.cockpit {
-    height: 360px; 
-    position: relative;
-    overflow: hidden;
-    text-align: center;
+.plane-container {
+    padding-top: 370px;
 }
-ol {
-    list-style :none;
-    padding: 0;
-    margin: 0;
-} 
-.seats {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    margin-left: 4px;
-    width: 215px;
-    justify-content: flex-start;  
+.row1, .row2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 220px;
+    margin-left: 5px;
 }
-.seat {
-    display: flex;
-    flex: 0 0 14.28571428571429%;
-    padding: 3px;
-    position: relative;
-    margin-bottom: 10px;
-    justify-content: center; 
-} 
+.row2 {
+    margin-top: 50px;
+}
+.row3, .row4, .row5 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    width: 220px;
+    margin-top: 180px;
+    margin-left: 5px;
+}
+.row4 {
+    margin-top: 50px;
+}
+.row5 {
+    margin-top: 120px;
+}
+.asiento3 {
+    padding-bottom: 10px;
+}
+.asiento3:nth-child(3) {
+    margin-right: 20px;
+}
+
+.asiento3 {
+    width: 27px;
+}
+.asiento {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 30px;
+}
+.asiento:nth-child(2) {
+    margin-right: 35px;
+}
+
+.asiento label {
+    height: 45px;
+    width: 45px;
+}
+
 input[type=checkbox] {
     position: absolute;
     opacity: 0;
 }
-input[type=checkbox]:checked + label {
+input[type=checkbox]:checked + label, .ejemplo {
     background: #bada55;      
     -webkit-animation-name: rubberBand;
     animation-name: rubberBand;
     animation-duration: 300ms;
     animation-fill-mode: both;
 }  
+
 input[type=checkbox]:disabled + label {
     background: #dddddd;
     text-indent: -9999px;
@@ -99,38 +131,10 @@ label:hover {
     cursor: pointer;
     box-shadow: 0 0 0px 2px #5C6AFF;
 }
-.row--1 .seat:nth-child(3), .row--2 .seat:nth-child(3), .row--3 .seat:nth-child(3), .row--4 .seat:nth-child(3) {
-    margin-right: 0;
+.row3 label, .row4 label, .row5 label {
+    font-size: 11px;
 }
-.row--1 .seat:nth-child(2), .row--2 .seat:nth-child(2), .row--3 .seat:nth-child(2), .row--4 .seat:nth-child(2) {
-    margin-right: 10%;
-}
-.row--1 .seat:nth-child(1), .row--2 .seat:nth-child(1), .row--3 .seat:nth-child(1), .row--4 .seat:nth-child(1) {
-    margin-left: 7px;
-}
-.row--1 .seat label, .row--2 .seat label, .row--3 .seat label, .row--4 .seat label {
-    font-size: 17px;
-    line-height: 1.8rem;
-    padding: 8px 8px;
-}
-.ocupado {
-    width: 38px;
-}
-.row--1 {
-    margin-top: 10px;
-}
-.row--3 {
-    margin-top: 60px;
-}
-.row--4 {
-    margin-bottom: 170px;
-}
-.row--5, .row--11 {
-    padding-top: 18px;
-}
-.row--15 {
-    padding-top: 90px;
-}
+
 @keyframes rubberBand {
     0% {
     -webkit-transform: scale3d(1, 1, 1);
@@ -170,4 +174,64 @@ label:hover {
 .rubberBand {
     -webkit-animation-name: rubberBand;
     animation-name: rubberBand;
+}
+.float{
+	width:40px;
+	height: 40px;
+	margin-left: 40px;
+	background-color: var(--button);
+	color: #FFF;
+	border-radius: 50px;
+	text-align: center;
+	box-shadow: 2px 2px 3px rgb(52, 52, 52);
+}
+
+button mat-icon {
+    padding-top: 6px;
+}
+.container-info {
+    display: flex;
+    position: absolute;
+    z-index: 1;
+}
+.info {
+    background-color: white;
+    width: 240px;
+    padding-left: 5px;
+    border-radius: 24px;
+    box-shadow: 2px 2px 3px rgba(52, 52, 52, 0.704);
+
+}
+.info li, .info ul {
+    padding: 10px;
+}
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+.specialPrice {
+    color: var(--button);
+    font-size: larger;
+}  
+.continue {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 130px;
+    right: 80px;
+}
+.continue2 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 120px;
+}
+.total {
+    color: white;
+    text-align: center;
 }

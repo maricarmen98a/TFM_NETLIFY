@@ -43,6 +43,9 @@ export class FlightService {
   createBooking(data:any): Observable<any> {
     return this.http.post('http://127.0.0.1:8000/api/bookings', data)
   }
+  createReservation(data:any): Observable<any> {
+    return this.http.post('http://127.0.0.1:8000/api/reservations', data)
+  }
   getCities(): Observable<any> {
     return this.http.get<CityDTO[]>('http://127.0.0.1:8000/api/cities');
   }
@@ -53,6 +56,7 @@ export class FlightService {
 private data:any = undefined;
 private dataFlight:any = undefined;
 private dataBooking:any = undefined;
+private dataReservation:any = undefined;
 setData(data:any){
   this.data = data;
 }
@@ -70,6 +74,12 @@ setDataBooking(data:any){
 }
 getDataBooking():any{
   return this.dataBooking;
+}
+setDataReservation(data:any){
+  this.dataReservation = data;
+}
+getDataReservation():any{
+  return this.dataReservation;
 }
 
 

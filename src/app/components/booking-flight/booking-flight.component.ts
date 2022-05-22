@@ -74,5 +74,7 @@ export class BookingFlightComponent implements OnInit {
     this.flightService.createBooking(this.bookings)
     .subscribe()
     console.log(this.bookings)
+    this.flightService.setDataBooking(this.bookings);  
+
 }
 }
