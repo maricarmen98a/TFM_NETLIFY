@@ -40,6 +40,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { CookiesComponent } from './components/cookies/cookies.component';
 
 registerLocaleData(localeEs);
 
@@ -61,7 +62,8 @@ registerLocaleData(localeEs);
     RemoveDigitsPipe,
     BookingFlightComponent,
     SearchBookingComponent,
-    ExtrasComponent
+    ExtrasComponent,
+    CookiesComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { BookingFlightComponent } from './components/booking-flight/booking-flight.component';
 import { ChangePasswordRequestComponent } from './components/change-password-request/change-password-request.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { CookiesComponent } from './components/cookies/cookies.component';
 import { ExtrasComponent } from './components/extras/extras.component';
 import { FlightComponent } from './components/flight/flight.component';
 import { HomeComponent } from './components/home/home.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'flights', component: FlightComponent },
   { path: 'booking', component: BookingFlightComponent },
   { path: 'extras', component: ExtrasComponent },
+  { path: 'policy', component: CookiesComponent },
   { path: 'search-booking', component: SearchBookingComponent },
 ];
 @NgModule({
