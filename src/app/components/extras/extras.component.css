@@ -1,0 +1,50 @@
+h2 {
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 100px;
+}
+.text {
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+.extra-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+.img-container {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+.img-container img {
+    object-fit: contain;
+    width: 40%;
+    height: 40%;
+    border-radius: 50%;
+}
+mat-icon {
+    color: white;
+}
+.clouds {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.cloudDown {
+    padding-top: 15px;
+}
+.clouds img {
+    max-width: 70px;
+}

@@ -20,7 +20,7 @@
                             Disfrute de un viaje a {{ flight.destination }} por solamente <span class="crossedPrice">{{ flight.price | currency: 'EUR'}} </span> <span class="specialPrice"> {{ flight.price - 50 | number: '1.0-0' | currency: 'EUR' }}</span>
                         </p>
                         </mat-card-content>
-                    <mat-card-actions>
+                    <mat-card-actions *ngIf="!selected">
                     <button mat-button (click)="submitSelected()">Seleccionar</button>
                     </mat-card-actions>
         
@@ -47,6 +47,9 @@
                         <mat-error *ngIf="email.hasError('required')">
                             El correo electrónico es <strong>obligatorio</strong>
                         </mat-error></div>
+                        <div class="error" *ngIf="errors?.email">
+                            {{ errors?.email }}
+                          </div>
                         <div>
                             <button type="submit">Añadir información</button>
                         </div>

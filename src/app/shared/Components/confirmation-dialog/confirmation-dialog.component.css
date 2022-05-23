@@ -1,0 +1,6 @@
+.boton1:hover {
+    background-color: var(--button) !important;
+}
+.boton2:hover {
+    background-color: var(--button-click) !important;
+}

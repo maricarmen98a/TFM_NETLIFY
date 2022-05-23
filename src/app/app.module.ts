@@ -43,6 +43,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { CookiesComponent } from './components/cookies/cookies.component';
 import { CovidComponent } from './components/covid/covid.component';
 import { SelectSeatComponent } from './components/select-seat/select-seat.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './shared/Components/confirmation-dialog/confirmation-dialog.component';
 
 registerLocaleData(localeEs);
 
@@ -67,7 +69,9 @@ registerLocaleData(localeEs);
     ExtrasComponent,
     CookiesComponent,
     CovidComponent,
-    SelectSeatComponent
+    SelectSeatComponent,
+    ConfirmationDialogComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -89,8 +93,12 @@ registerLocaleData(localeEs);
     MatSidenavModule,
     MatMenuModule,
     MatIconModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDialogModule
     
+  ],
+  entryComponents: [
+    ConfirmationDialogComponent
   ],
   providers: [
     {

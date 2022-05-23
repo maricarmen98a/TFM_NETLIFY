@@ -18,6 +18,7 @@ export class RandomFlightComponent implements OnInit {
   validateForm: boolean = false;
   users: UnregUserDTO;
   userConfirmado: boolean = false;
+  errors: any = null;
 
   name: FormControl;
   email: FormControl; 
@@ -59,12 +60,17 @@ export class RandomFlightComponent implements OnInit {
     this.users.name = this.name.value;
     this.users = this.userForm.value;
     this.flightService.createUnregUser(this.users)
-      .subscribe(()=> {},  () => {
+      .subscribe((result: any) => {
+        console.log(result);
+        this.userConfirmado = true;
+        this.flightService.setData(this.users); 
+      },
+      (error: any) => {
+        this.errors = error.error;
         this.userConfirmado = false;
       })
-    console.log(this.users);
-    this.userConfirmado = true;
-    this.flightService.setData(this.users);  
+  console.log(this.users);
+     
   }
   submitSelected() {
     this.selected = true;

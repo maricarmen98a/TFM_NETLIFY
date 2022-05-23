@@ -116,6 +116,13 @@ label {
     animation-duration: 300ms;
     animation-fill-mode: both;
 }
+.unselect {
+    background: #F42536 !important;
+}
+.checked {
+    background: #bada55 !important;      
+
+}
 label:before {
     content: "";
     position: absolute;
@@ -204,6 +211,7 @@ button mat-icon {
 }
 .info li, .info ul {
     padding: 10px;
+    list-style-type: none;
 }
 .arrow {
     border: solid black;
@@ -223,7 +231,7 @@ button mat-icon {
     position: absolute;
     width: 60px;
     height: 60px;
-    top: 130px;
+    top: 150px;
     right: 80px;
 }
 .continue2 {

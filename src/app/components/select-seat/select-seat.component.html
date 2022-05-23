@@ -1,8 +1,3 @@
-<!-- <div>
-    <div class="seatmap">
-        <img src="assets/seatmap-mobile.webp" alt="Mapa de asientos">
-    </div>
-</div> -->
 <div>
   <h2>Elija su asiento</h2>
 </div>
@@ -20,19 +15,19 @@
       <li>Filas 3 y 4 son clase business <i class="arrow right"></i> <span class="specialPrice"> 40€</span></li>
       <li>El resto de filas es clase turista <i class="arrow right"></i> <span class="specialPrice"> 10€</span></li>
       <ul>Asiento ocupado:
-        <li class="seat">
+        <li class="asiento">
           <input type="checkbox" disabled/>
           <label class="ocupado">Ocupado</label>
         </li>
       </ul>
       <ul>Asiento disponible:
-        <li class="seat">
+        <li class="asiento">
           <input type="checkbox"  />
          <label class="ocupado">1A</label>
         </li>
       </ul>
       <ul>Asiento seleccionado:
-        <li class="seat">
+        <li class="asiento">
           <input type="checkbox"  />
           <label class="ocupado ejemplo">1A</label>
         </li>
@@ -41,40 +36,102 @@
   </div>
 </div>
 <div class="continue">
-  <button (click)="setData(reservation)">Continuar</button>
+  <button (click)="openDialog()">Continuar</button> <!-- (click)="setData(reservation)" -->
 </div>
 <div class="seatmap" >
   <div class="plane" >
     <div class="plane-container" [formGroup]="form">
       <div class="column">
         <div class="row1">
+          <div class="asiento">
+            <input type="checkbox" id="1A" disabled />
+            <label for="1A">1A</label>
+          </div>
           <div class="asiento" *ngFor="let seat of arraySeats1">
-            <input type="checkbox" (change)="onCheck(this.seat)" id="{{seat}}" formArrayName="checkboxes"  />
-            <label for="{{seat}}">{{seat}}</label>
+            <input type="checkbox" (change)="onCheck(this.seat)" id="{{seat.value}}" formArrayName="checkboxes"(click)="uncheckOther(seat)" [(ngModel)]="seat.checked" [ngModelOptions]="{standalone: true}"/>
+            <label  for="{{seat.value}}">{{seat.value}}</label>
+          </div> 
+          <div class="asiento">
+            <input type="checkbox" id="2D" disabled />
+            <label for="2D">2D</label>
           </div>
         </div>
+        <!-- [ngClass]="{'unselect': step == true}" en input y label -->
         <div class="row2">
           <div class="asiento" *ngFor="let seat of arraySeats2">
-            <input type="checkbox" (change)="onCheck(this.seat)" id="{{seat}}" formArrayName="checkboxes"  />
-            <label for="{{seat}}">{{seat}}</label>
+            <input type="checkbox" (change)="onCheck(this.seat)" id="{{seat.value}}" formArrayName="checkboxes"(click)="uncheckOther(seat)" [(ngModel)]="seat.checked" [ngModelOptions]="{standalone: true}"/>
+            <label for="{{seat.value}}">{{seat.value}}</label>
+          </div>
+          <div class="asiento">
+            <input type="checkbox" id="4C" disabled />
+            <label for="4C">4C</label>
+          </div>
+          <div class="asiento">
+            <input type="checkbox" id="4D" disabled />
+            <label for="4D">4D</label>
           </div>
         </div>
         <div class="row3">
+          <div class="asiento3">
+            <input type="checkbox" id="5A" disabled />
+            <label for="5A">5A</label>
+          </div>
           <div class="asiento3" *ngFor="let seat of arraySeats3">
-            <input type="checkbox" (change)="onCheck(this.seat)" id="{{seat}}" formArrayName="checkboxes"  />
-            <label for="{{seat}}">{{seat}}</label>
+            <input type="checkbox" (change)="onCheck(this.seat)" id="{{seat.value}}" formArrayName="checkboxes"(click)="uncheckOther(seat)" [(ngModel)]="seat.checked" [ngModelOptions]="{standalone: true}"/>
+            <label  for="{{seat.value}}">{{seat.value}}</label>
           </div>
         </div>
         <div class="row4">
+          <div class="asiento3">
+            <input type="checkbox" id="11A" disabled />
+            <label for="11A">11A</label>
+          </div>
+          <div class="asiento3">
+            <input type="checkbox" id="11B" disabled />
+            <label for="11B">11B</label>
+          </div>
           <div class="asiento3" *ngFor="let seat of arraySeats4">
-            <input type="checkbox" (change)="onCheck(this.seat)" id="{{seat}}" formArrayName="checkboxes"  />
-            <label for="{{seat}}">{{seat}}</label>
+            <input type="checkbox" (change)="onCheck(this.seat)" id="{{seat.value}}" formArrayName="checkboxes"(click)="uncheckOther(seat)" [(ngModel)]="seat.checked" [ngModelOptions]="{standalone: true}"/>
+            <label  for="{{seat.value}}">{{seat.value}}</label>
+          </div>
+          <div class="asiento3">
+            <input type="checkbox" id="14D" disabled />
+            <label for="14D">14D</label>
+          </div>
+          <div class="asiento3">
+            <input type="checkbox" id="14E" disabled />
+            <label for="14E">14E</label>
+          </div>
+          <div class="asiento3">
+            <input type="checkbox" id="14F" disabled />
+            <label for="14F">14F</label>
           </div>
         </div>
+
         <div class="row5">
+          <div class="asiento3">
+            <input type="checkbox" id="15A" disabled />
+            <label for="15A">15A</label>
+          </div>
+          <div class="asiento3">
+            <input type="checkbox" id="15B" disabled />
+            <label for="15B">15B</label>
+          </div>
+          <div class="asiento3">
+            <input type="checkbox" id="15C" disabled />
+            <label for="15C">15C</label>
+          </div>
+          <div class="asiento3">
+            <input type="checkbox" id="15D" disabled />
+            <label for="15D">15D</label>
+          </div>
           <div class="asiento3" *ngFor="let seat of arraySeats5">
-            <input type="checkbox" (change)="onCheck(this.seat)" id="{{seat}}" formArrayName="checkboxes"  />
-            <label for="{{seat}}">{{seat}}</label>
+            <input type="checkbox" (change)="onCheck(this.seat)" id="{{seat.value}}" formArrayName="checkboxes"(click)="uncheckOther(seat)" [(ngModel)]="seat.checked" [ngModelOptions]="{standalone: true}"/>
+            <label  for="{{seat.value}}">{{seat.value}}</label>
+          </div>
+          <div class="asiento3">
+            <input type="checkbox" id="23F" disabled />
+            <label for="23F">23F</label>
           </div>
         </div>
       </div>
@@ -82,5 +139,5 @@
   </div>
 </div>
 <div class="continue2">
-  <button (click)="setData(reservation)">Continuar</button>
+  <button (click)="openDialog()">Continuar</button>
 </div>
