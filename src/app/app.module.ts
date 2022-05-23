@@ -45,6 +45,8 @@ import { CovidComponent } from './components/covid/covid.component';
 import { SelectSeatComponent } from './components/select-seat/select-seat.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './shared/Components/confirmation-dialog/confirmation-dialog.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { NoticeComponent } from './shared/Components/notice/notice.component';
 
 registerLocaleData(localeEs);
 
@@ -71,6 +73,7 @@ registerLocaleData(localeEs);
     CovidComponent,
     SelectSeatComponent,
     ConfirmationDialogComponent,
+    NoticeComponent,
     
   ],
   imports: [
@@ -94,7 +97,8 @@ registerLocaleData(localeEs);
     MatMenuModule,
     MatIconModule,
     MatExpansionModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
     
   ],
   entryComponents: [

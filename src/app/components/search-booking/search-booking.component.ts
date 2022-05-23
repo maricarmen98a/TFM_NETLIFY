@@ -50,6 +50,9 @@ export class SearchBookingComponent implements OnInit {
     if(this.filteredReservations.length == 0 && !this.bookingSearch.hasError('required')) {
       this.emptyArray = true;
     } 
+    let seatArray = this.filteredReservations[0];
+    this.flightService.setDataReservation(seatArray);
+    console.log(seatArray)
 
   }
 }

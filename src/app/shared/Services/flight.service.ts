@@ -46,6 +46,9 @@ export class FlightService {
   createReservation(data:any): Observable<any> {
     return this.http.post('http://127.0.0.1:8000/api/reservations', data)
   }
+  updateReservation(data:any, id:any): Observable<any> {
+    return this.http.put('http://127.0.0.1:8000/api/reservations/'+ id, data)
+  }
   getCities(): Observable<any> {
     return this.http.get<CityDTO[]>('http://127.0.0.1:8000/api/cities');
   }

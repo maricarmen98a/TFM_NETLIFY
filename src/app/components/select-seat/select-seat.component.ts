@@ -97,9 +97,6 @@ export class SelectSeatComponent implements OnInit {
         chk.checked = true;
       }
     }
-    else {
-      console.log('Call Both API')
-    }
   } 
   onCheck(evt: any) {
     if (!this.checkedTickets.includes(evt)) {

@@ -32,3 +32,7 @@ button:hover {
     color: black;
     transform: translateY(-7px);
 }
+.snackbar {
+    background-color: #5bbe40;
+    color: white;
+}
