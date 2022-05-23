@@ -48,3 +48,19 @@ mat-icon {
 .clouds img {
     max-width: 70px;
 }
+.boton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.atras {
+    font-size: 1rem;
+    padding-left: 20px;
+    text-decoration: underline;
+}
+.atras a {
+    color: white;
+}
+.atras a:hover {
+    color: var(--button);
+}

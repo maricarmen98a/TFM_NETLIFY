@@ -15,6 +15,7 @@ export class ExtrasComponent implements OnInit {
   suitcase: number;
   pickup: number;
   activities: number;
+  bought: boolean = false;
   constructor(public flightService: FlightService, private _snackBar: MatSnackBar) { 
     this.suitcase = 50;
     this.activities = 25;
@@ -28,16 +29,19 @@ export class ExtrasComponent implements OnInit {
   buyPickup() {
     this.reservation.price = this.reservation.price + this.pickup;
     console.log(this.reservation);
+    this.bought = true;
     this.openSnackBar()
   }
   buyActivities() {
     this.reservation.price = this.reservation.price + this.activities;
     console.log(this.reservation);
+    this.bought = true;
     this.openSnackBar()
   }
   buySuitcase() {
     this.reservation.price = this.reservation.price + this.suitcase;
     console.log(this.reservation);
+    this.bought = true;
     this.openSnackBar()
   }
   openSnackBar() {

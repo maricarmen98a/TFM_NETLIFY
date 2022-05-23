@@ -1,5 +1,13 @@
 <h2>Extras de viaje</h2>
-<button (click)="continue()">Continuar</button>
+<div class="atras">
+    <a href="/search-booking">< Atrás</a>
+</div>
+<div *ngIf="!bought" class="boton">
+    <button (click)="continue()">No quiero añadir nada</button>
+</div>
+<div *ngIf="bought" class="boton">
+    <button (click)="continue()">Continuar</button>
+</div>
 <div class="container">
     <div class="extra-container">
         <div class="img-container">
