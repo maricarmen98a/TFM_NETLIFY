@@ -3,6 +3,8 @@ import { ReservationDTO } from 'src/app/Models/reservation.dto';
 import { FlightService } from 'src/app/shared/Services/flight.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { NoticeComponent } from 'src/app/shared/Components/notice/notice.component';
+import { ThisReceiver } from '@angular/compiler';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +18,7 @@ export class ExtrasComponent implements OnInit {
   pickup: number;
   activities: number;
   bought: boolean = false;
-  constructor(public flightService: FlightService, private _snackBar: MatSnackBar) { 
+  constructor(public flightService: FlightService, private _snackBar: MatSnackBar, public router: Router) { 
     this.suitcase = 50;
     this.activities = 25;
     this.pickup = 20;
@@ -51,7 +53,12 @@ export class ExtrasComponent implements OnInit {
     });
   }
   continue() {
-    this.flightService.updateReservation(this.reservation, this.reservation.id)
-    .subscribe(); 
+    /* this.flightService.updateReservation(this.reservation, this.reservation.id)
+    .subscribe();  USAR ESTO AL FINAL DEL PAGO
+    this.flightService.createReservation(this.reservations)
+    .subscribe()*/
+    this.flightService.setDataReservation(this.reservation);
+    this.router.navigateByUrl('payment')
+
   }
 }

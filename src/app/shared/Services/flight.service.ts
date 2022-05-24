@@ -5,7 +5,6 @@ import { FlightDTO } from '../../Models/flight';
 import { CityDTO } from '../../Models/city';
 import { CountryDTO } from 'src/app/Models/country';
 import { throwError } from 'rxjs';
-import { BookingDTO } from 'src/app/Models/booking.dto';
 import { UnregUserDTO } from 'src/app/Models/unregisteredUser';
 import { ReservationDTO } from 'src/app/Models/reservation.dto';
 
@@ -22,11 +21,6 @@ export class FlightService {
      /*  tap(data => console.log('Data fetched:'+JSON.stringify(data))) ,*/
       catchError(this.handleError));
   }
-  getBooking(): Observable<any> {
-    return this.http.get<BookingDTO[]>('http://127.0.0.1:8000/api/bookings').pipe(
-     /*  tap(data => console.log('Data fetched:'+JSON.stringify(data))) ,*/
-      catchError(this.handleError));
-  }
   getReservation(): Observable<any> {
     return this.http.get<ReservationDTO[]>('http://127.0.0.1:8000/api/reservations').pipe(
      /*  tap(data => console.log('Data fetched:'+JSON.stringify(data))) ,*/
@@ -39,9 +33,6 @@ export class FlightService {
   }
   createUnregUser(data: any): Observable<any> {
     return this.http.post('http://127.0.0.1:8000/api/unreguser', data)
-  }
-  createBooking(data:any): Observable<any> {
-    return this.http.post('http://127.0.0.1:8000/api/bookings', data)
   }
   createReservation(data:any): Observable<any> {
     return this.http.post('http://127.0.0.1:8000/api/reservations', data)
@@ -58,7 +49,6 @@ export class FlightService {
 // Sirve para transferir datos entre componentes
 private data:any = undefined;
 private dataFlight:any = undefined;
-private dataBooking:any = undefined;
 private dataReservation:any = undefined;
 setData(data:any){
   this.data = data;
@@ -71,12 +61,6 @@ setDataFlight(data:any){
 }
 getDataFlight():any{
   return this.dataFlight;
-}
-setDataBooking(data:any){
-  this.dataBooking = data;
-}
-getDataBooking():any{
-  return this.dataBooking;
 }
 setDataReservation(data:any){
   this.dataReservation = data;

@@ -8,6 +8,7 @@ import { CovidComponent } from './components/covid/covid.component';
 import { ExtrasComponent } from './components/extras/extras.component';
 import { FlightComponent } from './components/flight/flight.component';
 import { HomeComponent } from './components/home/home.component';
+import { PaymentComponent } from './components/payment/payment.component';
 import { SearchBookingComponent } from './components/search-booking/search-booking.component';
 import { SelectSeatComponent } from './components/select-seat/select-seat.component';
 import { SigninComponent } from './components/SingIn-Up-Profile/signin/signin.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'covid', component: CovidComponent },
   { path: 'select-seat', component: SelectSeatComponent },
   { path: 'search-booking', component: SearchBookingComponent },
+  { path: 'payment', component: PaymentComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

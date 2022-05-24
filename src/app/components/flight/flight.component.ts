@@ -7,7 +7,6 @@ import { CountryDTO } from 'src/app/Models/country';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UnregUserDTO } from 'src/app/Models/unregisteredUser';
-import { BookingDTO } from 'src/app/Models/booking.dto';
 import { HeaderMenusService } from 'src/app/shared/Services/header-menus.service';
 
 @Component({
@@ -43,10 +42,7 @@ export class FlightComponent implements OnInit {
   name: FormControl;
   email: FormControl; 
   user!: UnregUserDTO[];
-  booking!: BookingDTO[];
   userForm: FormGroup;
-  bookings: BookingDTO;
-  reservas!: BookingDTO;
   userConfirmado: boolean = false;
 /*   @Output() redirect:EventEmitter<any> = new EventEmitter();
  */
@@ -57,7 +53,6 @@ export class FlightComponent implements OnInit {
     ) {
     this.condicion = 'B';
     this.users = new UnregUserDTO( '', '');
-    this.bookings = new BookingDTO(1,'','','',1,'', new Date, '', '', 1, '' )
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.name = new FormControl('', [
       Validators.required
@@ -74,7 +69,6 @@ export class FlightComponent implements OnInit {
     this.flightService.getCities().subscribe((cities: CityDTO[]) => (this.cities = cities));
     this.flightService.getCountries().subscribe((countries: CountryDTO[]) => (this.countries = countries));
     this.flightService.getUnregUser().subscribe((users: UnregUserDTO[]) => (this.user = users));
-    this.flightService.getBooking().subscribe((bookings: BookingDTO[]) => (this.booking = bookings));
   }
   onChangeSource(newValue:string){ 
     this.source = newValue;

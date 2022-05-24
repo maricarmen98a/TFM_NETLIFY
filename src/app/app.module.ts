@@ -47,6 +47,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './shared/Components/confirmation-dialog/confirmation-dialog.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NoticeComponent } from './shared/Components/notice/notice.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 registerLocaleData(localeEs);
 
@@ -74,6 +75,7 @@ registerLocaleData(localeEs);
     SelectSeatComponent,
     ConfirmationDialogComponent,
     NoticeComponent,
+    PaymentComponent,
     
   ],
   imports: [
@@ -98,7 +100,7 @@ registerLocaleData(localeEs);
     MatIconModule,
     MatExpansionModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
     
   ],
   entryComponents: [

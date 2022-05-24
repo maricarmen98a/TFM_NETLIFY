@@ -1,11 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BookingDTO } from 'src/app/Models/booking.dto';
-import { UnregUserDTO } from 'src/app/Models/unregisteredUser';
+import { ReservationDTO } from 'src/app/Models/reservation.dto';
 import { FlightService } from 'src/app/shared/Services/flight.service';
 import { TokenService } from 'src/app/shared/Services/token.service';
-import { UserService } from 'src/app/shared/Services/user.service';
 
 @Component({
   selector: 'app-booking-flight',
@@ -13,7 +11,7 @@ import { UserService } from 'src/app/shared/Services/user.service';
   styleUrls: ['./booking-flight.component.css']
 })
 export class BookingFlightComponent implements OnInit {
-  bookings: BookingDTO;
+  reservations: ReservationDTO;
   users: any;
   validateForm: boolean = false;
   flight: any;
@@ -27,7 +25,7 @@ export class BookingFlightComponent implements OnInit {
     private fb: FormBuilder,
     public tokenService: TokenService, 
     public router: Router) {
-    this.bookings = new BookingDTO(1,'','','',1,'', new Date, '', '', 1, '' )
+    this.reservations = new ReservationDTO(1, 1, 1,'', '', '', '', '', '', 1, '', '', new Date, new Date, '', '' )
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.name = new FormControl('', [Validators.required]);
     this.passport = new FormControl('', [Validators.required]);
@@ -61,20 +59,23 @@ export class BookingFlightComponent implements OnInit {
 
   bookFlight() {
     this.validateForm = true;
-    this.bookings.email = this.users.email;
-    this.bookings.name = this.users.name;
-    this.bookings.status = 'Active';
-    this.bookings.passengers = 1;
-    this.bookings.airline = this.flight.airline;
-    this.bookings.origin = this.flight.origin;
-    this.bookings.destination = this.flight.destination;
-    this.bookings.price = this.flight.price;
-    this.bookings.promo_code = this.flight.reservation_code;
+    this.reservations.passenger_email = this.users.email;
+    this.reservations.passenger_name = this.users.name;
+    this.reservations.status = 'Active';
+    this.reservations.airline = this.flight.airline;
+    this.reservations.origin = this.flight.origin;
+    this.reservations.destination = this.flight.destination;
+    this.reservations.price = this.flight.price;
+    this.reservations.boarding_hour = this.flight.boarding_hour;
+    this.reservations.boarding_time = this.flight.boarding_time;
+    this.reservations.arrival_hour = this.flight.arrival_hour;
+    this.reservations.arrival_time = this.flight.arrival_time;
+    this.reservations.seat = '23A';
      
-    this.flightService.createBooking(this.bookings)
+    this.flightService.createReservation(this.reservations)
     .subscribe()
-    console.log(this.bookings)
-    this.flightService.setDataBooking(this.bookings);  
+    console.log(this.reservations)
+    this.flightService.setDataReservation(this.reservations);  
 
 }
 }

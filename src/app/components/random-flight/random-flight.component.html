@@ -40,15 +40,11 @@
                             <label for="email">Correo electrónico:</label>
                             <input type="text" name="email" placeholder="Correo electrónico" [formControl]="email">
                         </div>
-                        <div *ngIf="validateForm">
-                            <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-                            Por favor, introduzca una dirección de correo válida.
-                            </mat-error>
-                        <mat-error *ngIf="email.hasError('required')">
-                            El correo electrónico es <strong>obligatorio</strong>
-                        </mat-error></div>
                         <div class="error" *ngIf="errors?.email">
                             {{ errors?.email }}
+                          </div>
+                          <div class="error" *ngIf="errors">
+                            {{ errors.error }}
                           </div>
                         <div>
                             <button type="submit">Añadir información</button>

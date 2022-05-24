@@ -1,7 +1,6 @@
 export class ReservationDTO {
     id: number;
     user_id: number;
-    booking_id: number;
     flight_id: number;
     passenger_name: string;
     passenger_email: string;
@@ -12,11 +11,14 @@ export class ReservationDTO {
     price: number;
     seat: string;
     reservation_code: string;
+    boarding_time: Date;
+    arrival_time: Date;
+    boarding_hour: string;
+    arrival_hour: string;
   
     constructor(
         id: number,
         user_id: number,
-        booking_id: number,
         flight_id: number,
         passenger_name: string,
         passenger_email: string,
@@ -26,11 +28,14 @@ export class ReservationDTO {
         destination: string,
         price: number,
         seat: string,
-        reservation_code: string
+        reservation_code: string,
+        boarding_time: Date,
+        arrival_time: Date,
+        boarding_hour: string,
+        arrival_hour: string
     ) {
         this.id = id,
         this.user_id = user_id,
-        this.booking_id = booking_id,
         this.flight_id = flight_id,
         this.passenger_name = passenger_name,
         this.passenger_email = passenger_email,
@@ -40,7 +45,11 @@ export class ReservationDTO {
         this.destination = destination,
         this.price = price,
         this.seat = seat,
-        this.reservation_code = reservation_code
+        this.reservation_code = reservation_code,
+        this.boarding_time = boarding_time,
+        this.boarding_hour = boarding_hour,
+        this.arrival_hour = arrival_hour,
+        this.arrival_time = arrival_time
     }
   }
   

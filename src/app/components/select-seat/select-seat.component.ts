@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { BookingDTO } from 'src/app/Models/booking.dto';
 import { ReservationDTO } from 'src/app/Models/reservation.dto';
 import { ConfirmationDialogComponent } from 'src/app/shared/Components/confirmation-dialog/confirmation-dialog.component';
 import { FlightService } from 'src/app/shared/Services/flight.service';
@@ -26,7 +25,7 @@ export class SelectSeatComponent implements OnInit {
   arraySeats4: any;
   arraySeats5: any;    
   extra!: number;
-  booking!: BookingDTO;
+  reserva!: ReservationDTO;
   bookingSearch: boolean = true;
   filteredReservations!: any[];
   checkedTickets: string[] = [];
@@ -35,7 +34,7 @@ export class SelectSeatComponent implements OnInit {
   clickcounter: number = 0;
   constructor(public flightService: FlightService, public tokenService: TokenService, public router: Router, public dialog: MatDialog) {
     this.seat = new FormControl('');
-    this.reservations = new ReservationDTO(1, 1, 1, 1,'', '', '', '', '', '', 1, '', '' )
+    this.reservations = new ReservationDTO(1, 1, 1,'', '', '', '', '', '', 1, '', '', new Date, new Date, '', '' )
     this. bntStyle = 'seat';
     this.arraySeats1 = [
       {value: '1B', checked: false}, {value: '1C', checked: false}, {value: '1D', checked: false}, {value: '2A', checked: false}, {value: '2B', checked: false}, {value: '2C', checked: false}
@@ -56,8 +55,8 @@ export class SelectSeatComponent implements OnInit {
   }
   ngOnInit(): void {
     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations));
-    this.booking = this.flightService.getDataBooking();
-    if(this.booking == undefined) {
+    this.reserva = this.flightService.getDataReservation();
+    if(this.reserva == undefined) {
       this.handleAuthError();
     }  
   }
@@ -131,17 +130,21 @@ export class SelectSeatComponent implements OnInit {
   setData(reservation: any) {
     let seatArray = this.checkedTickets[0];
     const selectedSeat = Object.values(seatArray)[0];
-    this.reservations.passenger_email = this.booking.email;
-    this.reservations.passenger_name = this.booking.name;
-    this.reservations.status = this.booking.status = 'Active';
-    this.reservations.airline = this.booking.airline;
-    this.reservations.origin = this.booking.origin;
-    this.reservations.destination = this.booking.destination;
-    this.reservations.price = this.booking.price + this.extra; 
-    this.reservations.reservation_code = this.booking.promo_code;
+    this.reservations.passenger_email = this.reserva.passenger_email;
+    this.reservations.passenger_name = this.reserva.passenger_name;
+    this.reservations.status = this.reserva.status = 'Active';
+    this.reservations.airline = this.reserva.airline;
+    this.reservations.origin = this.reserva.origin;
+    this.reservations.destination = this.reserva.destination;
+    this.reservations.price = this.reserva.price + this.extra; 
+    this.reservations.reservation_code = this.reserva.reservation_code;
+    this.reservations.boarding_time = this.reserva.boarding_time;
+    this.reservations.arrival_time = this.reserva.arrival_time;
+    this.reservations.arrival_hour = this.reserva.arrival_hour;
+    this.reservations.boarding_hour = this.reserva.boarding_hour;
     this.reservations.seat = selectedSeat; 
-    this.flightService.createReservation(this.reservations)
-    .subscribe()
+    /* this.flightService.createReservation(this.reservations)
+    .subscribe() */
     console.log(this.reservations)
     this.showReservation = true;
     this.flightService.setDataReservation(this.reservations);
