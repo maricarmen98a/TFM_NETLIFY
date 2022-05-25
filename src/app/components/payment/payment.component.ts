@@ -20,8 +20,8 @@ export class PaymentComponent implements OnInit {
   year:IYear = <IYear>{};  
   years: IYear[] = [];
   paymentmodel:IPaymentModel = <IPaymentModel>{}
-  isSubmitted:boolean = false;
-  cardDetailsValidate:boolean = false;
+  isSubmitted: boolean = false;
+  cardDetailsValidate: boolean = false;
   name: FormControl;
   cardNumber: FormControl;
   expiryYear: FormControl;
@@ -35,6 +35,8 @@ export class PaymentComponent implements OnInit {
   filteredReservations!: any[];
   reservas!: ReservationDTO[];
   showPrice: boolean = false;
+  itExists: boolean = false;
+  noError: boolean = true;
   selectedValue: FormControl; 
   public constructor(private location: Location, public local: LocalStorageService, private formBuilder: FormBuilder, public flightService: FlightService) {
     this.name = new FormControl('', [Validators.required]);
@@ -174,7 +176,9 @@ export class PaymentComponent implements OnInit {
     if(this.reservation.price > this.reservas[0].price) {
       this.reservation.price = this.reservation.price - this.reservas[0].price;
     }
-    
+    if(this.reservas.length > 0) {
+      this.itExists = true;
+    }
     console.log(this.reservation.price)
   }
   SaveCardDetails(){    
@@ -185,10 +189,17 @@ export class PaymentComponent implements OnInit {
     this.paymentmodel.cardYear = this.expiryYear.value;  
     this.paymentmodel.cvc = this.cvc.value; 
     this.paymentmodel.cardType = this.selectedValue.value;
+    if(this.cvc.value == 666) {
+      this.noError = false;
+    }
     if(this.paymentForm.valid){
       this.cardDetailsValidate = true;
-      this.flightService.createReservation(this.reservation)
-    .subscribe()
+      if(this.itExists == true) {
+        this.flightService.updateReservation(this.reservation, this.reservation.id).subscribe();
+      } else {
+        this.flightService.createReservation(this.reservation).subscribe();
+      }
+      
 /*     this.flightService.setDataReservation(this.reservation)
  */    this.local.setUsuario('reserva', JSON.stringify(this.reservation))
 

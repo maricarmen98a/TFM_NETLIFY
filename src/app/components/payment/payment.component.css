@@ -48,3 +48,21 @@
 .container-accepted a:hover {
     color: var(--button);
 }
+.error404 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+.error404 img {
+    padding-bottom: 50px;
+    padding-top: 20px;
+}
+.error404 a {
+    cursor: pointer;
+}
+.error404 a:hover {
+    text-decoration: underline;
+}
