@@ -5,6 +5,7 @@ import { ViewChild, ElementRef } from '@angular/core';
 import { ReservationDTO } from 'src/app/Models/reservation.dto';
 import { FlightService } from 'src/app/shared/Services/flight.service';
 import { Location } from '@angular/common';
+import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
 
 @Component({
   selector: 'app-payment',
@@ -33,9 +34,9 @@ export class PaymentComponent implements OnInit {
   ]
   filteredReservations!: any[];
   reservas!: ReservationDTO[];
-
+  showPrice: boolean = false;
   selectedValue: FormControl; 
-  public constructor(private location: Location, private formBuilder: FormBuilder, public flightService: FlightService) {
+  public constructor(private location: Location, public local: LocalStorageService, private formBuilder: FormBuilder, public flightService: FlightService) {
     this.name = new FormControl('', [Validators.required]);
     this.cardNumber = new FormControl('', [Validators.required, Validators.pattern('^[ 0-9]*$'), Validators.minLength(17)]);
     this.expiryMonth = new FormControl("", Validators.required);
@@ -54,12 +55,11 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {   
     this.GetMonths();
     this.GetYears();
-    this.reservation = this.flightService.getDataReservation();
+    let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
+    this.reservation = retrievedObject;
     console.log(this.reservation)
     this.stringToTime();
-    this.checkIfExists();
     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
-
   }
 
   creditCardNumberSpacing() {
@@ -162,16 +162,20 @@ export class PaymentComponent implements OnInit {
       }
     }
   }
-  checkIfExists(){
-    let values = Object.values(this.reservation);
+  checkIfExists() {
+    this.showPrice = true;
+    let values = Object.values(this.reservas);
     let merged = values.flat(1);
     console.log(merged) 
-  
+    this.reservas = merged.filter((x) => {
+      return (x.reservation_code == this.reservation.reservation_code)
+    })
+    console.log(this.reservas, 'existe!')
+    if(this.reservation.price > this.reservas[0].price) {
+      this.reservation.price = this.reservation.price - this.reservas[0].price;
+    }
     
-      this.reservas = merged.filter((x) => {
-        return (x.reservation_code == this.reservation.reservation_code)
-      })
-      console.log(this.reservas, 'existe!')
+    console.log(this.reservation.price)
   }
   SaveCardDetails(){    
     this.isSubmitted = true;
@@ -185,8 +189,9 @@ export class PaymentComponent implements OnInit {
       this.cardDetailsValidate = true;
       this.flightService.createReservation(this.reservation)
     .subscribe()
-    this.flightService.setDataReservation(this.reservation)
-    
+/*     this.flightService.setDataReservation(this.reservation)
+ */    this.local.setUsuario('reserva', JSON.stringify(this.reservation))
+
       console.log(this.paymentmodel)
     }
     else {

@@ -56,11 +56,5 @@ mat-icon {
 .atras {
     font-size: 1rem;
     padding-left: 20px;
-    text-decoration: underline;
-}
-.atras a {
-    color: white;
-}
-.atras a:hover {
-    color: var(--button);
+    padding-top: 20px;
 }

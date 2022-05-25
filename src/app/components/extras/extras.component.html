@@ -1,7 +1,5 @@
 <h2>Extras de viaje</h2>
-<div class="atras">
-    <button (click)="back()">Atrás</button>
-</div>
+
 <div *ngIf="!bought" class="boton">
     <button (click)="continue()">No quiero añadir nada</button>
 </div>
@@ -42,5 +40,7 @@
         <div class="text">Si no le basta con el equipaje de mano y necesita más espacio, puede contratar una maleta de 20kg por 50€</div>
         <button (click)="buySuitcase()">Reservar maleta</button>
     </div>
-    
+    <div class="atras">
+        <button (click)="back()">Atrás</button>
+    </div>
 </div>

@@ -10,6 +10,7 @@ import { UnregUserDTO } from 'src/app/Models/unregisteredUser';
 import { HeaderMenusService } from 'src/app/shared/Services/header-menus.service';
 import { AuthStateService } from 'src/app/shared/Services/auth-state.service';
 import { UserDTO } from 'src/app/Models/user.dto';
+import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
 
 @Component({
   selector: 'app-flight',
@@ -55,6 +56,8 @@ export class FlightComponent implements OnInit {
     public fb: FormBuilder,
     public headerMenusService: HeaderMenusService,
     private auth: AuthStateService,
+    public local: LocalStorageService
+
     ) {
     this.condicion = 'B';
     this.users = new UnregUserDTO( '', '');
@@ -100,7 +103,8 @@ export class FlightComponent implements OnInit {
     this.destination = source;
   }
   onSubmit(SearchPara: any) { 
-    this.usuario = this.flightService.getDataUser();
+    let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
+    this.usuario = retrievedObject;
     this.flightStatus = false;
     this.source = SearchPara.source;
     this.destination = SearchPara.destination;
@@ -182,11 +186,12 @@ export class FlightComponent implements OnInit {
     }
     console.log(this.users);
     this.userConfirmado = true;
-    this.flightService.setDataUser(this.users);  
+    this.local.setUsuario( 'usuario',JSON.stringify(this.users));  
   }
   setFlight(flight: any) {
-    this.checkUnregUser();  
-   this.flightService.setDataFlight(flight);
+    this.checkUnregUser(); 
+    
+    this.local.setUsuario('flight', JSON.stringify(flight)) 
   }   
 
 }

@@ -237,9 +237,13 @@ button mat-icon {
 .continue2 {
     display: flex;
     justify-content: center;
-    margin-bottom: 120px;
+    margin-bottom: 30px;
 }
 .total {
     color: white;
     text-align: center;
+}
+.atras {
+    margin-bottom: 130px;
+    padding-left: 20px;
 }

@@ -32,3 +32,19 @@
 .form-group button {
     margin: 20px;
 }
+.details button {
+    margin-bottom: 20px;
+}
+.container-accepted {
+    color: white;
+    padding-bottom: 30px;
+}
+.container-accepted img {
+    padding-bottom: 30px;
+}
+.container-accepted a {
+    color: white;
+}
+.container-accepted a:hover {
+    color: var(--button);
+}

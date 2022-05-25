@@ -13,6 +13,9 @@
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid; 
 }
 h2 {
     font-size: 1.6rem;
@@ -79,4 +82,7 @@ mat-error {
 }
 .biggerMargin2 {
     margin-top: 60px;
+}
+.link-extras {
+    grid-column-start: 2;
 }

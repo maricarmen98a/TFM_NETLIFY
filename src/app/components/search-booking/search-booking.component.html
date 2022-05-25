@@ -20,10 +20,11 @@
                     <img class="planeSearch2" src="assets/twoPlanes.png" alt="">
                 </div>
                 <h3>{{ reservation.destination }}</h3>
+            
+                <div class="link-extras">               
+                    <a (click)="chooseReservation(reservation)" routerLink="/extras">Añadir extras de viaje</a>
+                </div>
             </div> 
-            <div class="link-extras">               
-                <a routerLink="/extras">Añadir extras de viaje</a>
-            </div>
         </div>
     </div>
    

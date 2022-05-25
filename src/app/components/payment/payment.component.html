@@ -8,8 +8,9 @@
   <div class="container-info">
     <h2>Información del vuelo</h2>
     <img src="assets/drawing-plane.png" alt="">
-    <div>
-        <h2>Total: {{ reservation.price }} €</h2> 
+    <div class="details">
+        <button *ngIf="!showPrice" (click)="checkIfExists()">Calcular precio</button>
+        <h2 *ngIf="showPrice">Total: {{ reservation.price | number : '1.2-2' }} €</h2> 
         <p>{{ reservation.origin }} - {{ reservation.destination }}</p>
         <p>{{ reservation.boarding_time | date: 'dd/MM/yyyy'}}</p>
         <p>Sin escalas</p>

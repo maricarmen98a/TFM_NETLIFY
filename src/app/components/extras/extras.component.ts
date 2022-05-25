@@ -5,6 +5,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { NoticeComponent } from 'src/app/shared/Components/notice/notice.component';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
 
 
 @Component({
@@ -18,14 +19,16 @@ export class ExtrasComponent implements OnInit {
   pickup: number;
   activities: number;
   bought: boolean = false;
-  constructor(private location: Location, public flightService: FlightService, private _snackBar: MatSnackBar, public router: Router) { 
+  constructor(private location: Location, public local: LocalStorageService, public flightService: FlightService, private _snackBar: MatSnackBar, public router: Router) { 
     this.suitcase = 50;
     this.activities = 25;
     this.pickup = 20;
   }
 
   ngOnInit(): void {
-    this.reservation = this.flightService.getDataReservation();
+    let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
+
+    this.reservation = retrievedObject;
     console.log(this.reservation)
   }
   back(): void {
@@ -60,7 +63,9 @@ export class ExtrasComponent implements OnInit {
     .subscribe();  USAR ESTO AL FINAL DEL PAGO
     this.flightService.createReservation(this.reservations)
     .subscribe()*/
-    this.flightService.setDataReservation(this.reservation);
+/*     this.flightService.setDataReservation(this.reservation);
+ */
+    this.local.setUsuario('reserva', JSON.stringify(this.reservation))
     this.router.navigateByUrl('payment')
 
   }

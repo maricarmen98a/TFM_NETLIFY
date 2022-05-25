@@ -8,6 +8,7 @@ import { FlightService } from 'src/app/shared/Services/flight.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/shared/Components/confirmation-dialog/confirmation-dialog.component';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
 
 @Component({
   selector: 'app-random-flight',
@@ -29,7 +30,7 @@ export class RandomFlightComponent implements OnInit {
   email: FormControl; 
   userForm: FormGroup;
 
-  constructor(public flightService: FlightService, public fb: FormBuilder, private auth: AuthStateService, public dialog: MatDialog, public router: Router) {
+  constructor(public flightService: FlightService, public fb: FormBuilder, private auth: AuthStateService, public dialog: MatDialog, public local: LocalStorageService, public router: Router) {
     this.users = new UnregUserDTO( '', '');
  
     this.email = new FormControl('', [Validators.required, Validators.email]);
@@ -47,7 +48,8 @@ export class RandomFlightComponent implements OnInit {
     this.auth.userAuthState.subscribe((val) => {
         this.userConfirmado = val;
       });
-    this.usuario = this.flightService.getDataUser();
+    let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
+    this.usuario = retrievedObject;
     
 
   }
@@ -64,7 +66,8 @@ export class RandomFlightComponent implements OnInit {
     this.selectedRandom = selected;
     console.log(selected);
     this.vuelosAleatorios = true;
-    this.usuario = this.flightService.getDataUser(); 
+    let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
+    this.usuario = retrievedObject; 
   }
   checkUser( ) {
     this.validateForm = true;
@@ -80,8 +83,9 @@ export class RandomFlightComponent implements OnInit {
       .subscribe((result: any) => {
         console.log(result);
         this.userConfirmado = true;
-        this.flightService.setData(this.users); 
-      },
+        this.local.setUsuario('usuario', JSON.stringify(this.users))
+/*         this.flightService.setData(this.users); 
+ */      },
       (error: any) => {
         this.errors = error.error;
         this.userConfirmado = false;
@@ -91,11 +95,14 @@ export class RandomFlightComponent implements OnInit {
      
   }
   setFlight(flight: any) {
-    this.usuario = this.flightService.getDataUser();
+    let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
+    this.usuario = retrievedObject;
     flight.price = flight.price - 50; 
     this.checkUser();  
-    this.flightService.setDataFlight(flight);
-  }
+    this.local.setUsuario('flight', JSON.stringify(flight))
+
+/*     this.flightService.setDataFlight(flight);
+ */  }
   openDialog(flight: any): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '320px',

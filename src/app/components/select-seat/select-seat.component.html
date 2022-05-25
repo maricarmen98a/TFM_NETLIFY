@@ -35,7 +35,10 @@
     </ol>
   </div>
 </div>
-<div class="continue">
+<div *ngIf="!chosenSeat" class="continue">
+  <button (click)="openDialog()">Asiento aleatorio</button> <!-- (click)="setData(reservation)" -->
+</div>
+<div *ngIf="chosenSeat" class="continue">
   <button (click)="openDialog()">Continuar</button> <!-- (click)="setData(reservation)" -->
 </div>
 <div class="seatmap" >

@@ -45,8 +45,9 @@ userId!: string;
   ngOnInit() {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
-      this.flightService.setDataUser(this.UserProfile);
-      this.local.setUsuario(this.usuario1, this.UserProfile)
+/*       this.flightService.setDataUser(this.UserProfile);
+ */
+      this.local.setUsuario('usuario', JSON.stringify(this.UserProfile))
     });
 
     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations));    

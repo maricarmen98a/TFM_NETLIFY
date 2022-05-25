@@ -7,6 +7,7 @@ import { ConfirmationDialogComponent } from 'src/app/shared/Components/confirmat
 import { FlightService } from 'src/app/shared/Services/flight.service';
 import { TokenService } from 'src/app/shared/Services/token.service';
 import { Location } from '@angular/common';
+import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
 
 @Component({
   selector: 'app-select-seat',
@@ -26,24 +27,15 @@ export class SelectSeatComponent implements OnInit {
   arraySeats4: any;
   arraySeats5: any;    
   extra!: number;
-  reserva!: ReservationDTO;
+  reserva!: any;
   bookingSearch: boolean = true;
   filteredReservations!: any[];
   checkedTickets: string[] = [];
   bntStyle: string;
   step: boolean = false;
   clickcounter: number = 0;
-  boardingHour: TimeFlight = {
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  };
-  arrivalHour: TimeFlight = {
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  };
-  constructor(private location: Location, public flightService: FlightService, public tokenService: TokenService, public router: Router, public dialog: MatDialog) {
+  chosenSeat: boolean = false;
+  constructor(private location: Location, public local: LocalStorageService, public flightService: FlightService, public tokenService: TokenService, public router: Router, public dialog: MatDialog) {
     this.seat = new FormControl('');
     this.reservations = new ReservationDTO(1, 1, 1,'', '', '', '', '', '', 1, '', '', new Date, new Date, '', '')
     this. bntStyle = 'seat';
@@ -66,7 +58,8 @@ export class SelectSeatComponent implements OnInit {
   }
   ngOnInit(): void {
     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations));
-    this.reserva = this.flightService.getDataReservation();
+    let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}')
+    this.reserva = retrievedObject;
     if(this.reserva == undefined) {
       this.handleAuthError();
     }  
@@ -109,6 +102,7 @@ export class SelectSeatComponent implements OnInit {
     }
   } 
   onCheck(evt: any) {
+    this.chosenSeat = true;
     if (!this.checkedTickets.includes(evt)) {
       this.checkedTickets.push(evt);
     } else {
@@ -155,8 +149,7 @@ export class SelectSeatComponent implements OnInit {
     }
     this.reservations.passenger_email = this.reserva.passenger_email;
     this.reservations.passenger_name = this.reserva.passenger_name;
-    this.reservations.user_id = this.reserva.user_id;
-    this.reservations.status = this.reserva.status = 'Active';
+    this.reservations.status = 'Active';
     this.reservations.airline = this.reserva.airline;
     this.reservations.flight_id = this.reserva.flight_id;
     this.reservations.origin = this.reserva.origin;
@@ -174,8 +167,9 @@ export class SelectSeatComponent implements OnInit {
     .subscribe() */
     console.log(this.reservations)
     this.showReservation = true;
-    this.flightService.setDataReservation(this.reservations);
-  }
+    this.local.setUsuario('reserva', JSON.stringify(this.reservations))
+/*     this.flightService.setDataReservation(this.reservations);
+ */  }
   openDialog(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '320px',

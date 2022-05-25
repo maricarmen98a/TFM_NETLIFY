@@ -6,6 +6,8 @@ import { ReservationDTO, TimeFlight } from 'src/app/Models/reservation.dto';
 import { FlightService } from 'src/app/shared/Services/flight.service';
 import { TokenService } from 'src/app/shared/Services/token.service';
 import { Location } from '@angular/common';
+import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
+import { UserDTO } from 'src/app/Models/user.dto';
 
 @Component({
   selector: 'app-booking-flight',
@@ -14,7 +16,7 @@ import { Location } from '@angular/common';
 })
 export class BookingFlightComponent implements OnInit {
   reservations: ReservationDTO;
-  users: any;
+  users!: UserDTO;
   validateForm: boolean = false;
   flight: any;
   name: FormControl;
@@ -22,21 +24,13 @@ export class BookingFlightComponent implements OnInit {
   passport: FormControl; 
   phone: FormControl; 
   userForm: FormGroup;
-  boardingHour: TimeFlight = {
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  };
-  arrivalHour: TimeFlight = {
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  };
+
   constructor(private flightService: FlightService, 
     private location: Location,
     private fb: FormBuilder,
     public tokenService: TokenService, 
-    public router: Router) {
+    public router: Router,
+    public local: LocalStorageService) {
     this.reservations = new ReservationDTO(1, 1, 1,'', '', '', '', '', '', 1, '', '', new Date, new Date, '','' )
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.name = new FormControl('', [Validators.required]);
@@ -52,12 +46,14 @@ export class BookingFlightComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    this.users = this.flightService.getDataUser();
+    let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
+    this.users = retrievedObject;
     if(this.users == undefined) {
       this.handleAuthError();
     }
-    this.flight = this.flightService.getDataFlight();
+    let retrievedFlight = JSON.parse(this.local.getUsuario('flight') || '{}');
+
+    this.flight = retrievedFlight;
     this.userForm.get('name')?.setValue(this.users.name)  
     this.userForm.get('email')?.setValue(this.users.email)  
   } 
@@ -72,7 +68,6 @@ export class BookingFlightComponent implements OnInit {
   bookFlight() {
     this.validateForm = true;
     this.reservations.passenger_email = this.users.email;
-    this.reservations.user_id = this.users.id;
     this.reservations.passenger_name = this.users.name;
     this.reservations.status = 'Active';
     this.reservations.airline = this.flight.airline;
@@ -90,7 +85,10 @@ export class BookingFlightComponent implements OnInit {
     this.flightService.createReservation(this.reservations)
     .subscribe()
     console.log(this.reservations)
-    this.flightService.setDataReservation(this.reservations);  
+    this.local.setUsuario('reserva', JSON.stringify(this.reservations))
+
+/*     this.flightService.setDataReservation(this.reservations);  
+ */    this.local.setUsuario( 'usuario',JSON.stringify(this.users));  
 
 }
 }
