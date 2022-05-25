@@ -1,4 +1,4 @@
-<div id="ofertas" class="random-flight">
+<div *ngIf="userConfirmado" id="ofertas" class="random-flight">
     <div class="randomLogo"><img src="assets/aeriolar.png" alt="Aer Iolar"></div>
     <div class="randomText">¿No sabes qué elegir? Prueba nuestras ofertas de vuelos aleatorios. Haz clic en el botón <strong>Buscar ofertas</strong>  y descubre tu próximo viaje y encima, a un precio reducido.</div>
     <div class="buscarOfertas">
@@ -10,8 +10,8 @@
             <div class="content--div" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let flight of selectedRandom">
                 <mat-card class="mat-elevation-z4">
                     <mat-card-header>
-                    <mat-card-title>Número de vuelo: {{ flight.flight_number }}AI</mat-card-title>
-                    <mat-card-subtitle>Ida: {{ flight.boarding_time }} - Llegada: {{ flight.arrival_time }}</mat-card-subtitle>
+                        <mat-card-title>Número de vuelo: {{ flight.flight_number }}AI</mat-card-title>
+                        <mat-card-subtitle>Ida: {{ flight.boarding_time }} - Llegada: {{ flight.arrival_time }}</mat-card-subtitle>
                     </mat-card-header>
                     <img mat-card-image src="assets/ofertas.jpg" alt="avion">
                     <mat-card-content>
@@ -19,45 +19,12 @@
                         <p>
                             Disfrute de un viaje a {{ flight.destination }} por solamente <span class="crossedPrice">{{ flight.price | currency: 'EUR'}} </span> <span class="specialPrice"> {{ flight.price - 50 | number: '1.0-0' | currency: 'EUR' }}</span>
                         </p>
-                        </mat-card-content>
+                    </mat-card-content>
                     <mat-card-actions *ngIf="!selected">
-                    <button mat-button (click)="submitSelected()">Seleccionar</button>
+                        <button mat-button (click)="openDialog(flight)">Seleccionar</button>
                     </mat-card-actions>
-        
-                    <div class="form-userinfo" *ngIf="selected">
-                        <form [formGroup]="userForm" (ngSubmit)="checkUnregUser()">
-                        <h3>Por favor, introduzca la siguiente información:</h3>
-                        <div class="form-group">
-                            <label for="name">Nombre y apellidos:</label>
-                            <input type="text" name="name" placeholder="Nombre" [formControl]="name"> 
-                        </div>
-                        <div *ngIf="validateForm">
-                        <mat-error *ngIf="name.hasError('required')">
-                            El nombre y los apellidos son <strong>obligatorios</strong>
-                        </mat-error>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Correo electrónico:</label>
-                            <input type="text" name="email" placeholder="Correo electrónico" [formControl]="email">
-                        </div>
-                        <div class="error" *ngIf="errors?.email">
-                            {{ errors?.email }}
-                          </div>
-                          <div class="error" *ngIf="errors">
-                            {{ errors.error }}
-                          </div>
-                        <div>
-                            <button type="submit">Añadir información</button>
-                        </div>
-                        
-                        </form>
-                        
-                        <div *ngIf="userConfirmado" class="bookingStatus">
-                            <button routerLink="/booking" (click)="setFlight(flight)">Seleccionar vuelo</button>
-                        </div>
-                        </div>
-            </mat-card>
-        </div>
+                </mat-card>
+            </div>
         </div>
     </div>
     </div>

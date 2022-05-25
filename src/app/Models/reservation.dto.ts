@@ -1,3 +1,8 @@
+export interface TimeFlight {
+    hours: Number,
+    minutes: Number,
+    seconds: Number
+}
 export class ReservationDTO {
     id: number;
     user_id: number;

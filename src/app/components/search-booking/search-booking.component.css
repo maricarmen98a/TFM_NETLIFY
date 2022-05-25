@@ -1,5 +1,5 @@
 .planeSearch {
-    max-width: 220px;
+    max-width: 180px;
     object-fit: contain;
 }
 .planeSearch2 {
@@ -26,7 +26,6 @@ h3 {
     color: black;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
     padding: 10px;
-    height: 140px;
 }
 a {
     color: black;
@@ -55,9 +54,7 @@ a:hover {
     padding: 20px;
     margin-top: 30px;
     width: 100%;
-    height: 240px;
-    position: absolute;
-    bottom: 0px;
+    min-height: 240px;
     margin-bottom: 60px;
 }
 input {
@@ -67,4 +64,19 @@ input {
 }
 mat-error {
     padding-bottom: 20px;
+}
+.atras {
+    margin-top: 15px;
+}
+.load {
+    margin: 20px;
+}
+.noResults {
+    height: 210px;
+}
+.biggerMargin {
+    margin-top: 260px;
+}
+.biggerMargin2 {
+    margin-top: 60px;
 }

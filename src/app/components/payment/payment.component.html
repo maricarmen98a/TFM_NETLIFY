@@ -1,16 +1,23 @@
 <div class="container">
-  <div>
+  <div *ngIf="cardDetailsValidate" class="container-accepted">
+    <img src="assets/payment-accepted.png" alt="Dibujo de tarjeta de crédito">
+    <p>Pago confirmado. Ya puede ver su viaje en <a routerLink="/search-booking">Mis vuelos</a></p>
+    <p>Su localizador de reserva: {{reservation.reservation_code}}</p>
+
+  </div>
+  <div class="container-info">
     <h2>Información del vuelo</h2>
     <img src="assets/drawing-plane.png" alt="">
     <div>
-        <p>Total: {{reservation.price}}</p> 
-        <p>{{reservation.origin}} - {{reservation.destination}}</p>
-        <p>{{reservation.boarding_time}}</p>
+        <h2>Total: {{ reservation.price }} €</h2> 
+        <p>{{ reservation.origin }} - {{ reservation.destination }}</p>
+        <p>{{ reservation.boarding_time | date: 'dd/MM/yyyy'}}</p>
         <p>Sin escalas</p>
-        <p>{{reservation.boarding_hour}}</p>
+        <p>{{ reservation.boarding_hour }} - {{ reservation.arrival_hour }}</p>
+        <p>Duración del vuelo: {{ hoursFlight }}</p>
     </div>
   </div>
-  <div class="container-card" style="width: 50%;">
+  <div class="container-card" >
       <h2>Datos de la tarjeta</h2>
       <div class="panel panel-default">
         <div class="panel-body">
@@ -26,17 +33,18 @@
                           </select>
                       </div>  
                       <div class="form-group">
-                          <label>Nombre y apellidos del titular</label>
-                          <input type="text" class="form-control" [formControl]="name" placeholder="Name On Card">
-                        <!--  <div *ngIf="(f.name.errors || f.name.dirty || f.name.touched)" class="invalid-feedback">
-                              <span *ngIf="f.name.errors?.required">Insert name on
-                                  card</span>
-                          </div> -->
+                          <label>Nombre y apellidos del titular*</label>
+                          <input type="text" class="form-control" [formControl]="name" placeholder="Titular de la tarjeta">
+                          <div *ngIf="isSubmitted">
+                            <mat-error *ngIf="name.hasError('required')">
+                              El nombre es <strong>obligatorio</strong>
+                            </mat-error>
+                          </div>
                       </div>
                   </div>
                   <div class="col-lg-12 col-xs-12">
                       <div class="form-group">
-                          <label>Número de tarjeta</label>
+                          <label>Número de tarjeta*</label>
     
                           <input maxlength="20"
                           [formControl]="cardNumber"
@@ -44,37 +52,67 @@
                           #ccNumber
                           (keyup)="creditCardNumberSpacing()" 
                           placeholder="XXXX-XXXX-XXXX-XXXX">
+                          <div *ngIf="isSubmitted">
+                            <mat-error *ngIf="cardNumber.hasError('required')">
+                              El número de la tarjeta es <strong>obligatorio</strong>
+                            </mat-error>
+                          </div>
+                          <div *ngIf="isSubmitted">
+                            <mat-error *ngIf="cardNumber.hasError('minlength')">
+                              Tiene que componerse de <strong>17 números</strong>
+                            </mat-error>
+                          </div> 
                       </div>
                   </div>
                   <div>
                       <div class="form-group">
-                          <label>Mes de caducidad</label>
+                          <label>Mes de caducidad*</label>
                           <select class="form-control" id="" [formControl]="expiryMonth"  placeholder="Select Month">
-                              <option [value]="null">Select</option>
+                              <option [value]="null">Mes</option>
                               <option *ngFor="let month of monthlist"
                                   [value]="month.value">{{month.text}}</option>    
-                          </select>                     
+                          </select>    
+                          <div *ngIf="isSubmitted">
+                            <mat-error *ngIf="expiryMonth.hasError('required')">
+                              El mes de caducidad es <strong>obligatorio</strong>
+                            </mat-error>
+                          </div>                 
                       </div>
                   </div>
                   <div>
                       <div class="form-group">
-                          <label>Año de caducidad</label>
+                          <label>Año de caducidad*</label>
                           <select class="form-control" id="" [formControl]="expiryYear"  placeholder="Expiration Year">
-                              <option [value]="null">Select</option>
+                              <option [value]="null">Año</option>
                               <option *ngFor="let year of years" [value]="year.value">
                                   {{year.text}}</option>
-                          </select>                     
+                          </select>        
+                          <div *ngIf="isSubmitted">
+                            <mat-error *ngIf="expiryYear.hasError('required')">
+                              El año de caducidad es <strong>obligatorio</strong>
+                            </mat-error>
+                          </div>             
                       </div>
                   </div>
                   <div>
                       <div class="form-group">
-                          <label>CVC</label>
-                          <input type="text" class="form-control" [formControl]="cvc" placeholder="Security Code">                      
+                          <label>CVC*</label>
+                          <input type="text" class="form-control" [formControl]="cvc" placeholder="Código de seguridad"> 
+                          <div *ngIf="isSubmitted">
+                            <mat-error *ngIf="cvc.hasError('required')">
+                              El CVC es <strong>obligatorio</strong>
+                            </mat-error>
+                          </div>   
+                          <div *ngIf="isSubmitted">
+                            <mat-error *ngIf="cvc.hasError('pattern')">
+                              Tiene que componerse de <strong>tres números</strong>.
+                            </mat-error>
+                          </div>                   
                       </div>
                   </div>
                   <div>
                     <div class="form-group">
-                      <button type="submit" style="margin-right: 10px ;">Pagar</button>
+                      <button type="submit">Pagar</button>
                       <button type="button" (click)="ClearCardDetails()">Borrar</button>
                     </div>
                   </div>
@@ -85,6 +123,6 @@
       </div>
     </div>
     <div class="atras">
-      <a href="/extras">< Atrás</a>
+      <button (click)="back()">Atrás</button>
   </div>
 </div>

@@ -4,3 +4,12 @@
 .boton2:hover {
     background-color: var(--button-click) !important;
 }
+.boton1, .boton2 {
+    width: 100px !important;
+
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

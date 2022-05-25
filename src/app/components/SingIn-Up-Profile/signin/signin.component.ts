@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/shared/Services/auth.service';
 import { AuthStateService } from 'src/app/shared/Services/auth-state.service';
 import { TokenService } from 'src/app/shared/Services/token.service';
+import { FlightService } from 'src/app/shared/Services/flight.service';
 
 @Component({
   selector: 'app-signin',
@@ -19,7 +20,8 @@ export class SigninComponent implements OnInit {
     public fb: FormBuilder,
     public authService: AuthService,
     private token: TokenService,
-    private authState: AuthStateService
+    private authState: AuthStateService,
+    public flightService: FlightService
   ) {
     this.loginForm = this.fb.group({
       email: [],

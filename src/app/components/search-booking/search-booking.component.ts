@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ReservationDTO } from 'src/app/Models/reservation.dto';
 import { FlightService } from 'src/app/shared/Services/flight.service';
+import { Location } from '@angular/common';
+import { UserDTO } from 'src/app/Models/user.dto';
 
 @Component({
   selector: 'app-search-booking',
@@ -18,16 +20,43 @@ export class SearchBookingComponent implements OnInit {
   filteredReservations!: any[];
   searchStatus: boolean = false;
   validateForm: boolean = false;
-
-  constructor( private flightService: FlightService) {
+  usuario!: UserDTO;
+  isloaded: boolean = false;
+  constructor(public location: Location, private flightService: FlightService) {
     this.bookingSearch = new FormControl('', [
       Validators.required
     ]);
+    
    }
 
   ngOnInit(): void {
-    this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations));
-
+    this.usuario = this.flightService.getDataUser();
+    this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations ));
+  }
+  back(): void {
+    this.location.back()
+  }
+  loadData() {
+    this.isloaded = true;
+    
+    if (this.usuario) {
+      this.validateForm = true;
+      let values = Object.values(this.reservation);
+      let merged = values.flat(1);
+      this.filteredReservations = merged.filter((x) => {
+        return (x.passenger_email == this.usuario.email)
+      });
+    }
+    if(this.filteredReservations.length > 0){
+        this.searchStatus = true;
+        this.userHasBooking = true;
+        this.emptyArray = false;
+    } else { 
+        this.searchStatus = false;
+    }
+    if(this.filteredReservations == undefined) {
+      console.error('No tiene ningún vuelo planificado todavía')
+    }
   }
   search() {
     this.validateForm = true;
@@ -51,8 +80,8 @@ export class SearchBookingComponent implements OnInit {
       this.emptyArray = true;
     } 
     let seatArray = this.filteredReservations[0];
-    this.flightService.setDataReservation(seatArray);
-    console.log(seatArray)
+     this.flightService.setDataReservation(seatArray);
+     console.log(seatArray)
 
   }
 }

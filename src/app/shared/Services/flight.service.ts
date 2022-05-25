@@ -48,6 +48,7 @@ export class FlightService {
 }
 // Sirve para transferir datos entre componentes
 private data:any = undefined;
+private dataUser:any = undefined;
 private dataFlight:any = undefined;
 private dataReservation:any = undefined;
 setData(data:any){
@@ -68,8 +69,12 @@ setDataReservation(data:any){
 getDataReservation():any{
   return this.dataReservation;
 }
-
-
+setDataUser(data:any){
+  this.dataUser = data;
+}
+getDataUser():any{
+  return this.dataUser;
+}
 private handleError(err: HttpErrorResponse) {
   let errMsg:string='';
   if (err.error instanceof Error) {

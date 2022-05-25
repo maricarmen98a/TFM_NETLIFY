@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FlightDTO } from 'src/app/Models/flight';
 import { UnregUserDTO } from 'src/app/Models/unregisteredUser';
+import { UserDTO } from 'src/app/Models/user.dto';
+import { AuthStateService } from 'src/app/shared/Services/auth-state.service';
 import { FlightService } from 'src/app/shared/Services/flight.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from 'src/app/shared/Components/confirmation-dialog/confirmation-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-random-flight',
@@ -19,11 +24,12 @@ export class RandomFlightComponent implements OnInit {
   users: UnregUserDTO;
   userConfirmado: boolean = false;
   errors: any = null;
-
+  usuario!: UserDTO;
   name: FormControl;
   email: FormControl; 
   userForm: FormGroup;
-  constructor(public flightService: FlightService, public fb: FormBuilder) {
+
+  constructor(public flightService: FlightService, public fb: FormBuilder, private auth: AuthStateService, public dialog: MatDialog, public router: Router) {
     this.users = new UnregUserDTO( '', '');
  
     this.email = new FormControl('', [Validators.required, Validators.email]);
@@ -37,14 +43,19 @@ export class RandomFlightComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.flightService.getFlight().subscribe(() => {
-      this.getAllContent()});
+    this.flightService.getFlight().subscribe(() => { this.getAllContent() });
+    this.auth.userAuthState.subscribe((val) => {
+        this.userConfirmado = val;
+      });
+    this.usuario = this.flightService.getDataUser();
+    
+
   }
   private getAllContent() {
     this.flightService
       .getFlight()
       .subscribe((flights: FlightDTO[]) => (this.flights = flights));
-    }
+  }
   getRandomFlight() {
     let values = Object.values(this.flights);
     let merged = values.flat(1);
@@ -52,10 +63,16 @@ export class RandomFlightComponent implements OnInit {
     let selected = shuffled.slice(0,4);
     this.selectedRandom = selected;
     console.log(selected);
-    this.vuelosAleatorios = true; 
+    this.vuelosAleatorios = true;
+    this.usuario = this.flightService.getDataUser(); 
   }
-  checkUnregUser( ) {
+  checkUser( ) {
     this.validateForm = true;
+    if (this.userConfirmado == true) {
+      console.log(this.usuario)
+      this.users.email = this.usuario.email;
+      this.users.name = this.usuario.name;
+    } else {
     this.users.email = this.email.value;
     this.users.name = this.name.value;
     this.users = this.userForm.value;
@@ -69,14 +86,26 @@ export class RandomFlightComponent implements OnInit {
         this.errors = error.error;
         this.userConfirmado = false;
       })
+    }
   console.log(this.users);
      
   }
-  submitSelected() {
-    this.selected = true;
-  }
   setFlight(flight: any) {
+    this.usuario = this.flightService.getDataUser();
     flight.price = flight.price - 50; 
+    this.checkUser();  
     this.flightService.setDataFlight(flight);
+  }
+  openDialog(flight: any): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '320px',
+      data: "¿Está seguro de que desea continuar?"
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.setFlight(flight);
+        this.router.navigate(['booking']);
+      }
+    });
   }
 }

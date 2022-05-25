@@ -3,8 +3,8 @@ import { ReservationDTO } from 'src/app/Models/reservation.dto';
 import { FlightService } from 'src/app/shared/Services/flight.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { NoticeComponent } from 'src/app/shared/Components/notice/notice.component';
-import { ThisReceiver } from '@angular/compiler';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class ExtrasComponent implements OnInit {
   pickup: number;
   activities: number;
   bought: boolean = false;
-  constructor(public flightService: FlightService, private _snackBar: MatSnackBar, public router: Router) { 
+  constructor(private location: Location, public flightService: FlightService, private _snackBar: MatSnackBar, public router: Router) { 
     this.suitcase = 50;
     this.activities = 25;
     this.pickup = 20;
@@ -27,6 +27,9 @@ export class ExtrasComponent implements OnInit {
   ngOnInit(): void {
     this.reservation = this.flightService.getDataReservation();
     console.log(this.reservation)
+  }
+  back(): void {
+    this.location.back()
   }
   buyPickup() {
     this.reservation.price = this.reservation.price + this.pickup;

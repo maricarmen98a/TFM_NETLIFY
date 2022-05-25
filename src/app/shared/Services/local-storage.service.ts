@@ -13,7 +13,12 @@ export class LocalStorageService {
   get(key: string) {
     return localStorage.getItem(key);
   }
-
+  setUsuario(key: any, value: any) {
+    return localStorage.setItem(key, value);
+  }
+  getUsuario(key: any) {
+    return localStorage.getItem(key);
+  }
   remove(key: string) {
     localStorage.removeItem(key);
   }

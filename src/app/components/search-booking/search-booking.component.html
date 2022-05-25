@@ -1,6 +1,9 @@
 <div class="main-container">
     <h2>Mis vuelos</h2>
-    <div *ngIf="!userHasBooking">
+    <div class="load">
+        <button (click)="loadData()">Cargar reservas</button>
+    </div>
+    <div class="noResults" *ngIf="!userHasBooking && isloaded">
         <div class="container-plane">
             <img class="planeSearch" src="assets/transportColor.png" alt="Imagen de dos aviones formando un círculo">
         </div>
@@ -23,7 +26,8 @@
             </div>
         </div>
     </div>
-    <div class="search-booking">
+   
+    <div [ngClass]="{'biggerMargin': isloaded === false, 'biggerMargin2' : userHasBooking === true}" class="search-booking">
         <h3>Localizador de reserva</h3>
         <input type="text" name="bookingSearch" placeholder="Ej.:DE6DuVdJ3f" [formControl]="bookingSearch">
         <mat-error *ngIf="bookingSearch.hasError('required') && (bookingSearch.dirty || bookingSearch.touched)">
@@ -35,6 +39,8 @@
         <div>
             <button (click)="search()">Buscar</button>
         </div>
-        
+         <div class="atras">
+        <button (click)="back()">Atrás</button>
+      </div>
     </div>
 </div>

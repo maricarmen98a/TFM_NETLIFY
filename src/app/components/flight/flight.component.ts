@@ -8,6 +8,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { UnregUserDTO } from 'src/app/Models/unregisteredUser';
 import { HeaderMenusService } from 'src/app/shared/Services/header-menus.service';
+import { AuthStateService } from 'src/app/shared/Services/auth-state.service';
+import { UserDTO } from 'src/app/Models/user.dto';
 
 @Component({
   selector: 'app-flight',
@@ -43,13 +45,16 @@ export class FlightComponent implements OnInit {
   email: FormControl; 
   user!: UnregUserDTO[];
   userForm: FormGroup;
+  usuario!: UserDTO;
+  isSignedIn: boolean = false;
   userConfirmado: boolean = false;
 /*   @Output() redirect:EventEmitter<any> = new EventEmitter();
  */
   constructor(public flightService: FlightService,
     public router: Router,
     public fb: FormBuilder,
-    public headerMenusService: HeaderMenusService
+    public headerMenusService: HeaderMenusService,
+    private auth: AuthStateService,
     ) {
     this.condicion = 'B';
     this.users = new UnregUserDTO( '', '');
@@ -65,6 +70,11 @@ export class FlightComponent implements OnInit {
   }
   
   ngOnInit() { 
+    this.auth.userAuthState.subscribe((val) => {
+      this.userConfirmado = val;
+    });
+    console.log(this.userConfirmado)
+
     this.flightService.getFlight().subscribe((flights: FlightDTO[]) => (this.flights = flights));
     this.flightService.getCities().subscribe((cities: CityDTO[]) => (this.cities = cities));
     this.flightService.getCountries().subscribe((countries: CountryDTO[]) => (this.countries = countries));
@@ -90,13 +100,13 @@ export class FlightComponent implements OnInit {
     this.destination = source;
   }
   onSubmit(SearchPara: any) { 
+    this.usuario = this.flightService.getDataUser();
     this.flightStatus = false;
     this.source = SearchPara.source;
     this.destination = SearchPara.destination;
     this.startDate = SearchPara.startDate;
     this.endDate = SearchPara.endDate;
     this.userForm.reset();
-    this.userConfirmado = false;
     let values = Object.values(this.flights);
     let merged = values.flat(1);
     let listaVuelos = merged.sort((a,b)=>new Date(b.boarding_time).valueOf() - new Date(a.boarding_time).valueOf());
@@ -157,18 +167,26 @@ export class FlightComponent implements OnInit {
   checkUnregUser( ) {
     this.validateForm = true;
     this.booked = true;
-    this.users.email = this.email.value;
-    this.users.name = this.name.value;
-    this.users = this.userForm.value;
-    this.flightService.createUnregUser(this.users)
-      .subscribe(()=> {},  () => {
-        this.userConfirmado = false;
-      })
+    if (this.userConfirmado == true) {
+      console.log(this.usuario)
+      this.users.email = this.usuario.email;
+      this.users.name = this.usuario.name;
+    } else {
+      this.users.email = this.email.value;
+      this.users.name = this.name.value;
+      this.users = this.userForm.value;
+      this.flightService.createUnregUser(this.users)
+        .subscribe(()=> {},  () => {
+          this.userConfirmado = false;
+        })
+    }
     console.log(this.users);
     this.userConfirmado = true;
-    this.flightService.setData(this.users);  
+    this.flightService.setDataUser(this.users);  
   }
   setFlight(flight: any) {
-    this.flightService.setDataFlight(flight);  
-  }
+    this.checkUnregUser();  
+   this.flightService.setDataFlight(flight);
+  }   
+
 }

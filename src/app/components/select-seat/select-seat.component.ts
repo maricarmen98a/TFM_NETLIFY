@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ReservationDTO } from 'src/app/Models/reservation.dto';
+import { ReservationDTO, TimeFlight } from 'src/app/Models/reservation.dto';
 import { ConfirmationDialogComponent } from 'src/app/shared/Components/confirmation-dialog/confirmation-dialog.component';
 import { FlightService } from 'src/app/shared/Services/flight.service';
 import { TokenService } from 'src/app/shared/Services/token.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-select-seat',
@@ -32,9 +33,19 @@ export class SelectSeatComponent implements OnInit {
   bntStyle: string;
   step: boolean = false;
   clickcounter: number = 0;
-  constructor(public flightService: FlightService, public tokenService: TokenService, public router: Router, public dialog: MatDialog) {
+  boardingHour: TimeFlight = {
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  };
+  arrivalHour: TimeFlight = {
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  };
+  constructor(private location: Location, public flightService: FlightService, public tokenService: TokenService, public router: Router, public dialog: MatDialog) {
     this.seat = new FormControl('');
-    this.reservations = new ReservationDTO(1, 1, 1,'', '', '', '', '', '', 1, '', '', new Date, new Date, '', '' )
+    this.reservations = new ReservationDTO(1, 1, 1,'', '', '', '', '', '', 1, '', '', new Date, new Date, '', '')
     this. bntStyle = 'seat';
     this.arraySeats1 = [
       {value: '1B', checked: false}, {value: '1C', checked: false}, {value: '1D', checked: false}, {value: '2A', checked: false}, {value: '2B', checked: false}, {value: '2C', checked: false}
@@ -127,13 +138,27 @@ export class SelectSeatComponent implements OnInit {
   hideInfo() {
     this.showIt = false;
   }
+  back(): void {
+    this.location.back()
+  }
   setData(reservation: any) {
     let seatArray = this.checkedTickets[0];
-    const selectedSeat = Object.values(seatArray)[0];
+    let selectedSeat = this.reserva.seat;
+
+    if(seatArray == undefined) {
+      selectedSeat = this.reserva.seat;
+    } else {
+      selectedSeat = Object.values(seatArray)[0];
+    }
+    if(this.extra == undefined) {
+      this.extra = 0;
+    }
     this.reservations.passenger_email = this.reserva.passenger_email;
     this.reservations.passenger_name = this.reserva.passenger_name;
+    this.reservations.user_id = this.reserva.user_id;
     this.reservations.status = this.reserva.status = 'Active';
     this.reservations.airline = this.reserva.airline;
+    this.reservations.flight_id = this.reserva.flight_id;
     this.reservations.origin = this.reserva.origin;
     this.reservations.destination = this.reserva.destination;
     this.reservations.price = this.reserva.price + this.extra; 
@@ -143,6 +168,8 @@ export class SelectSeatComponent implements OnInit {
     this.reservations.arrival_hour = this.reserva.arrival_hour;
     this.reservations.boarding_hour = this.reserva.boarding_hour;
     this.reservations.seat = selectedSeat; 
+    
+    
     /* this.flightService.createReservation(this.reservations)
     .subscribe() */
     console.log(this.reservations)
@@ -151,7 +178,7 @@ export class SelectSeatComponent implements OnInit {
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '350px',
+      width: '320px',
       data: "¿Está seguro de que desea continuar?"
     });
     dialogRef.afterClosed().subscribe(result => {
