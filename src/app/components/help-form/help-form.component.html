@@ -1,0 +1,49 @@
+<h2>Formulario de ayuda</h2>
+<div class="atras">
+    <button (click)="back()">Atrás</button>
+</div>
+<div class="form">
+    <form [formGroup]="mailForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" formControlName="firstname" class="form-control"  />
+                </div>
+                <div *ngIf="validateForm">
+                    <mat-error *ngIf="firstname.hasError('required')">
+                    El nombre es <strong>obligatorio</strong>
+                    </mat-error>
+                </div>
+            </div> 
+            <div class="col-sm-6">
+            <div class="form-group">
+                <label>Correo electrónico</label>
+                <input type="text" formControlName="email" class="form-control"  />
+            </div>
+            <div *ngIf="validateForm">
+                <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                    Por favor, introduzca una dirección de correo válida.
+                </mat-error>
+                <mat-error *ngIf="email.hasError('required')">
+                El correo electrónico es <strong>obligatorio</strong>
+                </mat-error>
+            </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Mensaje</label>
+                    <textarea formControlName="textquery" class="form-control" ></textarea>
+                </div>
+                <div *ngIf="validateForm">
+                    <mat-error *ngIf="textquery.hasError('required')">
+                    El mensaje es <strong>obligatorio</strong>
+                    </mat-error>
+                </div>
+            </div>
+        </div>
+        <div class="send">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+    </form>
+</div>

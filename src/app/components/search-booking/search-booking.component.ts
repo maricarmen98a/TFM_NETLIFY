@@ -29,9 +29,7 @@ export class SearchBookingComponent implements OnInit {
     this.bookingSearch = new FormControl('', [
       Validators.required
     ]);
-    
-   }
-
+  }
   ngOnInit(): void {
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;

@@ -48,6 +48,10 @@ import { ConfirmationDialogComponent } from './shared/Components/confirmation-di
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NoticeComponent } from './shared/Components/notice/notice.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { BoardingPassComponent } from './components/boarding-pass/boarding-pass.component';
+import { QRCodeModule } from 'angularx-qrcode';
+import { BoardingPass2Component } from './components/boarding-pass2/boarding-pass2.component';
+import { HelpFormComponent } from './components/help-form/help-form.component';
 
 registerLocaleData(localeEs);
 
@@ -76,7 +80,11 @@ registerLocaleData(localeEs);
     ConfirmationDialogComponent,
     NoticeComponent,
     PaymentComponent,
+    BoardingPassComponent,
+    BoardingPass2Component,
+    HelpFormComponent,
     
+
   ],
   imports: [
     BrowserModule,
@@ -101,7 +109,7 @@ registerLocaleData(localeEs);
     MatExpansionModule,
     MatDialogModule,
     MatSnackBarModule,
-    
+    QRCodeModule
   ],
   entryComponents: [
     ConfirmationDialogComponent

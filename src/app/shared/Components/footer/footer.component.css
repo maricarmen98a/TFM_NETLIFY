@@ -73,3 +73,16 @@
 .openNav:hover {
   cursor: pointer;
 }
+.button-container {
+  padding-bottom: 80px;
+  bottom: 10px;
+  right: 0;
+  padding-right: 20px;
+  position: fixed;
+}
+.button-container button {
+  background-color: var(--button);
+}
+.button-container button:hover {
+  background-color: var(--button-click);
+}

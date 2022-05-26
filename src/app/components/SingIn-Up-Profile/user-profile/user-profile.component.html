@@ -1,4 +1,5 @@
-<mat-accordion class="example-headers-align">
+<div class="accordion-container">
+  <mat-accordion class="example-headers-align">
     <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -9,7 +10,7 @@
           <mat-icon>account_circle</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
-  <form [formGroup]="userForm" (ngSubmit)="update()">
+    <form [formGroup]="userForm" (ngSubmit)="update()">
       <mat-form-field appearance="fill">
         <mat-label>Nombre</mat-label>
         <input matInput formControlName="name">
@@ -39,11 +40,10 @@
 
       <div *ngIf="userHasBooking">
         <div class="results">
-            <div>Resultados:</div>
             <div class="results__info" *ngFor="let reservation of filteredReservations">
                 <h3>{{ reservation.origin }}</h3> 
                 <div>
-                    <img class="planeSearch2" src="assets/twoPlanes.png" alt="">
+                    <img class="planeSearch2" src="assets/twoPlanes.png" alt="Dibujo de dos aviones">
                 </div>
                 <h3>{{ reservation.destination }}</h3>
              
@@ -52,13 +52,13 @@
             </div>
           </div>
         </div>
-    </div>
+      </div>
     <div *ngIf="!userHasBooking">
       No dispone de ningún vuelo programado todavía.
     </div>
     </mat-expansion-panel>
   
-    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+    <mat-expansion-panel (click)="check()" [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
           Tarjetas de embarque
@@ -68,7 +68,23 @@
           <mat-icon>card_travel</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
-
+      <div *ngIf="userHasBooking">
+        <div class="results">
+            <div>Resultados:</div>
+             <div class="results__info" *ngFor="let reservation of filteredReservations">
+                <h3>{{ reservation.origin }}</h3> 
+                <div class="card-icon">
+                    <img src="assets/boarding-passqr.png" alt="Dibujo de tarjeta de embarque">
+                </div>
+                <h3>{{ reservation.destination }}</h3>
+             
+            <div class="link-extras">               
+                <a routerLink="/boarding-pass" (click)="setReservation(reservation)">Ver tarjeta de embarque</a>
+            </div>
+          </div> 
+        </div>
+    </div>
     </mat-expansion-panel>
   
   </mat-accordion>
+</div>

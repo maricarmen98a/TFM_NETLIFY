@@ -1,0 +1,24 @@
+<h2>Tarjetas de embarque</h2>
+<div class="atras">
+    <button (click)="back()">Atrás</button>
+</div>
+<div>
+    <div class="container-pass">
+        <div class="pass-img"><img src="assets/aeriolar-rojo.webp" alt="Logo Aer Iolar"></div>
+        <div class="pass-grid">
+            <div>{{ reservation.origin }}</div>
+            <div>
+                <img class="planeSearch2" src="assets/black-plane.png" alt="Dibujo de avión">
+            </div>        
+            <div>{{ reservation.destination }}</div>
+            <div>Asiento <br> {{ reservation.seat }} </div>
+            <div>Vuelo <br> {{ reservation.flight_id }}AI </div>
+            <div>Fecha <br> {{ reservation.boarding_time | date: 'dd/MM/yyyy' }}</div>
+            <div>Embarque <br> {{ reservation.boarding_hour }}</div>
+            <div>Puerta <br> {{ gate }}</div>
+        </div>
+        <div class="qr">
+            <qrcode [qrdata]="'myAngularxQrCode'" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+        </div>
+    </div>
+</div>

@@ -36,3 +36,12 @@ button:hover {
     background-color: #5bbe40;
     color: white;
 }
+.snackbar button {
+    background-color: transparent;
+    color: white;
+}
+.snackbar button:hover {
+    background-color: transparent;
+    color: white;
+    font-size: larger;
+}

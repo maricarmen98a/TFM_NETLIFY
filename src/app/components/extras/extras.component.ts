@@ -38,35 +38,28 @@ export class ExtrasComponent implements OnInit {
     this.reservation.price = this.reservation.price + this.pickup;
     console.log(this.reservation);
     this.bought = true;
-    this.openSnackBar()
+    this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buyActivities() {
     this.reservation.price = this.reservation.price + this.activities;
     console.log(this.reservation);
     this.bought = true;
-    this.openSnackBar()
+    this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buySuitcase() {
     this.reservation.price = this.reservation.price + this.suitcase;
     console.log(this.reservation);
     this.bought = true;
-    this.openSnackBar()
+    this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
-  openSnackBar() {
-    this._snackBar.openFromComponent(NoticeComponent, {
+  openSnackBar(message: string, undefined: string | undefined, className: string) {
+    this._snackBar.open(message, undefined, {
       duration: 2000,
-      panelClass: ['snackbar']
+      panelClass: [className]
     });
   }
   continue() {
-    /* this.flightService.updateReservation(this.reservation, this.reservation.id)
-    .subscribe();  USAR ESTO AL FINAL DEL PAGO
-    this.flightService.createReservation(this.reservations)
-    .subscribe()*/
-/*     this.flightService.setDataReservation(this.reservation);
- */
     this.local.setUsuario('reserva', JSON.stringify(this.reservation))
     this.router.navigateByUrl('payment')
-
   }
 }

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { BoardingPassComponent } from './components/boarding-pass/boarding-pass.component';
+import { BoardingPass2Component } from './components/boarding-pass2/boarding-pass2.component';
 import { BookingFlightComponent } from './components/booking-flight/booking-flight.component';
 import { ChangePasswordRequestComponent } from './components/change-password-request/change-password-request.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
@@ -7,6 +9,7 @@ import { CookiesComponent } from './components/cookies/cookies.component';
 import { CovidComponent } from './components/covid/covid.component';
 import { ExtrasComponent } from './components/extras/extras.component';
 import { FlightComponent } from './components/flight/flight.component';
+import { HelpFormComponent } from './components/help-form/help-form.component';
 import { HomeComponent } from './components/home/home.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { SearchBookingComponent } from './components/search-booking/search-booking.component';
@@ -30,6 +33,9 @@ const routes: Routes = [
   { path: 'select-seat', component: SelectSeatComponent },
   { path: 'search-booking', component: SearchBookingComponent },
   { path: 'payment', component: PaymentComponent },
+  { path: 'boarding-pass', component: BoardingPassComponent },
+  { path: 'boarding', component: BoardingPass2Component },
+  { path: 'help', component: HelpFormComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

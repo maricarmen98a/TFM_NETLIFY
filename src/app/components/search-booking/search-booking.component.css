@@ -34,7 +34,7 @@ a {
     color: black;
 }
 .link-extras {
-    padding-top: 10px;
+    grid-column-start: 1;
 }
 a:hover {
     color: red;
@@ -83,6 +83,6 @@ mat-error {
 .biggerMargin2 {
     margin-top: 60px;
 }
-.link-extras {
-    grid-column-start: 2;
+.link-pass {
+    grid-column-start: 3;
 }

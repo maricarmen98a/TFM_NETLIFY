@@ -29,6 +29,7 @@ export class UserProfileComponent implements OnInit {
   usuario!: User;
   usuario1!: UserDTO;
   userId!: string;
+  gate!: string;
   constructor(public authService: AuthService, 
     public fb: FormBuilder, 
     public authState: AuthStateService, 
@@ -48,6 +49,9 @@ export class UserProfileComponent implements OnInit {
       this.local.setUsuario('usuario', JSON.stringify(this.UserProfile))
     });
     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations)); 
+    let gates = [ "A2", "A4", "B6", "C7", "D4", "No está definida" ];
+    this.gate = gates[Math.floor(Math.random()*gates.length)];
+    this.local.setUsuario('gate', JSON.stringify(this.gate));
   }
   step = 0;
   setStep(index: number) {
@@ -60,7 +64,7 @@ export class UserProfileComponent implements OnInit {
     this.step--;
   }
   check() {
-     if(this.UserProfile == undefined) {
+    if(this.UserProfile == undefined) {
       alert('Tiene que iniciar sesión para visualizar esta información.');
     } 
     let values = Object.values(this.reservation);
@@ -80,7 +84,6 @@ export class UserProfileComponent implements OnInit {
     }
     console.log(this.filteredReservations) 
     console.log(this.UserProfile) 
-
   }
   update() {
     this.authService.updateUser(this.userForm.value).subscribe(
@@ -96,6 +99,9 @@ export class UserProfileComponent implements OnInit {
         this.userForm.reset();
       }
     );
+  }
+  setReservation(reservation: any) {
+    this.local.setUsuario('reserva', JSON.stringify(reservation))
   }
   responseHandler(data:any) {
     this.token.handleData(data.access_token);
