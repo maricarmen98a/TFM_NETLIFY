@@ -4,11 +4,10 @@
       <img src="assets/payment-accepted.png" alt="Dibujo de tarjeta de crédito">
       <p>Pago confirmado. Ya puede ver su viaje en <a routerLink="/search-booking">Mis vuelos</a></p>
       <p>Su localizador de reserva: {{reservation.reservation_code}}</p>
-
     </div>
     <div class="container-info">
       <h2>Información del vuelo</h2>
-      <img src="assets/drawing-plane.png" alt="">
+      <img src="assets/drawing-plane.png" alt="Dibujo de avión">
       <div class="details">
           <button *ngIf="!showPrice" (click)="checkIfExists()">Calcular precio</button>
           <h2 *ngIf="showPrice">Total: {{ reservation.price | number : '1.2-2' }} €</h2> 

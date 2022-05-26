@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faEllipsisH, faHome, faPlane, faTicketAlt } from '@fortawesome/free-solid-svg-icons';
+import { AuthStateService } from '../../Services/auth-state.service';
 
 @Component({
   selector: 'app-footer',
@@ -11,9 +12,13 @@ export class FooterComponent implements OnInit {
   faHouse = faHome;
   faBoarding = faTicketAlt;
   faMenu = faEllipsisH;
+  isSignedIn!: boolean;
 
-  constructor() { }
+  constructor( private auth: AuthStateService) { }
 
   ngOnInit(): void {
+    this.auth.userAuthState.subscribe((val) => {
+      this.isSignedIn = val;
+    });
   }
 }

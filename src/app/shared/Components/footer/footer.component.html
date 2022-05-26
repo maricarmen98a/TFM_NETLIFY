@@ -14,11 +14,11 @@
 </div>
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">< Atrás</a>
-    <button onclick="closeNav()" routerLink="/login">Iniciar sesión</button> 
-    <button onclick="closeNav()" routerLink="/register">Registrarse</button> 
+    <button *ngIf="!isSignedIn" onclick="closeNav()" routerLink="/login">Iniciar sesión</button> 
+    <button *ngIf="!isSignedIn" onclick="closeNav()" routerLink="/register">Registrarse</button> 
     <button onclick="closeNav()" routerLink="/search-booking">Mis vuelos</button> 
     <button onclick="closeNav()" routerLink="/">Tarjetas de embarque</button> 
-    <button onclick="closeNav()" routerLink="/">Ofertas especiales</button> 
+    <button *ngIf="isSignedIn" onclick="closeNav()" routerLink="/">Ofertas especiales</button> 
     <button onclick="closeNav()" routerLink="/">Sobre nosotros</button> 
     <button onclick="closeNav()" routerLink="/policy">Política de cookies y privacidad</button> 
     <button onclick="closeNav()" routerLink="/covid">Información COVID</button> 

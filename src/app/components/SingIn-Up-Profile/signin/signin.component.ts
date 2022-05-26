@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/shared/Services/auth.service';
 import { AuthStateService } from 'src/app/shared/Services/auth-state.service';
 import { TokenService } from 'src/app/shared/Services/token.service';
-import { FlightService } from 'src/app/shared/Services/flight.service';
 
 @Component({
   selector: 'app-signin',
@@ -14,21 +13,22 @@ import { FlightService } from 'src/app/shared/Services/flight.service';
 export class SigninComponent implements OnInit {
 
   loginForm: FormGroup;
-  errors:any = null;
+  errors: any = null;
   constructor(
     public router: Router,
     public fb: FormBuilder,
     public authService: AuthService,
     private token: TokenService,
     private authState: AuthStateService,
-    public flightService: FlightService
+    public tokenService: TokenService,
   ) {
     this.loginForm = this.fb.group({
-      email: [],
-      password: [],
+      email: [''],
+      password: [''],
     });
   }
   ngOnInit() {}
+ 
   onSubmit() {
     this.authService.signin(this.loginForm.value).subscribe(
       (result) => {
@@ -48,5 +48,6 @@ export class SigninComponent implements OnInit {
   responseHandler(data:any) {
     this.token.handleData(data.access_token);
   }
+
 
 }

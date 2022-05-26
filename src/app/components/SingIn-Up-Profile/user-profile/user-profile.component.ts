@@ -28,7 +28,7 @@ export class UserProfileComponent implements OnInit {
   filteredReservations!: any[];
   usuario!: User;
   usuario1!: UserDTO;
-userId!: string;
+  userId!: string;
   constructor(public authService: AuthService, 
     public fb: FormBuilder, 
     public authState: AuthStateService, 
@@ -45,30 +45,22 @@ userId!: string;
   ngOnInit() {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
-/*       this.flightService.setDataUser(this.UserProfile);
- */
       this.local.setUsuario('usuario', JSON.stringify(this.UserProfile))
     });
-
-    this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations));    
-
+    this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations)); 
   }
-  
   step = 0;
-
   setStep(index: number) {
     this.step = index;
   }
-
   nextStep() {
     this.step++;
   }
-
   prevStep() {
     this.step--;
   }
   check() {
-    if(this.UserProfile == undefined) {
+     if(this.UserProfile == undefined) {
       alert('Tiene que iniciar sesión para visualizar esta información.');
     } 
     let values = Object.values(this.reservation);
@@ -93,9 +85,9 @@ userId!: string;
   update() {
     this.authService.updateUser(this.userForm.value).subscribe(
       (result) => {
-        this.responseHandler(result);
-        console.log(this.UserProfile)
-
+/*         this.responseHandler(result);
+ */        console.log(this.UserProfile)
+        console.log(result)
       },
       (error) => {
         this.errors = error.error;
@@ -107,10 +99,6 @@ userId!: string;
   }
   responseHandler(data:any) {
     this.token.handleData(data.access_token);
-  }
- loadData() {
-    console.log(this.UserProfile)
-
   }
 }
 

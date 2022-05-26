@@ -1,9 +1,7 @@
 <div class="login">
     <form class="form-login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <h3>Iniciar sesión</h3>
-        <div class="error" *ngIf="errors?.error">
-            {{ errors?.error }}
-        </div>
+        
         <div class="form-group">
             <label>Correo electrónico*</label>
             <input type="email" class="form-control" formControlName="email">
@@ -17,6 +15,9 @@
         </div>
         <div class="error" *ngIf="errors?.password">
             {{ errors?.password }}
+        </div>
+        <div class="error" *ngIf="errors?.error">
+            {{ errors?.error }}
         </div>
         <button type="submit">Iniciar sesión</button>
         <div class="info-form">

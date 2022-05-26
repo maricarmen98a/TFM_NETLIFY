@@ -34,9 +34,11 @@ export class PaymentComponent implements OnInit {
   ]
   filteredReservations!: any[];
   reservas!: ReservationDTO[];
+  booking!: ReservationDTO[];
   showPrice: boolean = false;
   itExists: boolean = false;
   noError: boolean = true;
+  totalPrice: any;
   selectedValue: FormControl; 
   public constructor(private location: Location, public local: LocalStorageService, private formBuilder: FormBuilder, public flightService: FlightService) {
     this.name = new FormControl('', [Validators.required]);
@@ -139,23 +141,23 @@ export class PaymentComponent implements OnInit {
 
     let hours = parseInt(hrPart2) - parseInt(hrPart);
     let minutes;
-    if(minPart2> minPart) {
+    if (minPart2> minPart) {
       minutes = parseInt(minPart2) - parseInt(minPart);
       let horas = hours.toString();
       let minutos = minutes.toString();
-      if(horas == '0'){
+      if (horas == '0') {
         console.log(minutos + ' minutos');
         this.hoursFlight = minutos + ' minutos';
       } else {
         console.log(horas, ' horas', minutos, ' minutos')
         this.hoursFlight = horas + ' horas ' + minutos + ' minutos';
       }
-    } else if(minPart> minPart2) {
+    } else if (minPart> minPart2) {
       minutes = 60 - parseInt(minPart) + parseInt(minPart2); 
       hours = hours - 1;
       let horas = hours.toString();
       let minutos = minutes.toString();
-      if(horas == '0'){
+      if (horas == '0') {
         console.log(minutos + ' minutos');
         this.hoursFlight = minutos + ' minutos';
       } else {
@@ -169,15 +171,18 @@ export class PaymentComponent implements OnInit {
     let values = Object.values(this.reservas);
     let merged = values.flat(1);
     console.log(merged) 
-    this.reservas = merged.filter((x) => {
+    this.booking = merged.filter((x) => {
       return (x.reservation_code == this.reservation.reservation_code)
     })
-    console.log(this.reservas, 'existe!')
-    if(this.reservation.price > this.reservas[0].price) {
-      this.reservation.price = this.reservation.price - this.reservas[0].price;
-    }
-    if(this.reservas.length > 0) {
-      this.itExists = true;
+    console.log(this.booking)
+   
+    if(this.booking.length > 0) {
+      console.log('existe!')
+      this.itExists = true; 
+      this.totalPrice = this.reservation.price;
+      if(this.reservation.price > this.booking[0].price) {
+        this.reservation.price = this.reservation.price - this.booking[0].price;
+      }
     }
     console.log(this.reservation.price)
   }
@@ -195,14 +200,12 @@ export class PaymentComponent implements OnInit {
     if(this.paymentForm.valid){
       this.cardDetailsValidate = true;
       if(this.itExists == true) {
+        this.reservation.price = this.totalPrice;
         this.flightService.updateReservation(this.reservation, this.reservation.id).subscribe();
       } else {
         this.flightService.createReservation(this.reservation).subscribe();
       }
-      
-/*     this.flightService.setDataReservation(this.reservation)
- */    this.local.setUsuario('reserva', JSON.stringify(this.reservation))
-
+      this.local.setUsuario('reserva', JSON.stringify(this.reservation))
       console.log(this.paymentmodel)
     }
     else {

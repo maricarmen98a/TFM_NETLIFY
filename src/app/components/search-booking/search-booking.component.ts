@@ -5,6 +5,7 @@ import { FlightService } from 'src/app/shared/Services/flight.service';
 import { Location } from '@angular/common';
 import { UserDTO } from 'src/app/Models/user.dto';
 import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
+import { AuthStateService } from 'src/app/shared/Services/auth-state.service';
 
 @Component({
   selector: 'app-search-booking',
@@ -23,7 +24,8 @@ export class SearchBookingComponent implements OnInit {
   validateForm: boolean = false;
   usuario!: UserDTO;
   isloaded: boolean = false;
-  constructor(public location: Location, public local: LocalStorageService, private flightService: FlightService) {
+  isSignedIn: boolean = false;
+  constructor(public location: Location, private auth: AuthStateService,  public local: LocalStorageService, private flightService: FlightService) {
     this.bookingSearch = new FormControl('', [
       Validators.required
     ]);
@@ -31,9 +33,13 @@ export class SearchBookingComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
-
-    this.usuario = retrievedObject;
+    this.auth.userAuthState.subscribe((val) => {
+      this.isSignedIn = val;
+    });
+    if(this.isSignedIn == true) {
+      let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
+      this.usuario = retrievedObject;
+    }
     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations ));
   }
   back(): void {
@@ -49,7 +55,7 @@ export class SearchBookingComponent implements OnInit {
       this.filteredReservations = merged.filter((x) => {
         return (x.passenger_email == this.usuario.email)
       });
-    }
+    
     if(this.filteredReservations.length > 0){
         this.searchStatus = true;
         this.userHasBooking = true;
@@ -60,8 +66,9 @@ export class SearchBookingComponent implements OnInit {
     if(this.filteredReservations == undefined) {
       console.error('No tiene ningún vuelo planificado todavía')
     }
+  }
     this.local.setUsuario('reserva', JSON.stringify(this.filteredReservations))
-
+  
   }
   chooseReservation(reservation: any) {
     this.local.setUsuario('reserva', JSON.stringify(reservation))

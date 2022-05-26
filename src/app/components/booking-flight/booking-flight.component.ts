@@ -60,8 +60,8 @@ export class BookingFlightComponent implements OnInit {
   private handleAuthError() {
     this.tokenService.removeToken();
     this.router.navigateByUrl('login');
-    alert('Tiene que iniciar sesión.')
-  }
+     alert('Tiene que iniciar sesión.')
+   }
   back(): void {
     this.location.back()
   }
@@ -82,8 +82,8 @@ export class BookingFlightComponent implements OnInit {
     this.reservations.reservation_code = this.flight.reservation_code;
     this.reservations.seat = '23A';
      
-    this.flightService.createReservation(this.reservations)
-    .subscribe()
+    /* this.flightService.createReservation(this.reservations)
+    .subscribe() */
     console.log(this.reservations)
     this.local.setUsuario('reserva', JSON.stringify(this.reservations))
 
