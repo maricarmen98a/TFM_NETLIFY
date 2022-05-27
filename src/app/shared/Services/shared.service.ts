@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Observable, ReplaySubject, throwError } from 'rxjs';
 
 export interface ResponseError {
   statusCode: number;
@@ -16,7 +16,12 @@ export interface ResponseError {
   providedIn: 'root',
 })
 export class SharedService {
-  constructor() {}
+  private loading$: ReplaySubject<boolean>;
+
+  constructor() {
+    this.loading$ = new ReplaySubject<boolean>(1);
+
+  }
 
   async managementToast(
     element: string,
@@ -67,7 +72,12 @@ export class SharedService {
       setTimeout(resolve, ms);
     });
   }
-
+  getLoading(): Observable<boolean> {
+    return this.loading$.asObservable();
+  }
+  setLoading(loading: boolean) {
+    this.loading$.next(loading);
+  }
   handleError(error: HttpErrorResponse) {
     return throwError(error);
   }

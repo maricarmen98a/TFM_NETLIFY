@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 import { BoardingPassComponent } from './components/boarding-pass/boarding-pass.component';
 import { BoardingPass2Component } from './components/boarding-pass2/boarding-pass2.component';
 import { BookingFlightComponent } from './components/booking-flight/booking-flight.component';
@@ -17,9 +18,10 @@ import { SelectSeatComponent } from './components/select-seat/select-seat.compon
 import { SigninComponent } from './components/SingIn-Up-Profile/signin/signin.component';
 import { SignupComponent } from './components/SingIn-Up-Profile/signup/signup.component';
 import { UserProfileComponent } from './components/SingIn-Up-Profile/user-profile/user-profile.component';
+import { PagenotfoundComponent } from './shared/components/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '', component: HomeComponent },
   { path: 'login', component: SigninComponent },
   { path: 'register', component: SignupComponent },
   { path: 'profile', component: UserProfileComponent },
@@ -36,6 +38,9 @@ const routes: Routes = [
   { path: 'boarding-pass', component: BoardingPassComponent },
   { path: 'boarding', component: BoardingPass2Component },
   { path: 'help', component: HelpFormComponent },
+  { path: 'about-us', component: AboutUsComponent },
+  { path: '**', pathMatch: 'full', 
+  component: PagenotfoundComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -3,7 +3,7 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ReservationDTO, TimeFlight } from 'src/app/Models/reservation.dto';
-import { ConfirmationDialogComponent } from 'src/app/shared/Components/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { FlightService } from 'src/app/shared/Services/flight.service';
 import { TokenService } from 'src/app/shared/Services/token.service';
 import { Location } from '@angular/common';

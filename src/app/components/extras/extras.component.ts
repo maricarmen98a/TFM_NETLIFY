@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ReservationDTO } from 'src/app/Models/reservation.dto';
 import { FlightService } from 'src/app/shared/Services/flight.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { NoticeComponent } from 'src/app/shared/Components/notice/notice.component';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';

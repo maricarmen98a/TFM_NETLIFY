@@ -1,0 +1,23 @@
+@import url("../../../../animate.css");
+
+.container img {
+    width: 100%;
+    max-width: 800px;
+  
+}
+.container {
+    display: flex;
+    justify-content: center;
+      animation: tada;
+    animation-duration: 2s;
+}
+h2 {
+    padding-top: 5%;
+    text-align: center;
+    color: white;
+}
+@media (min-width: 768px) {
+     h2 {
+         font-size: 2rem;
+     }
+}

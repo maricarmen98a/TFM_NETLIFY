@@ -25,7 +25,6 @@ export class FlightComponent implements OnInit {
   flights!: FlightDTO[];
   cities!: CityDTO[];
   countries!: CountryDTO[];
-  condicion: string;
   filteredFlights!: any[];
   searchStatus: boolean = false;
   validateForm: boolean = false;
@@ -59,7 +58,6 @@ export class FlightComponent implements OnInit {
     public local: LocalStorageService
 
     ) {
-    this.condicion = 'B';
     this.users = new UnregUserDTO( '', '');
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.name = new FormControl('', [

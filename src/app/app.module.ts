@@ -19,8 +19,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
-import { HeaderComponent } from './shared/Components/header/header.component';
-import { FooterComponent } from './shared/Components/footer/footer.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 import { FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -44,14 +44,15 @@ import { CookiesComponent } from './components/cookies/cookies.component';
 import { CovidComponent } from './components/covid/covid.component';
 import { SelectSeatComponent } from './components/select-seat/select-seat.component';
 import {MatDialogModule} from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from './shared/Components/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { NoticeComponent } from './shared/Components/notice/notice.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { BoardingPassComponent } from './components/boarding-pass/boarding-pass.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { BoardingPass2Component } from './components/boarding-pass2/boarding-pass2.component';
 import { HelpFormComponent } from './components/help-form/help-form.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { PagenotfoundComponent } from './shared/components/pagenotfound/pagenotfound.component';
 
 registerLocaleData(localeEs);
 
@@ -78,11 +79,12 @@ registerLocaleData(localeEs);
     CovidComponent,
     SelectSeatComponent,
     ConfirmationDialogComponent,
-    NoticeComponent,
     PaymentComponent,
     BoardingPassComponent,
     BoardingPass2Component,
     HelpFormComponent,
+    AboutUsComponent,
+    PagenotfoundComponent,
     
 
   ],
@@ -109,7 +111,7 @@ registerLocaleData(localeEs);
     MatExpansionModule,
     MatDialogModule,
     MatSnackBarModule,
-    QRCodeModule
+    QRCodeModule,
   ],
   entryComponents: [
     ConfirmationDialogComponent

@@ -1,16 +1,8 @@
 <button class="bt-search" routerLink="/search-booking">Mis reservas</button>
 <div [ngStyle]="{'height': heightCaja}" id="caja" class="caja-mat">
   <div class="caja-mat__flex">
-  <h2>Vuelos</h2>
+  <h2>Búsqueda de vuelos</h2>
   <form class="form-flight" #OneWay="ngForm" (ngSubmit)="onSubmit(OneWay.value)" novalidate>
-
-    <mat-form-field>
-      <mat-select class="return" [(ngModel)]="condicion"
-      name="condicion">
-        <mat-option (click)="smallerDiv()" value="B">Ida</mat-option>
-        <mat-option (click)="biggerDiv()" value="A">Ida y vuelta</mat-option>
-      </mat-select>
-    </mat-form-field>
 
     <mat-form-field>
       <mat-label>De <fa-icon [icon]="faPlaneUp"></fa-icon></mat-label>
@@ -41,21 +33,11 @@
         <input class="form-date__input" type="date" name="startDate" ngModel class="form-control" id="startDate" placeholder="Ida">
       </div>
     </div> 
-
-    <div *ngIf="condicion === 'A'" class="form-group">
-      <div class="form-date">
-        <label class="form-date__label" for="input-date">Fecha de vuelta</label>
-        <input class="form-date__input" type="date" name="endDate" ngModel id="endDate" placeholder="Vuelta" class="form-control">
-      </div>
-      
-    </div>
-      <button class="boton-buscar" type="submit" value="Search" (click)="onSubmit(OneWay.value)">Buscar</button>
-    
+    <button class="boton-buscar" type="submit" value="Search" (click)="onSubmit(OneWay.value)">Buscar</button>
   </form>
   </div>
 
   <div *ngIf="!flightStatus">
-
     <div>
     	<div class="title">
         <h3>
@@ -63,7 +45,7 @@
           <span>{{ destination }} </span>
         </h3>
     	</div>
-		<mat-error *ngIf="searchStatus"><fa-icon [icon]="faAviso"></fa-icon> No hay vuelos para las opciones elegidas.</mat-error>
+		  <mat-error *ngIf="searchStatus"><fa-icon [icon]="faAviso"></fa-icon> No hay vuelos para las opciones elegidas.</mat-error>
     </div>
     <div *ngFor="let flight of filteredFlights" class="bookingBox">
       <div>
@@ -90,7 +72,6 @@
               <td>
                 <span>Hora de salida:</span>
               </td>
-              
               <td><span>{{flight.boarding_hour | removeDigits}}</span></td>
             </tr>
             <tr>
@@ -110,7 +91,7 @@
           </tbody>
         </table>
 
-          <div class="form-userinfo" >
+        <div class="form-userinfo" >
           <form *ngIf="!userConfirmado" [formGroup]="userForm" (ngSubmit)="checkUnregUser()">
             <h3>Por favor, introduzca la siguiente información:</h3>
             <div class="form-group">
@@ -136,14 +117,12 @@
             <div>
               <button type="submit">Añadir información</button>
             </div>
-            
           </form>
-          
           <div *ngIf="userConfirmado" class="bookingStatus">
               <button routerLink="/booking" (click)="setFlight(flight)" >Seleccionar vuelo</button>
-            </div>
           </div>
-          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
