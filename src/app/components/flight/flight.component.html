@@ -98,23 +98,17 @@
               <label for="name">Nombre y apellidos:</label>
               <input type="text" name="name" placeholder="Nombre" [formControl]="name"> 
             </div>
-          <div *ngIf="validateForm">
-            <mat-error *ngIf="name.hasError('required')">
-              El nombre y los apellidos son <strong>obligatorios</strong>
-            </mat-error>
-          </div>
+            <div class="error" *ngIf="errors?.name">
+              {{ errors?.name }}
+            </div>
             <div class="form-group">
               <label for="email">Correo electrónico:</label>
-              <input type="text" name="email" placeholder="Correo electrónico" [formControl]="email">
+              <input type="text" name="email" placeholder="ejemplo@ejemplo.com" [formControl]="email">
             </div>
-            <div *ngIf="validateForm">
-              <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-                Por favor, introduzca una dirección de correo válida.
-              </mat-error>
-            <mat-error *ngIf="email.hasError('required')">
-                El correo electrónico es <strong>obligatorio</strong>
-            </mat-error></div>
-            <div>
+            <div class="error" *ngIf="errors?.email">
+              {{ errors?.email }}
+            </div>
+            <div class="addInfo">
               <button type="submit">Añadir información</button>
             </div>
           </form>

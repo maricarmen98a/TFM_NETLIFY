@@ -46,35 +46,7 @@ export class FlightService {
   getCountries(): Observable<any> {
     return this.http.get<CountryDTO[]>('http://127.0.0.1:8000/api/countries');
 }
-// Sirve para transferir datos entre componentes
-private data:any = undefined;
-private dataUser:any = undefined;
-private dataFlight:any = undefined;
-private dataReservation:any = undefined;
-setData(data:any){
-  this.data = data;
-}
-getData():any{
-  return this.data;
-}
-setDataFlight(data:any){
-  this.dataFlight = data;
-}
-getDataFlight():any{
-  return this.dataFlight;
-}
-setDataReservation(data:any){
-  this.dataReservation = data;
-}
-getDataReservation():any{
-  return this.dataReservation;
-}
-setDataUser(data:any){
-  this.dataUser = data;
-}
-getDataUser():any{
-  return this.dataUser;
-}
+
 private handleError(err: HttpErrorResponse) {
   let errMsg:string='';
   if (err.error instanceof Error) {

@@ -38,7 +38,6 @@ export class FlightComponent implements OnInit {
   endDate!: Date;
   nextFlight!: FlightDTO[];
   heightCaja!: string;
-  errorMessage!: string;  
   users: UnregUserDTO;
   booked: boolean = false;
   name: FormControl;
@@ -48,22 +47,20 @@ export class FlightComponent implements OnInit {
   usuario!: UserDTO;
   isSignedIn: boolean = false;
   userConfirmado: boolean = false;
-/*   @Output() redirect:EventEmitter<any> = new EventEmitter();
- */
+  errors: any = null;
+
   constructor(public flightService: FlightService,
     public router: Router,
     public fb: FormBuilder,
     public headerMenusService: HeaderMenusService,
     private auth: AuthStateService,
     public local: LocalStorageService
-
     ) {
     this.users = new UnregUserDTO( '', '');
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.name = new FormControl('', [
       Validators.required
     ]);
-
     this.userForm = this.fb.group({
       email: this.email,
       name: this.name,
@@ -107,21 +104,13 @@ export class FlightComponent implements OnInit {
     this.source = SearchPara.source;
     this.destination = SearchPara.destination;
     this.startDate = SearchPara.startDate;
-    this.endDate = SearchPara.endDate;
     this.userForm.reset();
     let values = Object.values(this.flights);
     let merged = values.flat(1);
     let listaVuelos = merged.sort((a,b)=>new Date(b.boarding_time).valueOf() - new Date(a.boarding_time).valueOf());
     console.log(listaVuelos) 
    
-    if (this.endDate) {
-      this.filteredFlights = listaVuelos.filter((x) => {
-        return (x.origin == this.source) &&
-          (x.destination == this.destination)  &&
-          (x.boarding_time == this.startDate) &&
-          (x.arrival_time == this.endDate) 
-      });
-    } else if(this.startDate) {
+    if(this.startDate) {
       this.filteredFlights = listaVuelos.filter((x) => {
         return (x.origin == this.source) &&
           (x.boarding_time == this.startDate)
@@ -136,27 +125,50 @@ export class FlightComponent implements OnInit {
     }
     if(this.filteredFlights.length == 0){
       this.searchStatus = true;
-    }else{ 
+    } else{ 
       this.searchStatus = false;
     }
-
-    if(this.filteredFlights.length > 1){
+    if(this.userConfirmado == true && this.filteredFlights.length <= 2) {
+      let height = 700;
+      for(var i = 0; i < this.filteredFlights.length; i++) {        
+        height += 120;    
+      }
+      this.heightCaja = height.toString() + "px"
+    } else if(this.userConfirmado == true && this.filteredFlights.length > 2) {
+      let height = 700;
+      for(var i = 0; i < this.filteredFlights.length; i++) {        
+        height += 140;    
+      }
+      this.heightCaja = height.toString() + "px"
+    } else if(this.filteredFlights.length > 2){
       let height = 1000;
       for(var i = 0; i < this.filteredFlights.length; i++) {        
-        height += 220;    
+        height += 360;    
+      }
+      this.heightCaja = height.toString() + "px"
+    } else if(this.filteredFlights.length > 1){
+      let height = 1000;
+      for(var i = 0; i < this.filteredFlights.length; i++) {        
+        height += 240;    
       }
       this.heightCaja = height.toString() + "px"
     } else if(this.filteredFlights.length > 0) {
       this.heightCaja = "1000px";
     }
-  /*   console.log("Ok..."+ this.filteredFlights.length);
-    console.log(this.filteredFlights); */
-}
+    this.decideSize()
+  }
   biggerDiv() {
     if(this.filteredFlights == undefined) {
       this.heightCaja = "580px";
     } else if(this.filteredFlights.length == 0  && this.searchStatus == true) {
       this.heightCaja = "580px";
+    }
+  }
+  decideSize() {
+    if(this.searchStatus == true) {
+      this.smallerDiv()
+    } else {
+      this.biggerDiv()
     }
   }
   smallerDiv() {
@@ -178,18 +190,34 @@ export class FlightComponent implements OnInit {
       this.users.name = this.name.value;
       this.users = this.userForm.value;
       this.flightService.createUnregUser(this.users)
-        .subscribe(()=> {},  () => {
+        .subscribe((result) => {
+          console.log(result);
+          this.userConfirmado = true;
+          let height = 700;
+      for(var i = 0; i < this.filteredFlights.length; i++) {        
+        height += 160;    
+      }
+      this.heightCaja = height.toString() + "px"
+        },
+        (error) => {
+          this.errors = error.error;
           this.userConfirmado = false;
         })
     }
     console.log(this.users);
-    this.userConfirmado = true;
+    if(this.filteredFlights.length > 1 && this.userConfirmado == true){
+      let height = 700;
+      for(var i = 0; i < this.filteredFlights.length; i++) {        
+        height += 120;    
+      }
+      this.heightCaja = height.toString() + "px"
+    } else if(this.filteredFlights.length > 0 && this.userConfirmado == true) {
+      this.heightCaja = "700px";
+    }
     this.local.setUsuario( 'usuario',JSON.stringify(this.users));  
   }
   setFlight(flight: any) {
     this.checkUnregUser(); 
-    
     this.local.setUsuario('flight', JSON.stringify(flight)) 
   }   
-
 }
