@@ -2,7 +2,6 @@ select {
     max-height: 20px;
 }
 .caja-mat {
-    height: 480px;
     padding: 10px;
     display: block;
     text-align: center;
@@ -29,7 +28,6 @@ select {
         justify-content: center;
         flex-direction: column;
         align-items: center;
-      
     }
 }
 #startDate {
@@ -120,3 +118,95 @@ input[type="date"], focus {
     text-align: left;
     padding-top: 10px;
 }
+.bookingBox {
+    padding-bottom: 20px;
+}
+table tr td:nth-child(2) {
+    color: #2177c5;
+    text-align: right;
+    padding-right: 5px;
+}
+table tr td:nth-child(1) {
+    text-align: left;
+    padding-left: 5px;
+}
+table tr {
+    padding-bottom: 5px;
+
+}
+table {
+    font-size: larger;
+}
+.clouds {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 5%;
+    animation: floating 2s infinite;
+}
+.clouds mat-icon {
+    color: #5994cc;
+}
+.cloudDown {
+    padding-top: 15px;
+}
+.clouds img {
+    max-width: 70px;
+}
+.errorSame {
+    padding-bottom: 10px;
+}
+@media (min-width: 1200px) {
+    .caja-mat__flex form {
+        display: grid;
+        grid-template-columns: 270px 50px 270px;
+        gap: 40px;
+        grid-template-areas: "ida cambiar vuelta"
+                            "fecha . boton";
+    }
+    .caja-mat__flex, .caja-mat {
+        justify-content: normal;
+    }
+    .caja-mat__flex {
+        padding-bottom: 20px;
+    }
+    .boton-buscar {
+        grid-area: boton;
+        width: 70% !important;
+        font-size: larger;
+        margin-top: 40px;  
+    }
+    .bt-search {
+        height: 50px;
+        width: 180px;
+    }
+    h2 {
+        font-size: 1.6rem;
+        padding-bottom: 20px;
+    }
+    .resultados {
+        display: grid;
+        margin-top: 20px;
+        gap: 60px;
+        row-gap: 0;
+        grid-template-columns: 300px 300px;
+        font-size: larger;
+
+    }
+    .form-userinfo {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    .title h3 {
+        font-size: 1.6rem;
+    }
+    .caja-mat {
+        padding-top: 50px;
+    }
+    .clouds {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+   
+}
+

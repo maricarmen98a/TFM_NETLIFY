@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { FlightService } from 'src/app/shared/Services/flight.service';
 import { FlightDTO } from 'src/app/Models/flight';
 import { CityDTO } from 'src/app/Models/city';
@@ -47,6 +47,7 @@ export class FlightComponent implements OnInit {
   isSignedIn: boolean = false;
   userConfirmado: boolean = false;
   errors: any = null;
+  public innerWidth!: any;
 
   constructor(public flightService: FlightService,
     public router: Router,
@@ -66,6 +67,8 @@ export class FlightComponent implements OnInit {
   }
   
   ngOnInit() { 
+    this.innerWidth = window.innerWidth;
+
     this.auth.userAuthState.subscribe((val) => {
       this.userConfirmado = val;
     });
@@ -103,8 +106,8 @@ export class FlightComponent implements OnInit {
     this.userForm.reset();
     let values = Object.values(this.flights);
     let merged = values.flat(1);
-    let listaVuelos = merged.sort((a,b)=>new Date(b.boarding_time).valueOf() - new Date(a.boarding_time).valueOf());
-   
+    let listaVuelos = merged.sort((a,b)=>new Date(b.boarding_time).valueOf() - new Date(a.boarding_time).valueOf()).reverse();
+   console.log(listaVuelos)
     if(this.startDate) {
       this.filteredFlights = listaVuelos.filter((x) => {
         return (x.origin == this.source) &&
@@ -123,54 +126,13 @@ export class FlightComponent implements OnInit {
     } else{ 
       this.searchStatus = false;
     }
-    if(this.userConfirmado == true && this.filteredFlights.length <= 2) {
-      let height = 700;
-      for(var i = 0; i < this.filteredFlights.length; i++) {        
-        height += 120;    
-      }
-      this.heightCaja = height.toString() + "px"
-    } else if(this.userConfirmado == true && this.filteredFlights.length > 2) {
-      let height = 700;
-      for(var i = 0; i < this.filteredFlights.length; i++) {        
-        height += 140;    
-      }
-      this.heightCaja = height.toString() + "px"
-    } else if(this.filteredFlights.length > 2){
-      let height = 1000;
-      for(var i = 0; i < this.filteredFlights.length; i++) {        
-        height += 360;    
-      }
-      this.heightCaja = height.toString() + "px"
-    } else if(this.filteredFlights.length > 1){
-      let height = 1000;
-      for(var i = 0; i < this.filteredFlights.length; i++) {        
-        height += 240;    
-      }
-      this.heightCaja = height.toString() + "px"
-    } else if(this.filteredFlights.length > 0) {
-      this.heightCaja = "1000px";
-    }
-    this.decideSize()
   }
-  biggerDiv() {
-    if(this.filteredFlights == undefined) {
-      this.heightCaja = "580px";
-    } else if(this.filteredFlights.length == 0  && this.searchStatus == true) {
-      this.heightCaja = "580px";
-    }
-  }
-  decideSize() {
-    if(this.searchStatus == true) {
-      this.smallerDiv()
-    } else {
-      this.biggerDiv()
-    }
-  }
+  
   smallerDiv() {
     if(this.filteredFlights == undefined) {
-      this.heightCaja = "450px";
+      this.heightCaja = "480px";
     } else if(this.filteredFlights.length == 0 && this.searchStatus == true) {
-      this.heightCaja = "500px"; 
+      this.heightCaja = "550px"; 
     } 
   }
   checkUnregUser( ) {
@@ -186,30 +148,18 @@ export class FlightComponent implements OnInit {
       this.flightService.createUnregUser(this.users)
         .subscribe(() => {
           this.userConfirmado = true;
-          let height = 700;
-      for(var i = 0; i < this.filteredFlights.length; i++) {        
-        height += 160;    
-      }
-      this.heightCaja = height.toString() + "px"
         },
         (error) => {
           this.errors = error.error;
           this.userConfirmado = false;
         })
     }
-    if(this.filteredFlights.length > 1 && this.userConfirmado == true){
-      let height = 700;
-      for(var i = 0; i < this.filteredFlights.length; i++) {        
-        height += 120;    
-      }
-      this.heightCaja = height.toString() + "px"
-    } else if(this.filteredFlights.length > 0 && this.userConfirmado == true) {
-      this.heightCaja = "700px";
-    }
+    
     this.local.setUsuario( 'usuario',JSON.stringify(this.users));  
+    console.log(this.users)
   }
   setFlight(flight: any) {
-    this.checkUnregUser(); 
     this.local.setUsuario('flight', JSON.stringify(flight)) 
   }   
+
 }

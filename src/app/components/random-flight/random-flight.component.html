@@ -11,13 +11,13 @@
                 <mat-card class="mat-elevation-z4">
                     <mat-card-header>
                         <mat-card-title>Número de vuelo: {{ flight.flight_number }}AI</mat-card-title>
-                        <mat-card-subtitle>Ida: {{ flight.boarding_time }} - Llegada: {{ flight.arrival_time }}</mat-card-subtitle>
+                        <mat-card-subtitle>Ida: {{ flight.boarding_time | date: 'dd/MM/yyyy'}} <br> Hora: {{ flight.boarding_hour }} - {{ flight.arrival_hour }}</mat-card-subtitle>
                     </mat-card-header>
                     <img mat-card-image src="assets/ofertas.jpg" alt="avion">
                     <mat-card-content>
                         <h3>De {{ flight.origin }} a {{ flight.destination }} </h3>
                         <p>
-                            Disfrute de un viaje a {{ flight.destination }} por solamente <span class="crossedPrice">{{ flight.price | currency: 'EUR'}} </span> <span class="specialPrice"> {{ flight.price - 50 | number: '1.0-0' | currency: 'EUR' }}</span>
+                            Disfrute de un maravilloso viaje a {{ flight.destination }} por solamente <span class="crossedPrice">{{ flight.price | currency: 'EUR'}} </span> <span class="specialPrice"> {{ flight.price - 50 | number: '1.0-0' | currency: 'EUR' }}</span>
                         </p>
                     </mat-card-content>
                     <mat-card-actions *ngIf="!selected">

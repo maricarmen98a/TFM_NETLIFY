@@ -86,3 +86,9 @@
 .button-container button:hover {
   background-color: var(--button-click);
 }
+@media (min-width: 768px) {
+    .footer {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+}

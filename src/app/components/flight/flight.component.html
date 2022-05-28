@@ -2,6 +2,9 @@
 <div [ngStyle]="{'height': heightCaja}" id="caja" class="caja-mat">
   <div class="caja-mat__flex">
   <h2>Búsqueda de vuelos</h2>
+  <div class="errorSame">
+    <mat-error *ngIf="valueStatus">El origen y el destino no pueden coincidir</mat-error>
+  </div>
   <form class="form-flight" #OneWay="ngForm" (ngSubmit)="onSubmit(OneWay.value)" novalidate>
 
     <mat-form-field>
@@ -26,7 +29,6 @@
       </mat-select>
     </mat-form-field>
     
-    <mat-error *ngIf="valueStatus">El origen y el destino no pueden coincidir</mat-error>
    <div class="form-group">
       <div class="form-date">
         <label class="form-date__label" for="input-date">Fecha de inicio</label>
@@ -38,7 +40,6 @@
   </div>
 
   <div *ngIf="!flightStatus">
-    <div>
     	<div class="title">
         <h3>
           <span>{{ source }} - </span>
@@ -46,76 +47,84 @@
         </h3>
     	</div>
 		  <mat-error *ngIf="searchStatus"><fa-icon [icon]="faAviso"></fa-icon> No hay vuelos para las opciones elegidas.</mat-error>
-    </div>
-    <div *ngFor="let flight of filteredFlights" class="bookingBox">
-      <div>
-         <h2>Precio: {{ flight.price | currency: 'EUR'}}</h2> 
-        <table class="table">
-          <tbody>
-            <tr>
-              <td>
-                <span>Número de vuelo: </span>
-              </td>
-              <td>
-                <span>{{flight.flight_number}}AI</span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span>Día de salida:</span>
-              </td>
-              <td>
-                <span>{{flight.boarding_time | date:'longDate'}}</span> 
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span>Hora de salida:</span>
-              </td>
-              <td><span>{{flight.boarding_hour | removeDigits}}</span></td>
-            </tr>
-            <tr>
-              <td>
-                <span>Día de llegada:</span>
-              </td>
-              <td>
-                <span>{{flight.arrival_time | date:'longDate' }}</span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span>Hora de llegada:</span>
-              </td>
-              <td><span>{{flight.arrival_hour | removeDigits}}</span></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="form-userinfo" >
-          <form *ngIf="!userConfirmado" [formGroup]="userForm" (ngSubmit)="checkUnregUser()">
-            <h3>Por favor, introduzca la siguiente información:</h3>
-            <div class="form-group">
-              <label for="name">Nombre y apellidos:</label>
-              <input type="text" name="name" placeholder="Nombre" [formControl]="name"> 
-            </div>
-            <div class="error" *ngIf="errors?.name">
-              {{ errors?.name }}
-            </div>
-            <div class="form-group">
-              <label for="email">Correo electrónico:</label>
-              <input type="text" name="email" placeholder="ejemplo@ejemplo.com" [formControl]="email">
-            </div>
-            <div class="error" *ngIf="errors?.email">
-              {{ errors?.email }}
-            </div>
-            <div class="addInfo">
-              <button type="submit">Añadir información</button>
-            </div>
-          </form>
-          <div *ngIf="userConfirmado" class="bookingStatus">
-              <button routerLink="/booking" (click)="setFlight(flight)" >Seleccionar vuelo</button>
+    <div class="resultados">
+      <div class="form-userinfo">
+        <form *ngIf="!userConfirmado && !searchStatus" [formGroup]="userForm" (ngSubmit)="checkUnregUser()">
+          <h3>Por favor, introduzca la siguiente información:</h3>
+          <div class="form-group">
+            <label for="name">Nombre y apellidos:</label>
+            <input type="text" name="name" placeholder="Nombre" [formControl]="name"> 
           </div>
+          <div class="error" *ngIf="errors?.name">
+            {{ errors?.name }}
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico:</label>
+            <input type="text" name="email" placeholder="ejemplo@ejemplo.com" [formControl]="email">
+          </div>
+          <div class="error" *ngIf="errors?.email">
+            {{ errors?.email }}
+          </div>
+          <div class="addInfo">
+            <button type="submit">Añadir información</button>
+          </div>
+        </form>
+      </div>
+      <div *ngFor="let flight of filteredFlights" class="bookingBox">
+        <div class="item">
+          <h2>Precio: {{ flight.price | currency: 'EUR'}}</h2> 
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>
+                  <span>Número de vuelo: </span>
+                </td>
+                <td>
+                  <span>{{flight.flight_number}}AI</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Día de salida:</span>
+                </td>
+                <td>
+                  <span>{{flight.boarding_time | date:'longDate'}}</span> 
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Hora de salida:</span>
+                </td>
+                <td><span>{{flight.boarding_hour | removeDigits}}</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Día de llegada:</span>
+                </td>
+                <td>
+                  <span>{{flight.arrival_time | date:'longDate' }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Hora de llegada:</span>
+                </td>
+                <td><span>{{flight.arrival_hour | removeDigits}}</span></td>
+              </tr>
+            </tbody>
+          </table>
+            <div *ngIf="userConfirmado" class="bookingStatus">
+                <button routerLink="/booking" (click)="setFlight(flight)" >Seleccionar vuelo</button>
+            </div>
+            
         </div>
+      </div>
+      <div class="clouds">
+        <mat-icon class="cloudDown">cloud</mat-icon>
+        <mat-icon>cloud</mat-icon>
+        <mat-icon class="cloudDown">cloud</mat-icon>
+        <mat-icon>cloud</mat-icon>
+        <img src="assets/drawing-plane.png" alt="Dibujo de un avión">
       </div>
     </div>
   </div>
