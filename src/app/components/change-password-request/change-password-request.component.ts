@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from '../../shared/Services/auth.service';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-change-password-request',
   templateUrl: './change-password-request.component.html',
@@ -12,7 +14,8 @@ export class ChangePasswordRequestComponent implements OnInit {
   successMsg: any = null;
   constructor(
     public fb: FormBuilder,
-    public authService: AuthService
+    public authService: AuthService,
+    private location: Location
   ) {
     this.resetForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
@@ -26,5 +29,8 @@ export class ChangePasswordRequestComponent implements OnInit {
       },(error) => {
         this.errors = error.error.message;
       })
+  }
+  back(): void {
+    this.location.back()
   }
 }

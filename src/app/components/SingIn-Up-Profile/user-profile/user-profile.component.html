@@ -13,12 +13,12 @@
     <form [formGroup]="userForm" (ngSubmit)="update()">
       <mat-form-field appearance="fill">
         <mat-label>Nombre</mat-label>
-        <input matInput formControlName="name">
+        <input matInput formControlName="name" placeholder="{{nameValue}}">
       </mat-form-field>
   
       <mat-form-field appearance="fill">
         <mat-label>Correo electrónico</mat-label>
-        <input matInput formControlName="email">
+        <input matInput formControlName="email" placeholder="{{emailValue}}">
       </mat-form-field>  
   
       <mat-action-row>

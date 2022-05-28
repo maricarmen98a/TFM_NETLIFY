@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../shared/Services/auth.service';
-import { throwError } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
@@ -15,7 +15,8 @@ export class ChangePasswordComponent implements OnInit {
     public fb: FormBuilder,
     route: ActivatedRoute,
     public router: Router,
-    public authService: AuthService
+    public authService: AuthService,
+    private _snackBar: MatSnackBar
   ) {
     this.changePasswordForm = this.fb.group({
       email: [''],
@@ -33,7 +34,7 @@ export class ChangePasswordComponent implements OnInit {
   onSubmit() {
     this.authService.resetPassword(this.changePasswordForm.value).subscribe(
       (result: any) => {
-        alert('La contraseña se ha actualizado');
+        this.openSnackBar('Se ha actualizado correctamente', undefined, 'snackbar' )
         this.changePasswordForm.reset();
         console.log(result)
       },
@@ -42,16 +43,11 @@ export class ChangePasswordComponent implements OnInit {
       }
     );
   }
- /*  handleError(error: any) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      errorMessage = `Código de error: ${error.status}\nMensaje: ${error.message}`;
-    }
-    console.log(errorMessage);
-    return throwError(() => {
-      errorMessage;
+  openSnackBar(message: string, undefined: string | undefined, className: string) {
+    this._snackBar.open(message, undefined, {
+      duration: 2000,
+      panelClass: [className]
     });
-  } */
+  }
+
 }

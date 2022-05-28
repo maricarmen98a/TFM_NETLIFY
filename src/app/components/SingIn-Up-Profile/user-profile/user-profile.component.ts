@@ -7,6 +7,7 @@ import { FlightService } from 'src/app/shared/Services/flight.service';
 import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
 import { TokenService } from 'src/app/shared/Services/token.service';
 import { AuthService } from '../../../shared/Services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 export class User {
   name: any;
   email: any;
@@ -20,6 +21,8 @@ export class UserProfileComponent implements OnInit {
   UserProfile!: User;
   userForm: FormGroup;
   errors: any;
+  nameValue!: string;
+  emailValue!: string;
   userHasBooking: boolean = false;
   bookings: any;
   reservation!: ReservationDTO[];
@@ -35,7 +38,8 @@ export class UserProfileComponent implements OnInit {
     public authState: AuthStateService, 
     private token: TokenService,
     public flightService: FlightService,
-    public local: LocalStorageService
+    public local: LocalStorageService,
+    private _snackBar: MatSnackBar
     ) {
     
     this.userForm = this.fb.group({
@@ -87,10 +91,8 @@ export class UserProfileComponent implements OnInit {
   }
   update() {
     this.authService.updateUser(this.userForm.value).subscribe(
-      (result) => {
-/*         this.responseHandler(result);
- */        console.log(this.UserProfile)
-        console.log(result)
+      () => {
+        this.openSnackBar('Se ha actualizado correctamente', undefined, 'snackbar')
       },
       (error) => {
         this.errors = error.error;
@@ -105,6 +107,12 @@ export class UserProfileComponent implements OnInit {
   }
   responseHandler(data:any) {
     this.token.handleData(data.access_token);
+  }
+  openSnackBar(message: string, undefined: string | undefined, className: string) {
+    this._snackBar.open(message, undefined, {
+      duration: 2000,
+      panelClass: [className]
+    });
   }
 }
 
