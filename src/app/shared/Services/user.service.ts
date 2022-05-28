@@ -15,17 +15,10 @@ export class UserService {
     this.controller = 'users';
     this.backendApi = 'http://127.0.0.1:8000/api/auth/' + this.controller;
   }
-
   register(user: UserDTO): Observable<UserDTO> {
     return this.http
-      .post<UserDTO>('http://127.0.0.1:8000/api/auth/register', user) //esto funciona
+      .post<UserDTO>('http://127.0.0.1:8000/api/auth/register', user)
   }
-
-  updateUser(userId: string, user: UserDTO): Observable<UserDTO> {
-    return this.http
-      .put<UserDTO>(this.backendApi + '/' + userId, user)
-  }
-
   getUSerById(userId: string): Observable<UserDTO> {
     return this.http
       .get<UserDTO>(this.backendApi + '/' + userId)

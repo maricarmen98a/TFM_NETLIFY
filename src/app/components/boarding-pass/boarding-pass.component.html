@@ -16,6 +16,7 @@
             <div>Fecha <br> {{ reservation.boarding_time | date: 'dd/MM/yyyy' }}</div>
             <div>Embarque <br> {{ reservation.boarding_hour }}</div>
             <div>Puerta <br> {{ gate }}</div>
+            <div>Pasaporte / ID <br> {{ reservation.passenger_passport }}</div>
         </div>
         <div class="qr">
             <qrcode [qrdata]="'myAngularxQrCode'" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>

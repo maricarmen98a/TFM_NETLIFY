@@ -21,39 +21,29 @@ export class HelpFormComponent implements OnInit {
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.firstname = new FormControl('', Validators.required);
     this.textquery = new FormControl('', Validators.required);
-
     this.mailForm = this.formBuilder.group({
       email: this.email,
       firstname: this.firstname,
       textquery: this.textquery
-      });
+    });
   }
-
   onSubmit() {
     this.validateForm = true;
 
     this.submitted = true;
     if (this.mailForm.invalid) {
-        return;
+      return;
     }
-    if(this.submitted)
-    {
+    if(this.submitted) {
       this.openSnackBar('Se ha enviado correctamente', undefined, 'snackbar' )
-      var myFormData = new FormData();    
-        myFormData.append('myUsername', this.mailForm.value.firstname);
-        myFormData.append('myEmail', this.mailForm.value.email);
-        myFormData.append('textquery', this.mailForm.value.textquery);
-
-      return this.http.post('http://127.0.0.1:8000/api/send/email', myFormData).subscribe();
+      var helpForm = new FormData();    
+      helpForm.append('myUsername', this.mailForm.value.firstname);
+      helpForm.append('myEmail', this.mailForm.value.email);
+      helpForm.append('textquery', this.mailForm.value.textquery);
+      return this.http.post('http://127.0.0.1:8000/api/send/email', helpForm).subscribe();
     }
   }
-  ngOnInit() {
-    /* this.mailForm = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
-    firstname: ['', [Validators.required]],
-    textquery:['', [Validators.required]]
-    }); */
-  }
+  ngOnInit() {}
   openSnackBar(message: string, undefined: string | undefined, className: string) {
     this._snackBar.open(message, undefined, {
       duration: 2000,

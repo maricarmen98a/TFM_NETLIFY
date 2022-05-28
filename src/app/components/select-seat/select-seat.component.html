@@ -36,10 +36,10 @@
   </div>
 </div>
 <div *ngIf="!chosenSeat" class="continue">
-  <button (click)="openDialog()">Asiento aleatorio</button> <!-- (click)="setData(reservation)" -->
+  <button (click)="openDialog()">Asiento aleatorio</button> 
 </div>
 <div *ngIf="chosenSeat" class="continue">
-  <button (click)="openDialog()">Continuar</button> <!-- (click)="setData(reservation)" -->
+  <button (click)="openDialog()">Continuar</button> 
 </div>
 <div class="seatmap" >
   <div class="plane" >
@@ -59,7 +59,6 @@
             <label for="2D">2D</label>
           </div>
         </div>
-        <!-- [ngClass]="{'unselect': step == true}" en input y label -->
         <div class="row2">
           <div class="asiento" *ngFor="let seat of arraySeats2">
             <input type="checkbox" (change)="onCheck(this.seat)" id="{{seat.value}}" formArrayName="checkboxes"(click)="uncheckOther(seat)" [(ngModel)]="seat.checked" [ngModelOptions]="{standalone: true}"/>

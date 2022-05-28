@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
       this.isSignedIn = val;
     });
   }
-  // Signout
   signOut() {
     this.auth.setAuthState(false);
     this.token.removeToken();

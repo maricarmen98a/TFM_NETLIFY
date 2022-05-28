@@ -19,7 +19,6 @@ export class RandomFlightComponent implements OnInit {
   vuelosAleatorios: boolean = false;
   selectedRandom!: FlightDTO[];
   flights!: FlightDTO[];
-  errorMessage!: string;  
   selected: boolean = false;
   validateForm: boolean = false;
   users: UnregUserDTO;
@@ -32,7 +31,6 @@ export class RandomFlightComponent implements OnInit {
 
   constructor(public flightService: FlightService, public fb: FormBuilder, private auth: AuthStateService, public dialog: MatDialog, public local: LocalStorageService, public router: Router) {
     this.users = new UnregUserDTO( '', '');
- 
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.name = new FormControl('', [
       Validators.required
@@ -42,7 +40,6 @@ export class RandomFlightComponent implements OnInit {
       name: this.name,
     });
   }
-
   ngOnInit(): void {
     this.flightService.getFlight().subscribe(() => { this.getAllContent() });
     this.auth.userAuthState.subscribe((val) => {
@@ -50,8 +47,6 @@ export class RandomFlightComponent implements OnInit {
       });
     let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
     this.usuario = retrievedObject;
-    
-
   }
   private getAllContent() {
     this.flightService
@@ -64,7 +59,6 @@ export class RandomFlightComponent implements OnInit {
     let shuffled = merged.sort(function(){return .5 - Math.random()});
     let selected = shuffled.slice(0,4);
     this.selectedRandom = selected;
-    console.log(selected);
     this.vuelosAleatorios = true;
     let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
     this.usuario = retrievedObject; 
@@ -72,7 +66,6 @@ export class RandomFlightComponent implements OnInit {
   checkUser( ) {
     this.validateForm = true;
     if (this.userConfirmado == true) {
-      console.log(this.usuario)
       this.users.email = this.usuario.email;
       this.users.name = this.usuario.name;
     } else {
@@ -80,19 +73,15 @@ export class RandomFlightComponent implements OnInit {
     this.users.name = this.name.value;
     this.users = this.userForm.value;
     this.flightService.createUnregUser(this.users)
-      .subscribe((result: any) => {
-        console.log(result);
+      .subscribe(() => {
         this.userConfirmado = true;
         this.local.setUsuario('usuario', JSON.stringify(this.users))
-/*         this.flightService.setData(this.users); 
- */      },
+      },
       (error: any) => {
         this.errors = error.error;
         this.userConfirmado = false;
       })
-    }
-  console.log(this.users);
-     
+    }     
   }
   setFlight(flight: any) {
     let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
@@ -100,9 +89,7 @@ export class RandomFlightComponent implements OnInit {
     flight.price = flight.price - 50; 
     this.checkUser();  
     this.local.setUsuario('flight', JSON.stringify(flight))
-
-/*     this.flightService.setDataFlight(flight);
- */  }
+  }
   openDialog(flight: any): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '320px',

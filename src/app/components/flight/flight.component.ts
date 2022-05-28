@@ -7,7 +7,6 @@ import { CountryDTO } from 'src/app/Models/country';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UnregUserDTO } from 'src/app/Models/unregisteredUser';
-import { HeaderMenusService } from 'src/app/shared/Services/header-menus.service';
 import { AuthStateService } from 'src/app/shared/Services/auth-state.service';
 import { UserDTO } from 'src/app/Models/user.dto';
 import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
@@ -52,7 +51,6 @@ export class FlightComponent implements OnInit {
   constructor(public flightService: FlightService,
     public router: Router,
     public fb: FormBuilder,
-    public headerMenusService: HeaderMenusService,
     private auth: AuthStateService,
     public local: LocalStorageService
     ) {
@@ -71,8 +69,6 @@ export class FlightComponent implements OnInit {
     this.auth.userAuthState.subscribe((val) => {
       this.userConfirmado = val;
     });
-    console.log(this.userConfirmado)
-
     this.flightService.getFlight().subscribe((flights: FlightDTO[]) => (this.flights = flights));
     this.flightService.getCities().subscribe((cities: CityDTO[]) => (this.cities = cities));
     this.flightService.getCountries().subscribe((countries: CountryDTO[]) => (this.countries = countries));
@@ -108,7 +104,6 @@ export class FlightComponent implements OnInit {
     let values = Object.values(this.flights);
     let merged = values.flat(1);
     let listaVuelos = merged.sort((a,b)=>new Date(b.boarding_time).valueOf() - new Date(a.boarding_time).valueOf());
-    console.log(listaVuelos) 
    
     if(this.startDate) {
       this.filteredFlights = listaVuelos.filter((x) => {
@@ -182,7 +177,6 @@ export class FlightComponent implements OnInit {
     this.validateForm = true;
     this.booked = true;
     if (this.userConfirmado == true) {
-      console.log(this.usuario)
       this.users.email = this.usuario.email;
       this.users.name = this.usuario.name;
     } else {
@@ -190,8 +184,7 @@ export class FlightComponent implements OnInit {
       this.users.name = this.name.value;
       this.users = this.userForm.value;
       this.flightService.createUnregUser(this.users)
-        .subscribe((result) => {
-          console.log(result);
+        .subscribe(() => {
           this.userConfirmado = true;
           let height = 700;
       for(var i = 0; i < this.filteredFlights.length; i++) {        
@@ -204,7 +197,6 @@ export class FlightComponent implements OnInit {
           this.userConfirmado = false;
         })
     }
-    console.log(this.users);
     if(this.filteredFlights.length > 1 && this.userConfirmado == true){
       let height = 700;
       for(var i = 0; i < this.filteredFlights.length; i++) {        

@@ -39,8 +39,7 @@ const routes: Routes = [
   { path: 'boarding', component: BoardingPass2Component },
   { path: 'help', component: HelpFormComponent },
   { path: 'about-us', component: AboutUsComponent },
-  { path: '**', pathMatch: 'full', 
-  component: PagenotfoundComponent },
+  { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

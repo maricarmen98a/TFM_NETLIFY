@@ -27,8 +27,7 @@ export class SignupComponent implements OnInit {
   ngOnInit() {}
   onSubmit() {
     this.authService.register(this.registerForm.value).subscribe(
-      (result: any) => {
-        console.log(result);
+      () => {
       },
       (error: any) => {
         this.errors = error.error;

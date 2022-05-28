@@ -27,7 +27,6 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FlightModule } from './components/flight/flight.module';
 import { NewsComponent } from './components/news/news.component';
-import { RangePipe } from './shared/pipes/flight.pipe';
 import { RandomFlightComponent } from './components/random-flight/random-flight.component';
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
@@ -69,7 +68,6 @@ registerLocaleData(localeEs);
     HeaderComponent,
     FooterComponent,
     NewsComponent,
-    RangePipe,
     RandomFlightComponent,
     RemoveDigitsPipe,
     BookingFlightComponent,
@@ -85,8 +83,6 @@ registerLocaleData(localeEs);
     HelpFormComponent,
     AboutUsComponent,
     PagenotfoundComponent,
-    
-
   ],
   imports: [
     BrowserModule,

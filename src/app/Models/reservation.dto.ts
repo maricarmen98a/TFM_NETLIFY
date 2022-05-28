@@ -9,7 +9,8 @@ export class ReservationDTO {
     flight_id: number;
     passenger_name: string;
     passenger_email: string;
-    status: string;
+    passenger_passport: string;
+    passenger_phone: string;
     airline: string;
     origin: string;
     destination: string;
@@ -27,7 +28,8 @@ export class ReservationDTO {
         flight_id: number,
         passenger_name: string,
         passenger_email: string,
-        status: string,
+        passenger_passport: string,
+        passenger_phone: string,
         airline: string,
         origin: string,
         destination: string,
@@ -44,7 +46,8 @@ export class ReservationDTO {
         this.flight_id = flight_id,
         this.passenger_name = passenger_name,
         this.passenger_email = passenger_email,
-        this.status = status,
+        this.passenger_passport = passenger_passport,
+        this.passenger_phone = passenger_phone,
         this.airline = airline,
         this.origin = origin,
         this.destination = destination,

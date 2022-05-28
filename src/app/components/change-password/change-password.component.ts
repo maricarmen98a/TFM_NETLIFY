@@ -33,10 +33,9 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit() {}
   onSubmit() {
     this.authService.resetPassword(this.changePasswordForm.value).subscribe(
-      (result: any) => {
+      () => {
         this.openSnackBar('Se ha actualizado correctamente', undefined, 'snackbar' )
         this.changePasswordForm.reset();
-        console.log(result)
       },
       (error: any) => {
         this.errors = error.error;

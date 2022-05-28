@@ -55,17 +55,17 @@ a:hover {
     background-color: white;
     color: black;
     padding: 20px;
+    padding-bottom: 90px;
     margin-top: 30px;
     width: 100%;
     min-height: 240px;
-    margin-bottom: 60px;
 }
 input {
     margin-bottom: 20px;
     width: 80%;
     height: 30px;
 }
-mat-error {
+.container-error {
     padding-bottom: 20px;
 }
 .atras {
@@ -78,7 +78,7 @@ mat-error {
     height: 210px;
 }
 .biggerMargin {
-    margin-top: 260px;
+    margin-top: 330px;
 }
 .biggerMargin2 {
     margin-top: 60px;

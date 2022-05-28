@@ -34,12 +34,16 @@
     <div [ngClass]="{'biggerMargin': isloaded === false, 'biggerMargin2' : userHasBooking === true}" class="search-booking">
         <h3>Localizador de reserva</h3>
         <input type="text" name="bookingSearch" placeholder="Ej.:DE6DuVdJ3f" [formControl]="bookingSearch">
-        <mat-error *ngIf="bookingSearch.hasError('required') && (bookingSearch.dirty || bookingSearch.touched)">
-            El código es <strong>obligatorio</strong>
-        </mat-error>
-        <mat-error *ngIf="emptyArray">
-            El código proporcionado <strong>no existe</strong>
-        </mat-error>
+        <div class="container-error" *ngIf="validateForm">
+            <mat-error *ngIf="bookingSearch.hasError('required')">
+                El código es <strong>obligatorio</strong>
+            </mat-error>
+        </div>
+        <div class="container-error" *ngIf="validateForm">
+            <mat-error *ngIf="emptyArray">
+                El código proporcionado <strong>no existe</strong>
+            </mat-error>
+        </div>
         <div>
             <button (click)="search()">Buscar</button>
         </div>

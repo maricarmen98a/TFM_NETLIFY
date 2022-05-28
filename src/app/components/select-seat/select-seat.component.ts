@@ -37,7 +37,7 @@ export class SelectSeatComponent implements OnInit {
   chosenSeat: boolean = false;
   constructor(private location: Location, public local: LocalStorageService, public flightService: FlightService, public tokenService: TokenService, public router: Router, public dialog: MatDialog) {
     this.seat = new FormControl('');
-    this.reservations = new ReservationDTO(1, 1, 1,'', '', '', '', '', '', 1, '', '', new Date, new Date, '', '')
+    this.reservations = new ReservationDTO(1, 1, 1,'', '', '','', '', '', '', 1, '', '', new Date, new Date, '', '')
     this. bntStyle = 'seat';
     this.arraySeats1 = [
       {value: '1B', checked: false}, {value: '1C', checked: false}, {value: '1D', checked: false}, {value: '2A', checked: false}, {value: '2B', checked: false}, {value: '2C', checked: false}
@@ -121,10 +121,6 @@ export class SelectSeatComponent implements OnInit {
     } else {
         this.extra = 10;
     }
-    console.log(this.checkedTickets);
-    let seatArray = this.checkedTickets[0];
-    const selectedSeat = Object.values(seatArray)[0];
-    console.log(selectedSeat)
   }
   showInfo() {
     this.showIt = true;
@@ -149,7 +145,8 @@ export class SelectSeatComponent implements OnInit {
     }
     this.reservations.passenger_email = this.reserva.passenger_email;
     this.reservations.passenger_name = this.reserva.passenger_name;
-    this.reservations.status = 'Active';
+    this.reservations.passenger_passport = this.reserva.passenger_passport;
+    this.reservations.passenger_phone = this.reserva.passenger_phone;
     this.reservations.airline = this.reserva.airline;
     this.reservations.flight_id = this.reserva.flight_id;
     this.reservations.origin = this.reserva.origin;
@@ -161,15 +158,9 @@ export class SelectSeatComponent implements OnInit {
     this.reservations.arrival_hour = this.reserva.arrival_hour;
     this.reservations.boarding_hour = this.reserva.boarding_hour;
     this.reservations.seat = selectedSeat; 
-    
-    
-    /* this.flightService.createReservation(this.reservations)
-    .subscribe() */
-    console.log(this.reservations)
     this.showReservation = true;
     this.local.setUsuario('reserva', JSON.stringify(this.reservations))
-/*     this.flightService.setDataReservation(this.reservations);
- */  }
+  }
   openDialog(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '320px',

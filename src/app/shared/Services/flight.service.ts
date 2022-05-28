@@ -17,19 +17,13 @@ export class FlightService {
   constructor(private http: HttpClient) { }
 
   getFlight(): Observable<any> {
-    return this.http.get<FlightDTO[]>('http://127.0.0.1:8000/api/flights').pipe(
-     /*  tap(data => console.log('Data fetched:'+JSON.stringify(data))) ,*/
-      catchError(this.handleError));
+    return this.http.get<FlightDTO[]>('http://127.0.0.1:8000/api/flights').pipe(catchError(this.handleError));
   }
   getReservation(): Observable<any> {
-    return this.http.get<ReservationDTO[]>('http://127.0.0.1:8000/api/reservations').pipe(
-     /*  tap(data => console.log('Data fetched:'+JSON.stringify(data))) ,*/
-      catchError(this.handleError));
+    return this.http.get<ReservationDTO[]>('http://127.0.0.1:8000/api/reservations').pipe(catchError(this.handleError));
   }
   getUnregUser(): Observable<any> {
-    return this.http.get<UnregUserDTO[]>('  http://127.0.0.1:8000/api/unreguser').pipe(
-     /*  tap(data => console.log('Data fetched:'+JSON.stringify(data))) ,*/
-      catchError(this.handleError));
+    return this.http.get<UnregUserDTO[]>('  http://127.0.0.1:8000/api/unreguser').pipe(catchError(this.handleError));
   }
   createUnregUser(data: any): Observable<any> {
     return this.http.post('http://127.0.0.1:8000/api/unreguser', data)
@@ -50,13 +44,12 @@ export class FlightService {
 private handleError(err: HttpErrorResponse) {
   let errMsg:string='';
   if (err.error instanceof Error) {
-     // A client-side or network error occurred. Handle it accordingly.
-     console.log('An error occurred:', err.error.message);
-     let errMsg=err.error.message;} 
-     else {
-     console.log(`Backend returned code ${err.status}`);
-       let errMsg=err.error.status;
+    console.log('An error occurred:', err.error.message);
+    let errMsg=err.error.message;} 
+    else {
+    console.log(`Backend returned code ${err.status}`);
+    let errMsg=err.error.status;
    }
-      return throwError(() => errMsg); 
+    return throwError(() => errMsg); 
 }
 }

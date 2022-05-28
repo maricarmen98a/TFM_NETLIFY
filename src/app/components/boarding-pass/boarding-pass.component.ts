@@ -20,12 +20,10 @@ export class BoardingPassComponent implements OnInit {
   ngOnInit(): void {
     let retrievedFlight = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedFlight;
-
     let string =  this.reservation.boarding_hour.toString();
     let string2 = string.slice(0, -3);
     this.reservation.boarding_hour = string2;
     this.gate = JSON.parse(this.local.getUsuario('gate') || '{}')
-
   }
   back(): void {
     this.location.back()

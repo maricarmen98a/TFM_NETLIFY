@@ -51,13 +51,10 @@ export class BoardingPass2Component implements OnInit {
         return (x.passenger_email == this.UserProfile.email)
       });
       if(this.filteredReservations.length > 0){
-          this.searchStatus = true;
-          this.userHasBooking = true;
+        this.searchStatus = true;
+        this.userHasBooking = true;
       } else { 
-          this.searchStatus = false;
-      }
-      if(this.filteredReservations == undefined) {
-        console.error('No tiene ningún vuelo planificado todavía')
+        this.searchStatus = false;
       }
     }
     this.local.setUsuario('reserva', JSON.stringify(this.filteredReservations))

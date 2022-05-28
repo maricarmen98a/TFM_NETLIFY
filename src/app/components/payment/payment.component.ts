@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IMonth, IPaymentModel, IYear } from 'src/app/Models/payment.interface';
 import { ViewChild, ElementRef } from '@angular/core';
 import { ReservationDTO } from 'src/app/Models/reservation.dto';
@@ -61,7 +61,6 @@ export class PaymentComponent implements OnInit {
     this.GetYears();
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
-    console.log(this.reservation)
     this.stringToTime();
     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
   }
@@ -70,15 +69,11 @@ export class PaymentComponent implements OnInit {
     const input = this.ccNumberField.nativeElement;
     const { selectionStart } = input;
     const { cardNumber } = this.paymentForm.controls;
-
     let trimmedCardNum = cardNumber.value.replace(/\s+/g, '');
-
     if (trimmedCardNum.length > 16) {
       trimmedCardNum = trimmedCardNum.substr(0, 16);
     }
-    const partitions = trimmedCardNum.startsWith('34') || trimmedCardNum.startsWith('37') 
-                       ? [4,6,5] 
-                       : [4,4,4,4];
+    const partitions = trimmedCardNum.startsWith('34') || trimmedCardNum.startsWith('37') ? [4,6,5] : [4,4,4,4];
     const numbers: any[] = [];
     let position = 0;
     partitions.forEach(partition => {
@@ -116,10 +111,6 @@ export class PaymentComponent implements OnInit {
       this.years.push(this.year);
     }
   }
-
-  selected(){
-    console.log(this.selectedValue.value)
-  }
   stringToTime() {
     var origStr = this.reservation.boarding_hour;
     var n = origStr.search(":");
@@ -146,10 +137,8 @@ export class PaymentComponent implements OnInit {
       let horas = hours.toString();
       let minutos = minutes.toString();
       if (horas == '0') {
-        console.log(minutos + ' minutos');
         this.hoursFlight = minutos + ' minutos';
       } else {
-        console.log(horas, ' horas', minutos, ' minutos')
         this.hoursFlight = horas + ' horas ' + minutos + ' minutos';
       }
     } else if (minPart> minPart2) {
@@ -158,10 +147,8 @@ export class PaymentComponent implements OnInit {
       let horas = hours.toString();
       let minutos = minutes.toString();
       if (horas == '0') {
-        console.log(minutos + ' minutos');
         this.hoursFlight = minutos + ' minutos';
       } else {
-        console.log(horas, ' horas', minutos + ' minutos')
         this.hoursFlight = horas + ' horas ' + minutos + ' minutos';
       }
     }
@@ -170,21 +157,16 @@ export class PaymentComponent implements OnInit {
     this.showPrice = true;
     let values = Object.values(this.reservas);
     let merged = values.flat(1);
-    console.log(merged) 
     this.booking = merged.filter((x) => {
       return (x.reservation_code == this.reservation.reservation_code)
-    })
-    console.log(this.booking)
-   
+    })   
     if(this.booking.length > 0) {
-      console.log('existe!')
       this.itExists = true; 
       this.totalPrice = this.reservation.price;
       if(this.reservation.price > this.booking[0].price) {
         this.reservation.price = this.reservation.price - this.booking[0].price;
       }
     }
-    console.log(this.reservation.price)
   }
   SaveCardDetails(){    
     this.isSubmitted = true;
@@ -206,10 +188,6 @@ export class PaymentComponent implements OnInit {
         this.flightService.createReservation(this.reservation).subscribe();
       }
       this.local.setUsuario('reserva', JSON.stringify(this.reservation))
-      console.log(this.paymentmodel)
-    }
-    else {
-      console.log('error')
     }
   }
   back(): void {
