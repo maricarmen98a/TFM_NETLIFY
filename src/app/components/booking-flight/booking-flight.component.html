@@ -1,54 +1,57 @@
 <div class="container">
-  <div class="form-userinfo" >
+  <div class="main" >
+    <div class="form-userinfo">
       <form [formGroup]="userForm" (ngSubmit)="bookFlight()">
         <h2>Pasajero</h2>
         <div class="form-group">
-          <label for="name">Nombre y apellidos*</label>
-          <input type="text" name="name" placeholder="Nombre y apellidos" [readonly]="this.users" [formControl]="name"> 
-        </div>
-      <div *ngIf="validateForm">
-        <mat-error *ngIf="name.hasError('required')">
-          El nombre y los apellidos son <strong>obligatorios</strong>
-        </mat-error>
-      </div>
-      <div class="form-group">
-          <label for="passport">Documento identificativo*</label>
-          <input type="text" name="passport" placeholder="DNI, NIE o Pasaporte" [formControl]="passport"> 
-        </div>
-      <div *ngIf="validateForm">
-        <mat-error *ngIf="passport.hasError('required')">
-          El numero identificativo es <strong>obligatorio</strong>
-        </mat-error>
-      </div>
-      <div class="form-group">
-          <label for="email">Correo electrónico*</label>
-          <input type="text" name="email" placeholder="example@hotmail.com" [readonly]="this.users" [formControl]="email">
+            <label for="name">Nombre y apellidos*</label>
+            <input type="text" name="name" placeholder="Nombre y apellidos" [readonly]="this.users" [formControl]="name"> 
         </div>
         <div *ngIf="validateForm">
-          <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-            Por favor, introduzca una dirección de correo válida.
+          <mat-error *ngIf="name.hasError('required')">
+            El nombre y los apellidos son <strong>obligatorios</strong>
           </mat-error>
-        <mat-error *ngIf="email.hasError('required')">
-            El correo electrónico es <strong>obligatorio</strong>
-        </mat-error>
-      </div>
-        <div class="form-group">
-          <label for="phone">Nº de teléfono o móvil*</label>
-          <input type="text" name="phone" placeholder="Ej.:612345678" [formControl]="phone"> 
         </div>
-      <div *ngIf="validateForm">
-        <mat-error *ngIf="passport.hasError('required')">
-          El numero identificativo es <strong>obligatorio</strong>
-        </mat-error>
-      </div>
-      <div>*Todos los campos marcados son obligatorios</div>
+        <div class="form-group">
+            <label for="passport">Documento identificativo*</label>
+            <input type="text" name="passport" placeholder="DNI, NIE o Pasaporte" [formControl]="passport"> 
+          </div>
+        <div *ngIf="validateForm">
+          <mat-error *ngIf="passport.hasError('required')">
+            El número identificativo es <strong>obligatorio</strong>
+          </mat-error>
+        </div>
+        <div class="form-group">
+            <label for="email">Correo electrónico*</label>
+            <input type="text" name="email" placeholder="example@hotmail.com" [readonly]="this.users" [formControl]="email">
+          </div>
+          <div *ngIf="validateForm">
+            <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+              Por favor, introduzca una dirección de correo válida.
+            </mat-error>
+          <mat-error *ngIf="email.hasError('required')">
+              El correo electrónico es <strong>obligatorio</strong>
+          </mat-error>
+        </div>
+          <div class="form-group">
+            <label for="phone">Nº de teléfono o móvil*</label>
+            <input type="text" name="phone" placeholder="Ej.:612345678" [formControl]="phone"> 
+          </div>
+        <div *ngIf="validateForm">
+          <mat-error *ngIf="phone.hasError('required')">
+            El teléfono es <strong>obligatorio</strong>
+          </mat-error>
+        </div>
+        <div>*Todos los campos marcados son obligatorios</div>
         <div>
-          <button type="submit" (click)="bookFlight()" routerLink="/select-seat">Continuar</button>
+          <button type="submit" (click)="bookFlight()" >Continuar</button>
         </div>
         
       </form>
+    </div>
   </div>
-</div>
+
 <div class="atras">
   <button (click)="back()">Atrás</button>
+</div>
 </div>

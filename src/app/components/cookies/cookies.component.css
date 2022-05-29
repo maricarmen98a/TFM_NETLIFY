@@ -1,23 +1,38 @@
 .home-banner {
-    display: flex;
-    justify-content: center;
-    background-image: url("../../../assets/avion.jpeg");
-    background-size: 100%;
-    background-position: center top;
-    background-repeat: no-repeat;
-    padding-top: 200px;
-    flex-direction: row;
-    flex-wrap: wrap;
     padding-bottom: 80px;
+}
+.container-img, .container-img2 {
+    width: 100%;
+    margin-bottom: 20px;
+}
+.container-img img, .container-img2 img {
+    width: 100%;
 }
 h2,.home-banner {
     color: white;
     padding-left: 10px;
     padding-right: 10px;
 } 
-.home-banner h3 {
-    margin-top: 60px;
+.container-img2 {
+    display: none;
 }
 h2 {
     text-align: center;
+}
+@media (min-width: 768px) {
+    .home-banner {
+        padding-bottom: 120px;
+    }
+}
+@media (min-width: 1200px) {
+    .container-img {
+        display: none;
+    }
+    .container-img2 {
+        display: block;
+    }
+    .home-banner {
+        padding: 40px;
+        padding-top: 20px;
+    }
 }

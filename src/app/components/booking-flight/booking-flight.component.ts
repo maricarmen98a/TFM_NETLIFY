@@ -61,23 +61,29 @@ export class BookingFlightComponent implements OnInit {
     this.location.back()
   }
   bookFlight() {
-    this.validateForm = true;
-    this.reservations.passenger_email = this.users.email;
-    this.reservations.passenger_name = this.users.name;
-    this.reservations.passenger_passport = this.userForm.value.passport;
-    this.reservations.passenger_phone = this.userForm.value.phone;
-    this.reservations.airline = this.flight.airline;
-    this.reservations.flight_id = this.flight.flight_number;
-    this.reservations.origin = this.flight.origin;
-    this.reservations.destination = this.flight.destination;
-    this.reservations.price = this.flight.price;
-    this.reservations.boarding_hour = this.flight.boarding_hour;
-    this.reservations.boarding_time = this.flight.boarding_time;
-    this.reservations.arrival_hour = this.flight.arrival_hour;
-    this.reservations.arrival_time = this.flight.arrival_time;
-    this.reservations.reservation_code = this.flight.reservation_code;
-    this.reservations.seat = '23A';
-    this.local.setUsuario('reserva', JSON.stringify(this.reservations))
-    this.local.setUsuario('usuario',JSON.stringify(this.users));  
+    
+      this.validateForm = true;
+      this.reservations.passenger_email = this.users.email;
+      this.reservations.passenger_name = this.users.name;
+      this.reservations.passenger_passport = this.userForm.value.passport;
+      this.reservations.passenger_phone = this.userForm.value.phone;
+      this.reservations.airline = this.flight.airline;
+      this.reservations.flight_id = this.flight.flight_number;
+      this.reservations.origin = this.flight.origin;
+      this.reservations.destination = this.flight.destination;
+      this.reservations.price = this.flight.price;
+      this.reservations.boarding_hour = this.flight.boarding_hour;
+      this.reservations.boarding_time = this.flight.boarding_time;
+      this.reservations.arrival_hour = this.flight.arrival_hour;
+      this.reservations.arrival_time = this.flight.arrival_time;
+      this.reservations.reservation_code = this.flight.reservation_code;
+      this.reservations.seat = '23A';
+    if(this.userForm.valid) {
+      this.local.setUsuario('reserva', JSON.stringify(this.reservations))
+      this.local.setUsuario('usuario',JSON.stringify(this.users)); 
+      console.log(this.users)
+      console.log(this.reservations)
+      this.router.navigateByUrl('select-seat')
+    } 
   }
 }

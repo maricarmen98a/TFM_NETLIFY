@@ -3,6 +3,15 @@
     <div class="load">
         <button (click)="loadData()">Cargar reservas</button>
     </div>
+    <div *ngIf="!isloaded">
+        <div class="cloudsLaptop">
+            <mat-icon class="cloudDown">cloud</mat-icon>
+            <mat-icon>cloud</mat-icon>
+            <mat-icon class="cloudDown">cloud</mat-icon>
+            <mat-icon>cloud</mat-icon>
+            <img src="assets/drawing-plane.png" alt="Dibujo de un avión">
+        </div>
+    </div>
     <div class="noResults" *ngIf="!userHasBooking && isloaded">
         <div class="container-plane">
             <img class="planeSearch" src="assets/transportColor.png" alt="Imagen de dos aviones formando un círculo">
@@ -11,9 +20,9 @@
             <p>No tiene ningún vuelo planificado todavía.</p>
         </div>
     </div>
-    <div *ngIf="userHasBooking">
+    <div class="flex-results" *ngIf="userHasBooking">
         <div class="results" *ngIf="searchStatus">
-            <div>Resultados:</div>
+            <h3>Resultados:</h3>
             <div class="results__info" *ngFor="let reservation of filteredReservations">
                 <h3>{{ reservation.origin }}</h3> 
                 <div>
@@ -34,12 +43,12 @@
     <div [ngClass]="{'biggerMargin': isloaded === false, 'biggerMargin2' : userHasBooking === true}" class="search-booking">
         <h3>Localizador de reserva</h3>
         <input type="text" name="bookingSearch" placeholder="Ej.:DE6DuVdJ3f" [formControl]="bookingSearch">
-        <div class="container-error" *ngIf="validateForm">
+        <div class="container-error" *ngIf="searchForm">
             <mat-error *ngIf="bookingSearch.hasError('required')">
                 El código es <strong>obligatorio</strong>
             </mat-error>
         </div>
-        <div class="container-error" *ngIf="validateForm">
+        <div class="container-error" *ngIf="searchForm">
             <mat-error *ngIf="emptyArray">
                 El código proporcionado <strong>no existe</strong>
             </mat-error>

@@ -1,3 +1,7 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
 .footer {
   padding: 10px;
   padding-top: 15px;
@@ -73,19 +77,6 @@
 .openNav:hover {
   cursor: pointer;
 }
-.button-container {
-  padding-bottom: 80px;
-  bottom: 10px;
-  right: 0;
-  padding-right: 20px;
-  position: fixed;
-}
-.button-container button {
-  background-color: var(--button);
-}
-.button-container button:hover {
-  background-color: var(--button-click);
-}
 .footer-laptop {
   display: none;
 }
@@ -102,12 +93,14 @@
       width: 100%;
       justify-content: space-around;
       grid-template-columns: 200px 200px 200px 240px;
-      gap: 10px;
+      gap: 20px;
       padding: 20px;
       font-size: 1rem;
       box-shadow: -5px -5px 5px rgba(0, 0, 0, 0.1);
       padding-bottom: 30px;
-    }
+      margin-top: auto;
+      bottom: 0;  
+  }
     .footer-laptop a {
       text-decoration: none;
       color: white;
@@ -124,10 +117,5 @@
     }
     .sidenav {
       display: none;
-    }
-    .button-container {
-      position: static;
-      padding-bottom: 10px;
-      text-align: end;
     }
 }

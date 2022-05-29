@@ -84,6 +84,7 @@ mat-icon {
      .cloudsLaptop {
         display: flex;
         width: 600px;
+        padding-bottom: 20px;
      }
      .mat-icon {
          font-size: 2rem;

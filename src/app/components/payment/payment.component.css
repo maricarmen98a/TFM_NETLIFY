@@ -82,7 +82,7 @@
         min-height: 500px;
     }
     .atras {
-        padding-bottom: 0;
+        padding-bottom: 30px;
     }
     .row {
         display: grid;

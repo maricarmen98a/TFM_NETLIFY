@@ -3,12 +3,11 @@
 .container img {
     width: 100%;
     max-width: 800px;
-  
 }
 .container {
     display: flex;
     justify-content: center;
-      animation: tada;
+    animation: tada;
     animation-duration: 2s;
 }
 h2 {
@@ -17,7 +16,17 @@ h2 {
     color: white;
 }
 @media (min-width: 768px) {
-     h2 {
-         font-size: 2rem;
+    h2 {
+        font-size: 2rem;
+        padding-bottom: 30px;
+    }
+    .container img {
+        max-width: 500px;
+    }
+}
+@media (min-width: 1200px) {
+     .main {
+         min-height: 80vh;
      }
+     
 }

@@ -250,7 +250,7 @@ button mat-icon {
 @media (min-width: 1200px) {
     .atras {
        justify-content: flex-start;
-       margin-bottom: 0;
+       margin-bottom: 30px;
     }
     .continue2 {
         display: none;

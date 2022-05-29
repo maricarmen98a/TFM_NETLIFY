@@ -10,11 +10,10 @@
 }
 .login {
     padding-top: 30px;
-    background-image: url(../../../../assets/sky.jpg);
+    background-image: url(../../../../assets/cloud2.jpg);
     height: 680px;
     background-size: cover;
     background-position: center bottom;
-    background-size: 100%;
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
@@ -58,4 +57,28 @@ label {
     display: block;
     padding: 10px;
     padding-left: 0;
+}
+.boton {
+    display: flex;
+    justify-content: center;
+}
+@media (min-width: 768px) {
+    .login {
+        padding-top: 70px;
+        height: 880px;
+        background-position: 0 3.28%;
+    }
+    .form-group, .error {
+        margin-left: 50px;
+        margin-right: 50px;
+    }   
+    
+    .form-login {
+        max-width: 500px;
+    }
+}
+@media (min-width: 1400px) {
+    .login {
+        height: 980px;
+    }
 }

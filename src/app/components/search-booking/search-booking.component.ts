@@ -21,6 +21,7 @@ export class SearchBookingComponent implements OnInit {
   filteredReservations!: any[];
   searchStatus: boolean = false;
   validateForm: boolean = false;
+  searchForm: boolean = false;
   usuario!: UserDTO;
   isloaded: boolean = false;
   isSignedIn: boolean = false;
@@ -68,7 +69,7 @@ export class SearchBookingComponent implements OnInit {
     this.local.setUsuario('reserva', JSON.stringify(reservation))
   }
   search() {
-    this.validateForm = true;
+    this.searchForm = true;
     let values = Object.values(this.reservation);
     let merged = values.flat(1);   
     if (this.bookingSearch) {

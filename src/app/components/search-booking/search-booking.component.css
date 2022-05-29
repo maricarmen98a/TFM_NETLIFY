@@ -30,6 +30,9 @@ h3 {
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
     padding: 10px;
 }
+.results h3:nth-child(1) {
+    font-size: 1.1rem;
+}
 a {
     color: black;
 }
@@ -78,11 +81,60 @@ input {
     height: 210px;
 }
 .biggerMargin {
-    margin-top: 330px;
+    margin-top: 180px;
 }
 .biggerMargin2 {
     margin-top: 60px;
 }
 .link-pass {
     grid-column-start: 3;
+}
+.cloudsLaptop {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    animation: floating 2s infinite;
+    animation-delay: 2s;
+    padding-top: 50px;
+}
+
+.cloudDown {
+    padding-top: 15px;
+}
+.cloudsLaptop img {
+    max-width: 40px;
+   
+}
+@media (min-width: 768px) {
+    .cloudsLaptop img {
+        max-width: 70px;
+    }
+}
+@media (min-width: 1200px) {
+    .results {
+        border-radius: 24px;
+        width: 100%;
+    }
+    .main-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        min-height: 800px;
+    }
+    .search-booking {
+        width: 60%;
+        border-radius: 24px;
+        margin-top: 150px;
+        margin-bottom: 100px;
+        padding-bottom: 30px;
+    }
+    .search-booking input {
+        width: 60%;
+    }
+    .flex-results {
+        width: 900px;
+    }
+    .cloudsLaptop {
+        width: 600px;
+    }
 }

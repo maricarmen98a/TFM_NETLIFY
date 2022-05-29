@@ -7,8 +7,13 @@
     --button: #BB1D1D;
     --button-click: #F2B71C;
 }
-
+html {
+    height: 100%;
+}
 body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
     background: linear-gradient(-120deg, rgba(20, 116, 205, 0.9) 60%, rgba(9, 104, 191, 0.9) 60%);
     background-attachment: fixed;
     font-family: 'Ubuntu', sans-serif;

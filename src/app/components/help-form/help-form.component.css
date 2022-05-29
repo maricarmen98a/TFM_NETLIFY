@@ -2,6 +2,12 @@ h2 {
     color: white;
     text-align: center;
 }
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 .form {
     background-color: white;
     padding-top: 30px;
@@ -13,14 +19,13 @@ h2 {
     margin-left: 20px;
 }
 .atras {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 .form-group {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 300px;
-    padding-left: 30px;
 }
 .form-group input {
     width: 100%;
@@ -44,4 +49,37 @@ mat-error {
 }
 label {
     padding-top: 10px;
+}
+@media (min-width: 768px) {
+    .form {
+        width: 60%;
+        border-radius: 24px;
+    }
+    
+    .help-form {
+        min-height: 80vh;
+    }
+    .form-container {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 70px;
+        padding-top: 20px;
+    }
+    h2 {
+        font-size: 1.6rem;
+    }
+}
+@media (min-width: 1200px) {
+     .atras {
+        position: relative;
+        bottom: 0;
+    }
+    .main {
+        display: flex;
+        flex-direction: column-reverse;
+        width: 100%;
+    }
+    .form {
+        width: 40%;
+    }
 }

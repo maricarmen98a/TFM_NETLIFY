@@ -1,29 +1,31 @@
-<mat-expansion-panel (click)="check()" [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title *ngIf="!userHasBooking">
-          Cargar tarjetas de embarque
-        </mat-panel-title>
-        <mat-panel-title *ngIf="userHasBooking">
-            Tarjetas de embarque
-        </mat-panel-title>
-        
-      </mat-expansion-panel-header>
-    <div *ngIf="userHasBooking">
-        <div class="results">
-            <div>Resultados:</div>
-            <div class="results__info" *ngFor="let reservation of filteredReservations">
-                <h3>{{ reservation.origin }}</h3> 
-                <div class="card-icon">
-                    <img src="assets/boarding-passqr.png" alt="Dibujo de tarjeta de embarque">
-                </div>
-                <h3>{{ reservation.destination }}</h3>
-            <div class="link-extras">               
-                <a routerLink="/boarding-pass" (click)="setReservation(reservation)">Ver tarjeta de embarque</a>
-            </div>
-          </div> 
-        </div>
-    </div>
-    <div *ngIf="!userHasBooking">
-        No hay vuelos
-    </div>
-</mat-expansion-panel>
+<div class="container-pass">
+  <mat-expansion-panel (click)="check()" [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title *ngIf="!userHasBooking">
+            Cargar tarjetas de embarque
+          </mat-panel-title>
+          <mat-panel-title *ngIf="userHasBooking">
+              Tarjetas de embarque
+          </mat-panel-title>
+          
+        </mat-expansion-panel-header>
+      <div *ngIf="userHasBooking">
+          <div class="results">
+              <div>Resultados:</div>
+              <div class="results__info" *ngFor="let reservation of filteredReservations">
+                  <h3>{{ reservation.origin }}</h3> 
+                  <div class="card-icon">
+                      <img src="assets/boarding-passqr.png" alt="Dibujo de tarjeta de embarque">
+                  </div>
+                  <h3>{{ reservation.destination }}</h3>
+              <div class="link-extras">               
+                  <a routerLink="/boarding-pass" (click)="setReservation(reservation)">Ver tarjeta de embarque</a>
+              </div>
+            </div> 
+          </div>
+      </div>
+      <div *ngIf="!userHasBooking">
+          No hay vuelos
+      </div>
+  </mat-expansion-panel>
+</div>

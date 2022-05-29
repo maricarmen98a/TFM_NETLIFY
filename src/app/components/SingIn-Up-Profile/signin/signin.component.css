@@ -9,16 +9,18 @@
 .info-form {
     margin-top: 20px;
 }
+.info-form div:nth-child(3) {
+    font-size: .8rem;
+}
 .class1 {
     background-color: #F2B71C;
 }
 .login {
     padding-top: 30px;
-    background-image: url(../../../../assets/sky.jpg);
-    height: 680px;
+    background-image: url(../../../../assets/cloud2.jpg);
+    height: 780px;
     background-size: cover;
     background-position: center bottom;
-    background-size: 100%;
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
@@ -63,4 +65,38 @@ a:hover, a:active {
 }
 a {
     color: black;
+}
+.boton {
+    display: flex;
+    justify-content: center;
+}
+@media (min-width: 768px) {
+    .login {
+        padding-top: 70px;
+        height: 880px;
+        background-position: 0 3.28%;
+    }
+   
+    h3 {
+        font-size: 1.6rem;
+    }
+    .info-form div {
+        padding-bottom: 10px;
+    }
+    .form-login {
+        max-width: 500px;
+    }
+    .form-group, .error, .info-form {
+        margin-left: 50px;
+        margin-right: 50px;
+    } 
+    .info-form div {
+        margin-left: 0;
+    }
+    
+}
+@media (min-width: 1400px) {
+    .login {
+        height: 980px;
+    }
 }
