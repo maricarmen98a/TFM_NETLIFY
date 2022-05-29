@@ -32,3 +32,13 @@ input {
     padding-left: 20px;
     padding-bottom: 90px;
 }
+@media (min-width: 1200px) {
+    .container {
+        display: flex;
+        justify-content: center;
+    }
+    .atras {
+        padding-top: 0px;
+        padding-bottom: 50px;
+    }
+}

@@ -9,12 +9,12 @@
       <h2>Información del vuelo</h2>
       <img src="assets/drawing-plane.png" alt="Dibujo de avión">
       <div class="details">
-          <button *ngIf="!showPrice" (click)="checkIfExists()">Calcular precio</button>
+          <button class="calculate" *ngIf="!showPrice" (click)="checkIfExists()">Calcular precio</button>
           <h2 *ngIf="showPrice">Total: {{ reservation.price | number : '1.2-2' }} €</h2> 
           <p>{{ reservation.origin }} - {{ reservation.destination }}</p>
           <p>{{ reservation.boarding_time | date: 'dd/MM/yyyy'}}</p>
           <p>Sin escalas</p>
-          <p>{{ reservation.boarding_hour }} - {{ reservation.arrival_hour }}</p>
+          <p>{{ reservation.boarding_hour | removeDigits }} - {{ reservation.arrival_hour | removeDigits }}</p>
           <p>Duración del vuelo: {{ hoursFlight }}</p>
       </div>
     </div>
@@ -26,7 +26,7 @@
             <div class="right-payment-sec">
               <form [formGroup]="paymentForm" (ngSubmit)="SaveCardDetails()">        
                 <div class="row">
-                    <div class="col-lg-12 col-xs-12">
+                    <div class="form-container">
                       <div class="form-group">
                             <label>Tipo de tarjeta</label>
                             <select  class="form-control" [formControl]="selectedValue">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12 col-xs-12">
+                    <div class="card-container">
                         <div class="form-group">
                             <label>Número de tarjeta*</label>
       
@@ -111,7 +111,7 @@
                             </div>                   
                         </div>
                     </div>
-                    <div>
+                    <div class="botones">
                       <div class="form-group">
                         <button type="submit">Pagar</button>
                         <button type="button" (click)="ClearCardDetails()">Borrar</button>
@@ -123,10 +123,11 @@
           </div>
         </div>
       </div>
-      <div class="atras">
-        <button (click)="back()">Atrás</button>
-    </div>
+      
   </div>
+</div>
+<div class="atras">
+  <button (click)="back()">Atrás</button>
 </div>
 <div class="error404" *ngIf="!noError">
   <img src="assets/404-error.png" alt="Error 404">

@@ -66,3 +66,27 @@ button {
     height: 100%;
     overflow: hidden;
 }
+.button-container button {
+    background-color: var(--button);
+    height: 50px;
+    width: 50px;
+}
+.button-container button:hover {
+    background-color: var(--button-click);
+}
+.button-container {
+    bottom: 90px;
+    right: 5px;
+    text-align: end;
+    padding-right: 20px;
+    position: fixed;
+}
+@media (min-width: 1200px) {
+    .button-container {
+        bottom: 70px;
+        height: 0;
+        text-align: end;
+        padding-right: 20px;
+        position: relative;
+    }
+}

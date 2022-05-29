@@ -9,6 +9,7 @@
 }
 h2 {
     text-align: center;
+    color: white;
 }
 ul li, ol li {
     list-style-type: none;
@@ -62,4 +63,32 @@ ol li:before {
 .flex li {
     padding-left: 10px;
     padding-right: 10px;
+}
+@media (min-width: 1200px) {
+    .img-container {
+        width: 640px;
+        height: 425px;
+        margin-top: 0;
+    }
+    .img-container img  {
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+        width: 640px;
+
+    }
+    .info-container {
+        padding-left: 30px;
+    }
+    .covid-container {
+        display: flex;
+        padding: 30px;
+        padding-top: 40px;
+    }
+    .flex {
+        display: grid;
+        grid-template-columns: 200px 200px;
+        gap: 20px;
+    }
+    h2 {
+        font-size: 1.6rem;
+    }
 }

@@ -110,3 +110,8 @@
         flex-direction: column;
     }
 }
+@media (min-width: 1200px) {
+    .news {
+        padding-bottom: 20px;
+    }
+}

@@ -100,3 +100,8 @@ label {
     margin-left: 20px;
     margin-right: 5px;
 }
+@media (min-width: 768px) {
+    .randomText, .randomLogo {
+        padding: 20px;
+    }
+}

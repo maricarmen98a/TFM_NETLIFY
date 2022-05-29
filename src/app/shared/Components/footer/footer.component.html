@@ -1,8 +1,3 @@
-<div class="button-container">
-    <button routerLink="/help" mat-mini-fab aria-label="Example icon button with a menu icon">
-        <mat-icon>help_outline</mat-icon>
-    </button>
-  </div>
 <div class="footer">
     <div>
         <div><a onclick="closeNav()" routerLink="/"><fa-icon [icon]="faHouse"></fa-icon><div>Inicio</div></a></div>
@@ -15,6 +10,37 @@
     </div>
     <div>
         <div><a class="openNav" onclick="openNav()"><fa-icon [icon]="faMenu"></fa-icon><div>Más</div></a></div>
+    </div>
+</div>
+<div class="footer-laptop">
+    
+    <div class="item">
+        <div><a routerLink="/search-booking">Mis vuelos</a></div>
+    </div>
+    <div class="item">
+        <div><a routerLink="/boarding">Tarjetas de embarque</a></div>
+    </div>
+    
+    <div class="item">
+        <div><a routerLink="/about-us">Sobre nosotros</a></div>
+    </div>
+    <div class="item">
+        <div><a routerLink="/policy">Política de cookies y privacidad</a></div>
+    </div>
+    <div class="item">
+        <div><a routerLink="/covid">Información COVID</a></div>
+    </div>
+    <div class="item">
+        <div><a routerLink="/help">Ayuda</a></div>
+    </div>
+    <div class="item" *ngIf="!isSignedIn">
+        <div><a routerLink="/login">Iniciar sesión</a></div>
+    </div>
+    <div class="item" *ngIf="!isSignedIn">
+        <div><a routerLink="/register">Registrarse</a></div>
+    </div>
+    <div class="item" *ngIf="isSignedIn">
+        <div><a routerLink="/">Ofertas especiales</a></div>
     </div>
 </div>
 <div id="mySidenav" class="sidenav">

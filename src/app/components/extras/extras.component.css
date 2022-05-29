@@ -30,17 +30,23 @@ h2 {
 }
 .img-container img {
     object-fit: contain;
-    width: 40%;
+    width: 180px;
     height: 40%;
     border-radius: 50%;
 }
 mat-icon {
     color: white;
 }
-.clouds {
+
+.clouds, .cloudsLaptop {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    animation: floating 2s infinite;
+    animation-delay: 2s;
+}
+.cloudsLaptop {
+    display: none;
 }
 .cloudDown {
     padding-top: 15px;
@@ -57,4 +63,40 @@ mat-icon {
     font-size: 1rem;
     padding-left: 20px;
     padding-top: 20px;
+}
+@media (min-width: 1200px) {
+    h2 {
+        font-size: 1.6rem;
+    }
+     .container {
+        display: grid;
+        padding-top: 30px;
+        grid-template-columns: 300px 300px 300px;
+        gap: 60px;
+        padding-bottom: 20px;
+     }
+     .clouds {
+        display: none;
+     }
+     .text {
+         line-height: 30px;
+     }
+     .cloudsLaptop {
+        display: flex;
+        width: 600px;
+     }
+     .mat-icon {
+         font-size: 2rem;
+         padding-top: 30px;
+     }
+     .cloudDown {
+        padding-top: 45px;
+    }
+     .img-container {
+         height: 200px;
+     }
+     .img-container img {
+         height: 100%;
+         width: 100%;
+     }
 }

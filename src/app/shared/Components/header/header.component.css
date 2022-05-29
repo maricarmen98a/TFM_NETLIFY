@@ -33,7 +33,7 @@
      margin-left: 10%;
 }
 .logo:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
     transition: all .2s ease-in-out;
 }
 .logo-div {
@@ -85,6 +85,10 @@
     }
     .header-laptop {
         display: block;
+        padding-top: 5px;
+    }
+    .header-laptop a {
+        cursor: pointer;
     }
     .logo-div {
         justify-content: flex-start;

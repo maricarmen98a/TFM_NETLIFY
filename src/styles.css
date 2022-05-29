@@ -45,3 +45,15 @@ button:hover {
     color: white;
     font-size: larger;
 }
+.mat-simple-snack-bar-content {
+    width: 100%;
+    text-align: center;
+}
+@media (min-width: 1200px) {
+    .mat-simple-snackbar {
+        font-size: 1.1rem;
+    }
+    .mat-snack-bar-container {
+        margin-bottom: 150px !important;
+    }
+}

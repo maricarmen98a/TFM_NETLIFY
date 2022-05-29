@@ -247,3 +247,18 @@ button mat-icon {
     margin-bottom: 130px;
     padding-left: 20px;
 }
+@media (min-width: 1200px) {
+    .atras {
+       justify-content: flex-start;
+       margin-bottom: 0;
+    }
+    .continue2 {
+        display: none;
+    }
+    .continue {
+        right: 120px;
+    }
+    h2 {
+        font-size: 1.6rem;
+    }
+}

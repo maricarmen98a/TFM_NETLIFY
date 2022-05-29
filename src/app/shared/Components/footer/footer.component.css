@@ -86,9 +86,48 @@
 .button-container button:hover {
   background-color: var(--button-click);
 }
+.footer-laptop {
+  display: none;
+}
 @media (min-width: 768px) {
     .footer {
       padding-left: 30px;
       padding-right: 30px;
+    }
+}
+@media (min-width: 1200px) {
+    .footer-laptop {
+      display: grid;
+      background-color: var(--button);
+      width: 100%;
+      justify-content: space-around;
+      grid-template-columns: 200px 200px 200px 240px;
+      gap: 10px;
+      padding: 20px;
+      font-size: 1rem;
+      box-shadow: -5px -5px 5px rgba(0, 0, 0, 0.1);
+      padding-bottom: 30px;
+    }
+    .footer-laptop a {
+      text-decoration: none;
+      color: white;
+    }
+    .footer-laptop a:hover {
+      color: var(--button-click);
+    }
+    .item:hover {
+      transform: scale(1.1);
+      transition: all .2s ease-in-out;
+    }
+    .footer {
+      display: none;
+    }
+    .sidenav {
+      display: none;
+    }
+    .button-container {
+      position: static;
+      padding-bottom: 10px;
+      text-align: end;
     }
 }

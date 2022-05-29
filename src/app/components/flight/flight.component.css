@@ -2,7 +2,6 @@ select {
     max-height: 20px;
 }
 .caja-mat {
-    padding: 10px;
     display: block;
     text-align: center;
 }
@@ -125,17 +124,17 @@ table tr td:nth-child(2) {
     color: #2177c5;
     text-align: right;
     padding-right: 5px;
+    
 }
 table tr td:nth-child(1) {
     text-align: left;
     padding-left: 5px;
+    font-size: larger;
+
 }
 table tr {
     padding-bottom: 5px;
 
-}
-table {
-    font-size: larger;
 }
 .clouds {
     display: flex;
@@ -159,8 +158,8 @@ table {
 @media (min-width: 1200px) {
     .caja-mat__flex form {
         display: grid;
-        grid-template-columns: 270px 50px 270px;
-        gap: 40px;
+        grid-template-columns: 270px 80px 270px;
+        gap: 20px;
         grid-template-areas: "ida cambiar vuelta"
                             "fecha . boton";
     }
@@ -200,13 +199,11 @@ table {
     .title h3 {
         font-size: 1.6rem;
     }
-    .caja-mat {
-        padding-top: 50px;
-    }
+
     .clouds {
         grid-column-start: 1;
         grid-column-end: 3;
     }
-   
+
 }
 
