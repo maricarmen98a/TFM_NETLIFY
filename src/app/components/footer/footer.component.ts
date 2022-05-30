@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faEllipsisH, faHome, faPlane, faTicketAlt } from '@fortawesome/free-solid-svg-icons';
-import { AuthStateService } from '../../Services/auth-state.service';
+import { AuthStateService } from '../../shared/Services/auth-state.service';
 
 @Component({
   selector: 'app-footer',

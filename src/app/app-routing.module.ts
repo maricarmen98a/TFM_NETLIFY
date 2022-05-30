@@ -18,7 +18,7 @@ import { SelectSeatComponent } from './components/select-seat/select-seat.compon
 import { SigninComponent } from './components/SingIn-Up-Profile/signin/signin.component';
 import { SignupComponent } from './components/SingIn-Up-Profile/signup/signup.component';
 import { UserProfileComponent } from './components/SingIn-Up-Profile/user-profile/user-profile.component';
-import { PagenotfoundComponent } from './shared/components/pagenotfound/pagenotfound.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TokenService } from '../../Services/token.service';
-import { AuthStateService } from '../../Services/auth-state.service';
+import { TokenService } from '../../shared/Services/token.service';
+import { AuthStateService } from '../../shared/Services/auth-state.service';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({

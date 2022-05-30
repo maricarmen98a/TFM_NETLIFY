@@ -6,7 +6,7 @@ import { UserDTO } from 'src/app/Models/user.dto';
 import { AuthStateService } from 'src/app/shared/Services/auth-state.service';
 import { FlightService } from 'src/app/shared/Services/flight.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from 'src/app/components/confirmation-dialog/confirmation-dialog.component';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
 
