@@ -1,4 +1,3 @@
-@import url("../../../../animate.css");
 
 .container img {
     width: 100%;
@@ -7,7 +6,6 @@
 .container {
     display: flex;
     justify-content: center;
-    animation: tada;
     animation-duration: 2s;
 }
 h2 {

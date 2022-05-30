@@ -57,6 +57,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 400px;
 
 }
 .content {
@@ -75,7 +76,11 @@
     flex-direction: row;
     width: 100%;
 }
-
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .content--div {
     display: flex;
