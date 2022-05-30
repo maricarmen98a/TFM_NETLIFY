@@ -52,6 +52,8 @@ import { BoardingPass2Component } from './components/boarding-pass2/boarding-pas
 import { HelpFormComponent } from './components/help-form/help-form.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { PagenotfoundComponent } from './shared/components/pagenotfound/pagenotfound.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 registerLocaleData(localeEs);
 
@@ -108,6 +110,12 @@ registerLocaleData(localeEs);
     MatDialogModule,
     MatSnackBarModule,
     QRCodeModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   entryComponents: [
     ConfirmationDialogComponent
