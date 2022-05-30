@@ -39,7 +39,8 @@ const routes: Routes = [
   { path: 'boarding', component: BoardingPass2Component },
   { path: 'help', component: HelpFormComponent },
   { path: 'about-us', component: AboutUsComponent },
-  { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
+  { path: '404', component: PagenotfoundComponent },
+  {path: '**', redirectTo: '/404'}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
