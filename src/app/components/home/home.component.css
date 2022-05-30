@@ -1,7 +1,7 @@
 .home-banner {
     display: flex;
     justify-content: center;
-    background-image: url("../../../assets/avion.jpeg");
+    background-image: url("../../../assets/avionHome.webp");
     background-size: 100%;
     background-position: center top;
     background-repeat: no-repeat;
@@ -34,7 +34,7 @@
     
     }
     .home-banner {
-        background-image: url("../../../assets/avionLaptop.jpeg");
+        background-image: url("../../../assets/avionLaptop.webp");
         background-position: top;
         padding-top: 0;
     }

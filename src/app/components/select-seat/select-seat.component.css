@@ -6,7 +6,7 @@ h2 {
     max-width: 100%;
     display: flex;
     justify-content: center;
-    background-image: url('src/assets/seatmap-laptop.png');
+    background-image: url('src/assets/seatmap-laptop.webp');
     background-repeat: no-repeat;
     background-position: center;
 }
