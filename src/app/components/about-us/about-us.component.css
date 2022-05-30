@@ -1,6 +1,17 @@
 @import url("../../../animate.css");
+.avion {
+    background-image: url("../../../assets/cloud3.jpg");
+    background-position: center;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .img-container {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .img-container img {
     width: 100%;
@@ -26,6 +37,7 @@ h2, .grid {
     text-align: center;
     color: white;
 }
+
 @media (min-width: 768px) {
     .grid {
         grid-template-columns: 200px 200px;
@@ -33,6 +45,19 @@ h2, .grid {
         padding-bottom: 150px;
     }
     h2 {
-        font-size: 2rem;
+        font-size: 1.6rem;
+        padding-bottom: 20px;
+    }
+    .img-container {
+        max-width: 60%;
+        height: auto;
+    }
+    .avion {
+        min-height: 400px;
+    }
+}
+@media (min-width: 1200px) {
+    .avion {
+        height: 550px;
     }
 }
