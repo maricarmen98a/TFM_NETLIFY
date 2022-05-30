@@ -55,6 +55,10 @@
     align-items: center;
     color: white;
     text-align: center;
+    min-height: 70vh;
+}
+.no404 {
+    min-height: 70vh;
 }
 .error404 img {
     padding-bottom: 50px;

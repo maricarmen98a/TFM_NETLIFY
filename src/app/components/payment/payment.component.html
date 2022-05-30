@@ -1,4 +1,4 @@
-<div *ngIf="noError">
+<div class="no404" *ngIf="noError">
   <div class="container">
     <div *ngIf="cardDetailsValidate" class="container-accepted">
       <img src="assets/payment-accepted.png" alt="Dibujo de tarjeta de crédito">
@@ -126,11 +126,11 @@
       
   </div>
 </div>
-<div class="atras">
-  <button (click)="back()">Atrás</button>
-</div>
 <div class="error404" *ngIf="!noError">
   <img src="assets/404-error.png" alt="Error 404">
   <p>Parece que ha habido un problema. No se ha podido efectuar el pago.</p>  
   <a (click)="back()">Volver a intentar</a> 
+</div>
+<div class="atras">
+  <button (click)="back()">Atrás</button>
 </div>
