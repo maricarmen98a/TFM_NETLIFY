@@ -111,6 +111,7 @@
         justify-content: center;
         align-items: center;
         text-align: center;
+        font-size: larger;
     }
      .calculate {
         grid-column-start: 1;

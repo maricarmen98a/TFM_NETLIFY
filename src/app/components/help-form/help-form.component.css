@@ -1,3 +1,4 @@
+
 h2 {
     color: white;
     text-align: center;
@@ -44,9 +45,7 @@ h2 {
     justify-content: center;
     padding-top: 20px;
 }
-mat-error {
-    padding-left: 30px;
-}
+
 label {
     padding-top: 10px;
 }
@@ -58,7 +57,7 @@ label {
     
     .help-form {
         min-height: 80vh;
-    }
+    } 
     .form-container {
         display: flex;
         justify-content: center;
