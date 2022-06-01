@@ -28,6 +28,9 @@ h2 {
     .container-img {
         display: none;
     }
+    .container {
+        min-height: 80vh;
+    }
     .container-img2 {
         display: block;
     }

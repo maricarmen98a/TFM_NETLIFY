@@ -1,7 +1,6 @@
 .covid-container {
     color: white;
     padding-bottom: 80px;
-    min-height: 70vh;
 }
 .covid-container p, .covid-container ol {
     padding-left: 20px;
@@ -83,6 +82,7 @@ ol li:before {
         display: flex;
         padding: 30px;
         padding-top: 40px;
+        min-height: 75vh;
     }
     .flex {
         display: grid;

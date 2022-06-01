@@ -16,9 +16,10 @@ body {
     flex-direction: column;
     background: linear-gradient(-120deg, rgba(20, 116, 205, 0.9) 60%, rgba(9, 104, 191, 0.9) 60%);
     background-attachment: fixed;
-    font-family: 'Ubuntu', sans-serif;
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 button {
     background-color: var(--button);
     height: 40px;
