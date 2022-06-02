@@ -44,7 +44,8 @@ export class ExtrasComponent implements OnInit {
     this.reservation.price = this.reservation.price + this.pickup;
     console.log(this.reservation.price + ' total')
     this.bought = true;
-   
+    var numberValue = Number(this.reservation.price);
+    console.log(numberValue);
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buyActivities() {
