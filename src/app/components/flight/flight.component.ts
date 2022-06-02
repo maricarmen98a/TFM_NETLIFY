@@ -106,6 +106,11 @@ export class FlightComponent implements OnInit {
           x.destination == this.destination &&
           x.boarding_time == this.startDate)
       });
+    } else {
+      this.filteredFlights = listaVuelos.filter((x) => {
+        return (x.origin == this.source &&
+          x.destination == this.destination )
+      })
     }
     if(this.filteredFlights.length == 0){
       this.searchStatus = true;
