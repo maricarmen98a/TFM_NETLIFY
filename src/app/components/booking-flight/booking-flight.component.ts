@@ -71,6 +71,7 @@ export class BookingFlightComponent implements OnInit {
     return text;
   }
   bookFlight() {
+    let codigo = this.stringGen(10);
       this.validateForm = true;
       this.reservations.passenger_email = this.users.email;
       this.reservations.passenger_name = this.users.name;
@@ -85,7 +86,7 @@ export class BookingFlightComponent implements OnInit {
       this.reservations.boarding_time = this.flight.boarding_time;
       this.reservations.arrival_hour = this.flight.arrival_hour;
       this.reservations.arrival_time = this.flight.arrival_time;
-      this.reservations.reservation_code = this.stringGen(10);
+      this.reservations.reservation_code = codigo;
       this.reservations.seat = '23A';
     if(this.userForm.valid) {
       this.local.setUsuario('reserva', JSON.stringify(this.reservations))
