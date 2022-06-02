@@ -24,14 +24,12 @@ export class ExtrasComponent implements OnInit {
     this.pickup = 20;
    /*  let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
-     console.log(this.reservation + '27')
     console.log(this.reservation.price + '28') */
   }
 
   ngOnInit(): void {
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
-     console.log(this.reservation + '27')
     console.log(this.reservation.price + '28')
    
   }
@@ -42,27 +40,29 @@ export class ExtrasComponent implements OnInit {
   buyPickup() {
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
-     console.log(this.reservation + '27')
     console.log(this.reservation.price + '28')
     this.reservation.price = this.reservation.price + this.pickup;
+    console.log(this.reservation.price + ' total')
     this.bought = true;
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buyActivities() {
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
-     console.log(this.reservation + '27')
     console.log(this.reservation.price + '28')
     this.reservation.price = this.reservation.price + this.activities;
+    console.log(this.reservation.price + ' total')
+
     this.bought = true;
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buySuitcase() {
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
-     console.log(this.reservation + '27')
     console.log(this.reservation.price + '28')
     this.reservation.price = this.reservation.price + this.suitcase;
+    console.log(this.reservation.price + ' total')
+
     this.bought = true;
     console.log(this.reservation.price)
     console.log('this.reservation.price')
@@ -75,6 +75,8 @@ export class ExtrasComponent implements OnInit {
       duration: 2000,
       panelClass: [className]
     });
+    this.local.setUsuario('reserva', JSON.stringify(this.reservation))
+
   }
   continue() {
     this.local.setUsuario('reserva', JSON.stringify(this.reservation))
