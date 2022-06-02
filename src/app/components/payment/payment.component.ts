@@ -57,10 +57,10 @@ export class PaymentComponent implements OnInit {
     });
   } 
   ngOnInit() {   
-    this.GetMonths();
-    this.GetYears();
-     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
+    let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject; 
+    this.GetMonths();
+    this.GetYears(); 
     this.stringToTime();
     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
   }

@@ -61,10 +61,6 @@ export class BookingFlightComponent implements OnInit {
     this.location.back()
   }
   bookFlight() {
-    console.log(this.users)
-    console.log('this.users65')
-      console.log(this.reservations)
-      console.log('this.reservations67')
       this.validateForm = true;
       this.reservations.passenger_email = this.users.email;
       this.reservations.passenger_name = this.users.name;
@@ -84,11 +80,7 @@ export class BookingFlightComponent implements OnInit {
       this.local.setUsuario('reserva', JSON.stringify(this.reservations))
       this.local.setUsuario('usuario',JSON.stringify(this.users)); 
       console.log(this.users)
-      console.log('this.reservations88')
-
       console.log(this.reservations)
-      console.log('this.reservations91')
-
       this.router.navigateByUrl('select-seat')
     } 
   }

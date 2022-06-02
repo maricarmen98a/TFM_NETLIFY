@@ -29,23 +29,18 @@ export class ExtrasComponent implements OnInit {
     this.location.back()
   }
   buyPickup() {
-    
     this.reservation.price = Number(this.reservation.price) + this.pickup;
     this.bought = true;
     this.local.setUsuario('reserva', JSON.stringify(this.reservation))
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buyActivities() {
-     /* let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
-    this.reservation = retrievedObject; */
     this.reservation.price = Number(this.reservation.price) + Number(this.activities);
     this.bought = true;
     this.local.setUsuario('reserva', JSON.stringify(this.reservation))
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buySuitcase() {
-    /* let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
-    this.reservation = retrievedObject; */
     this.reservation.price = Number(this.reservation.price) + Number(this.suitcase);
     this.bought = true;
     this.local.setUsuario('reserva', JSON.stringify(this.reservation))
