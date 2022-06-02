@@ -59,8 +59,8 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {   
     this.GetMonths();
     this.GetYears();
-   /*  let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
-    this.reservation = retrievedObject; */
+     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
+    this.reservation = retrievedObject; 
     this.stringToTime();
     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
   }
@@ -178,8 +178,7 @@ export class PaymentComponent implements OnInit {
     }
   }
   checkIfExists() {
-    let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
-    this.reservation = retrievedObject;
+    
     this.showPrice = true;
     let values = Object.values(this.reservas);
     let merged = values.flat(1);
