@@ -19,9 +19,9 @@ export class ExtrasComponent implements OnInit {
   activities: number;
   bought: boolean = false;
   constructor(private location: Location, public local: LocalStorageService, public flightService: FlightService, private _snackBar: MatSnackBar, public router: Router) { 
-    this.suitcase = 50;
-    this.activities = 25;
-    this.pickup = 20;
+    this.suitcase = 50.00;
+    this.activities = 25.00;
+    this.pickup = 20.00;
    /*  let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
     console.log(this.reservation.price + '28') */
@@ -40,12 +40,11 @@ export class ExtrasComponent implements OnInit {
   buyPickup() {
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
-    console.log(this.reservation.price + '28')
+    console.log(this.reservation.price + '    28')
     this.reservation.price = this.reservation.price + this.pickup;
     console.log(this.reservation.price + ' total')
     this.bought = true;
-    this.local.setUsuario('reserva', JSON.stringify(this.reservation))
-    console.log('se ha guardado')
+   
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buyActivities() {
