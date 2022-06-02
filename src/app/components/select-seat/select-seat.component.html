@@ -36,10 +36,10 @@
   </div>
 </div>
 <div *ngIf="!chosenSeat" class="continue">
-  <button (click)="openDialog()">Asiento aleatorio</button> 
+  <button type="submit" (click)="openDialog()">Asiento aleatorio</button> 
 </div>
 <div *ngIf="chosenSeat" class="continue">
-  <button (click)="openDialog()">Continuar</button> 
+  <button type="submit" (click)="openDialog()">Continuar</button> 
 </div>
 <div class="seatmap" >
   <div class="plane" >
