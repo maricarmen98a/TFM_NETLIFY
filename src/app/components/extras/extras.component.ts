@@ -22,10 +22,10 @@ export class ExtrasComponent implements OnInit {
     this.suitcase = 50;
     this.activities = 25;
     this.pickup = 20;
-    let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
+   /*  let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
      console.log(this.reservation + '27')
-    console.log(this.reservation.price + '28')
+    console.log(this.reservation.price + '28') */
   }
 
   ngOnInit(): void {
@@ -35,17 +35,31 @@ export class ExtrasComponent implements OnInit {
   back(): void {
     this.location.back()
   }
+  loadData() {
+    if(this.bought == true) {
+      return;
+    } else {
+      let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
+    this.reservation = retrievedObject;
+     console.log(this.reservation + '27')
+    console.log(this.reservation.price + '28')
+    }
+    
+  }
   buyPickup() {
+    this.loadData()
     this.reservation.price = this.reservation.price + this.pickup;
     this.bought = true;
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buyActivities() {
+    this.loadData()
     this.reservation.price = this.reservation.price + this.activities;
     this.bought = true;
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buySuitcase() {
+    this.loadData()
     this.reservation.price = this.reservation.price + this.suitcase;
     this.bought = true;
     console.log(this.reservation.price)
