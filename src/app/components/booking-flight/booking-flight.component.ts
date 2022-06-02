@@ -61,7 +61,8 @@ export class BookingFlightComponent implements OnInit {
     this.location.back()
   }
   bookFlight() {
-    
+    console.log(this.users)
+      console.log(this.reservations)
       this.validateForm = true;
       this.reservations.passenger_email = this.users.email;
       this.reservations.passenger_name = this.users.name;
