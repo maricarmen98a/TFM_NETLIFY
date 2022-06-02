@@ -14,23 +14,21 @@ import { LocalStorageService } from 'src/app/shared/Services/local-storage.servi
 })
 export class ExtrasComponent implements OnInit {
   reservation!: ReservationDTO;
-  suitcase: number;
-  pickup: number;
-  activities: number;
+  suitcase: number = 50;
+  pickup: number = 25;
+  activities: number = 20;
   bought: boolean = false;
   constructor(private location: Location, public local: LocalStorageService, public flightService: FlightService, private _snackBar: MatSnackBar, public router: Router) { 
-    this.suitcase = 50.00;
-    this.activities = 25.00;
-    this.pickup = 20.00;
-   /*  let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
-    this.reservation = retrievedObject;
-    console.log(this.reservation.price + '28') */
+    this.suitcase = 50;
+    this.activities = 25;
+    this.pickup = 20;
+
   }
 
   ngOnInit(): void {
-    let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
+/*     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
-    console.log(this.reservation.price + '28')
+    console.log(this.reservation.price + '28') */
    
   }
   back(): void {
@@ -48,10 +46,10 @@ export class ExtrasComponent implements OnInit {
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buyActivities() {
-    let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
-    this.reservation = retrievedObject;
+    /* let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
+    this.reservation = retrievedObject; */
     console.log(this.reservation.price + '28')
-    this.reservation.price = Number(this.reservation.price) + this.activities;
+    this.reservation.price = Number(this.reservation.price) + Number(this.activities);
     console.log(this.reservation.price + ' total')
 
     this.bought = true;
@@ -63,7 +61,7 @@ export class ExtrasComponent implements OnInit {
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
     console.log(this.reservation.price + '28')
-    this.reservation.price = Number(this.reservation.price) + this.suitcase;
+    this.reservation.price = Number(this.reservation.price) + Number(this.suitcase);
     console.log(this.reservation.price + ' total')
 
     this.bought = true;
