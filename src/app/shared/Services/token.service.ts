@@ -7,8 +7,8 @@ import jwt_decode from 'jwt-decode';
 export class TokenService {
 
   private issuer = {
-    login: 'http://127.0.0.1:8000/api/auth/login',
-    register: 'http://127.0.0.1:8000/api/auth/register',
+    login: 'https://stark-sands-97153.herokuapp.com/api/auth/login',
+    register: 'https://stark-sands-97153.herokuapp.com/api/auth/register',
   };
   constructor() {}
   handleData(token: any) {

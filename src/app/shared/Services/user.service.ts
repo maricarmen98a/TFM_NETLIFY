@@ -13,11 +13,11 @@ export class UserService {
 
   constructor(private http: HttpClient) {
     this.controller = 'users';
-    this.backendApi = 'http://127.0.0.1:8000/api/auth/' + this.controller;
+    this.backendApi = 'https://stark-sands-97153.herokuapp.com/api/auth/' + this.controller;
   }
   register(user: UserDTO): Observable<UserDTO> {
     return this.http
-      .post<UserDTO>('http://127.0.0.1:8000/api/auth/register', user)
+      .post<UserDTO>('https://stark-sands-97153.herokuapp.com/api/auth/register', user)
   }
   getUSerById(userId: string): Observable<UserDTO> {
     return this.http

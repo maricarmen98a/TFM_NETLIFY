@@ -16,28 +16,29 @@ export interface AuthToken {
   providedIn: 'root'
 })
 export class AuthService {
+  baseUrl = 'https://stark-sands-97153.herokuapp.com/api';
   getAccessToken() {
     throw new Error('Method not implemented.');
   }
   constructor(private http: HttpClient) {}
   register(user: User): Observable<any> {
-    return this.http.post('http://127.0.0.1:8000/api/auth/register', user);
+    return this.http.post(this.baseUrl + 'auth/register', user);
   }
   signin(user: User): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:8000/api/auth/login', user);
+    return this.http.post<any>(this.baseUrl + 'auth/login', user);
   }
   profileUser() {
-    return this.http.get('http://127.0.0.1:8000/api/auth/user-profile');
+    return this.http.get(this.baseUrl + 'auth/user-profile');
   }
   updateUser( user: User): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:8000/api/auth/user-profile', user);
+    return this.http.post<any>(this.baseUrl + 'auth/user-profile', user);
   } 
   sendResetPasswordLink(data: any) {
-    return this.http.post('http://127.0.0.1:8000/api/auth/reset-password-request', data)
+    return this.http.post(this.baseUrl + 'auth/reset-password-request', data)
   }
   resetPassword(data: any) {
-    return this.http.post(
-      'http://127.0.0.1:8000/api/auth/change-password',
+    return this.http.post(this.baseUrl + 
+      'auth/change-password',
       data
     );
   }
