@@ -22,64 +22,40 @@ export class ExtrasComponent implements OnInit {
     this.suitcase = 50;
     this.activities = 25;
     this.pickup = 20;
-
   }
-
-  ngOnInit(): void {
-/*     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
-    this.reservation = retrievedObject;
-    console.log(this.reservation.price + '28') */
-   
-  }
+  ngOnInit(): void {}
   back(): void {
     this.location.back()
   }
-
   buyPickup() {
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
-    console.log(this.reservation.price + '    28')
     this.reservation.price = Number(this.reservation.price) + this.pickup;
-    console.log(this.reservation.price + ' total')
     this.bought = true;
   
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buyActivities() {
-    /* let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
-    this.reservation = retrievedObject; */
-    console.log(this.reservation.price + '28')
+     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
+    this.reservation = retrievedObject;
     this.reservation.price = Number(this.reservation.price) + Number(this.activities);
-    console.log(this.reservation.price + ' total')
-
     this.bought = true;
     this.local.setUsuario('reserva', JSON.stringify(this.reservation))
-    console.log('se ha guardado')
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buySuitcase() {
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
-    console.log(this.reservation.price + '28')
     this.reservation.price = Number(this.reservation.price) + Number(this.suitcase);
-    console.log(this.reservation.price + ' total')
-
     this.bought = true;
-    console.log(this.reservation.price)
-    console.log('this.reservation.price')
     this.local.setUsuario('reserva', JSON.stringify(this.reservation))
-    console.log('se ha guardado')
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
-    
-
   }
   openSnackBar(message: string, undefined: string | undefined, className: string) {
     this._snackBar.open(message, undefined, {
       duration: 2000,
       panelClass: [className]
     });
-    
-
   }
   continue() {
     this.local.setUsuario('reserva', JSON.stringify(this.reservation))
