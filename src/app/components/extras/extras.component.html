@@ -1,10 +1,10 @@
 <h2>Extras de viaje</h2>
 
 <div *ngIf="!bought" class="boton">
-    <button type="submit" (click)="continue()">No quiero añadir nada</button>
+    <button type="button" (click)="continue()">No quiero añadir nada</button>
 </div>
 <div *ngIf="bought" class="boton">
-    <button type="submit" (click)="continue()">Continuar</button>
+    <button type="button" (click)="continue()">Continuar</button>
 </div>
 <div class="container">
     <div class="extra-container">
@@ -41,7 +41,7 @@
         <button (click)="buySuitcase()">Reservar maleta</button>
     </div>
     <div class="atras">
-        <button (click)="back()">Atrás</button>
+        <button type="button" (click)="back()">Atrás</button>
     </div>
     <div class="cloudsLaptop">
         <mat-icon class="cloudDown">cloud</mat-icon>
