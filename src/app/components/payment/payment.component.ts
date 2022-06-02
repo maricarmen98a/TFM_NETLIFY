@@ -191,6 +191,8 @@ export class PaymentComponent implements OnInit {
         this.reservation.price = this.reservation.price - this.booking[0].price;
       }
     }
+    console.log(this.reservation.price)
+    console.log(this.booking[0].price)
   }
   SaveCardDetails(){    
     this.isSubmitted = true;
