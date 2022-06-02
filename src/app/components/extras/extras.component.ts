@@ -48,6 +48,7 @@ export class ExtrasComponent implements OnInit {
     this.bought = true;
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
     console.log(this.reservation.price)
+    console.log('this.reservation.price')
 
   }
   openSnackBar(message: string, undefined: string | undefined, className: string) {
