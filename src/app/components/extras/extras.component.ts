@@ -27,6 +27,8 @@ export class ExtrasComponent implements OnInit {
   ngOnInit(): void {
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
+    console.log(this.reservation)
+    console.log(this.reservation.price)
   }
   back(): void {
     this.location.back()
@@ -45,6 +47,8 @@ export class ExtrasComponent implements OnInit {
     this.reservation.price = this.reservation.price + this.suitcase;
     this.bought = true;
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
+    console.log(this.reservation.price)
+
   }
   openSnackBar(message: string, undefined: string | undefined, className: string) {
     this._snackBar.open(message, undefined, {

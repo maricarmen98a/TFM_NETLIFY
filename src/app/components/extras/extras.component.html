@@ -1,10 +1,10 @@
 <h2>Extras de viaje</h2>
 
 <div *ngIf="!bought" class="boton">
-    <button (click)="continue()">No quiero añadir nada</button>
+    <button type="submit" (click)="continue()">No quiero añadir nada</button>
 </div>
 <div *ngIf="bought" class="boton">
-    <button (click)="continue()">Continuar</button>
+    <button type="submit" (click)="continue()">Continuar</button>
 </div>
 <div class="container">
     <div class="extra-container">
