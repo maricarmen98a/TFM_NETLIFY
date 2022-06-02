@@ -32,7 +32,6 @@ export class FlightComponent implements OnInit {
   source!: string;
   destination!: string;
   price!: any;
-  reservation_code!: string;
   startDate!: Date;
   endDate!: Date;
   nextFlight!: FlightDTO[];
