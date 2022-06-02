@@ -70,6 +70,8 @@ export class SearchBookingComponent implements OnInit {
   }
   search() {
     this.searchForm = true;
+    this.isloaded = true;
+
     let values = Object.values(this.reservation);
     let merged = values.flat(1);   
     if (this.bookingSearch) {

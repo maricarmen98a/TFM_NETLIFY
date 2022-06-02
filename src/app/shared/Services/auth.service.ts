@@ -16,7 +16,7 @@ export interface AuthToken {
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = 'https://stark-sands-97153.herokuapp.com/api';
+  baseUrl = 'https://stark-sands-97153.herokuapp.com/api/';
   getAccessToken() {
     throw new Error('Method not implemented.');
   }
