@@ -46,7 +46,6 @@ export class FlightComponent implements OnInit {
   isSignedIn: boolean = false;
   userConfirmado: boolean = false;
   errors: any = null;
-  public innerWidth!: any;
 
   constructor(public flightService: FlightService,
     public router: Router,
@@ -56,18 +55,13 @@ export class FlightComponent implements OnInit {
     ) {
     this.users = new UnregUserDTO( '', '');
     this.email = new FormControl('', [Validators.required, Validators.email]);
-    this.name = new FormControl('', [
-      Validators.required
-    ]);
+    this.name = new FormControl('', [Validators.required]);
     this.userForm = this.fb.group({
       email: this.email,
       name: this.name,
     });
   }
-  
   ngOnInit() { 
-    this.innerWidth = window.innerWidth;
-
     this.auth.userAuthState.subscribe((val) => {
       this.userConfirmado = val;
     });
@@ -106,7 +100,6 @@ export class FlightComponent implements OnInit {
     let values = Object.values(this.flights);
     let merged = values.flat(1);
     let listaVuelos = merged.sort((a,b)=>new Date(b.boarding_time).valueOf() - new Date(a.boarding_time).valueOf()).reverse();
-   console.log(listaVuelos)
     if(this.startDate) {
       this.filteredFlights = listaVuelos.filter((x) => {
         return (x.origin == this.source) &&
@@ -125,14 +118,6 @@ export class FlightComponent implements OnInit {
     } else{ 
       this.searchStatus = false;
     }
-  }
-  
-  smallerDiv() {
-    if(this.filteredFlights == undefined) {
-      this.heightCaja = "480px";
-    } else if(this.filteredFlights.length == 0 && this.searchStatus == true) {
-      this.heightCaja = "550px"; 
-    } 
   }
   checkUnregUser( ) {
     this.validateForm = true;
@@ -153,9 +138,7 @@ export class FlightComponent implements OnInit {
           this.userConfirmado = false;
         })
     }
-    
     this.local.setUsuario( 'usuario',JSON.stringify(this.users));  
-    console.log(this.users)
   }
   setFlight(flight: any) {
     this.local.setUsuario('flight', JSON.stringify(flight)) 

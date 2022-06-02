@@ -88,12 +88,10 @@ export class BookingFlightComponent implements OnInit {
       this.reservations.arrival_time = this.flight.arrival_time;
       this.reservations.reservation_code = codigo;
       this.reservations.seat = '23A';
-    if(this.userForm.valid) {
-      this.local.setUsuario('reserva', JSON.stringify(this.reservations))
-      this.local.setUsuario('usuario',JSON.stringify(this.users)); 
-      console.log(this.users)
-      console.log(this.reservations)
-      this.router.navigateByUrl('select-seat')
-    } 
+      if(this.userForm.valid) {
+        this.local.setUsuario('reserva', JSON.stringify(this.reservations))
+        this.local.setUsuario('usuario',JSON.stringify(this.users)); 
+        this.router.navigateByUrl('select-seat')
+      } 
   }
 }

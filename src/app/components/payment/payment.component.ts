@@ -178,7 +178,6 @@ export class PaymentComponent implements OnInit {
     }
   }
   checkIfExists() {
-    
     this.showPrice = true;
     let values = Object.values(this.reservas);
     let merged = values.flat(1);
@@ -191,9 +190,7 @@ export class PaymentComponent implements OnInit {
       if(this.reservation.price > this.booking[0].price) {
         this.reservation.price = this.reservation.price - this.booking[0].price;
       }
-    }
-    console.log(this.reservation.price)
-    
+    }    
   }
   SaveCardDetails(){    
     this.isSubmitted = true;
