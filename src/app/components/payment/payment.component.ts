@@ -203,7 +203,7 @@ export class PaymentComponent implements OnInit {
     if(this.cvc.value == 666) {
       this.noError = false;
     }
-    if(this.paymentForm.valid){
+    if(this.paymentForm.valid && this.noError == true){
       this.cardDetailsValidate = true;
       if(this.itExists == true) {
         this.reservation.price = this.totalPrice;
