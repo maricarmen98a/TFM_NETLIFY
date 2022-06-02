@@ -143,20 +143,20 @@ export class SelectSeatComponent implements OnInit {
     if(this.extra == undefined) {
       this.extra = 0;
     }
-    this.reservations.passenger_email = this.reserva.passenger_email;
-    this.reservations.passenger_name = this.reserva.passenger_name;
-    this.reservations.passenger_passport = this.reserva.passenger_passport;
-    this.reservations.passenger_phone = this.reserva.passenger_phone;
-    this.reservations.airline = this.reserva.airline;
-    this.reservations.flight_id = this.reserva.flight_id;
-    this.reservations.origin = this.reserva.origin;
-    this.reservations.destination = this.reserva.destination;
-    this.reservations.price = this.reserva.price + this.extra; 
-    this.reservations.reservation_code = this.reserva.reservation_code;
-    this.reservations.boarding_time = this.reserva.boarding_time;
-    this.reservations.arrival_time = this.reserva.arrival_time;
-    this.reservations.arrival_hour = this.reserva.arrival_hour;
-    this.reservations.boarding_hour = this.reserva.boarding_hour;
+    this.reservations.passenger_email = reservation.passenger_email;
+    this.reservations.passenger_name = reservation.passenger_name;
+    this.reservations.passenger_passport = reservation.passenger_passport;
+    this.reservations.passenger_phone = reservation.passenger_phone;
+    this.reservations.airline = reservation.airline;
+    this.reservations.flight_id = reservation.flight_id;
+    this.reservations.origin = reservation.origin;
+    this.reservations.destination = reservation.destination;
+    this.reservations.price = reservation.price + this.extra; 
+    this.reservations.reservation_code = reservation.reservation_code;
+    this.reservations.boarding_time = reservation.boarding_time;
+    this.reservations.arrival_time = reservation.arrival_time;
+    this.reservations.arrival_hour = reservation.arrival_hour;
+    this.reservations.boarding_hour = reservation.boarding_hour;
     this.reservations.seat = selectedSeat; 
     this.showReservation = true;
     this.local.setUsuario('reserva', JSON.stringify(this.reservations))
