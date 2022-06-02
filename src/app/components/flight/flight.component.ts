@@ -103,8 +103,8 @@ export class FlightComponent implements OnInit {
     if(this.startDate) {
       this.filteredFlights = listaVuelos.filter((x) => {
         return ((x.origin == this.source) &&
-          (x.destination == this.destination)) ||
-          (x.boarding_time == this.startDate)
+          (x.destination == this.destination) &&
+          (x.boarding_time == this.startDate))
       });
     }
     if(this.filteredFlights.length == 0){
