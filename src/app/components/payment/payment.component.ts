@@ -132,27 +132,6 @@ export class PaymentComponent implements OnInit {
 
     let hours = parseInt(hrPart2) - parseInt(hrPart);
     let minutes;
-
-    if (minPart2> minPart) {
-      minutes = parseInt(minPart2) - parseInt(minPart);
-      let horas = hours.toString();
-      let minutos = minutes.toString();
-      if (horas == '0') {
-        this.hoursFlight = minutos + ' minutos';
-      } else {
-        this.hoursFlight = horas + ' horas ' + minutos + ' minutos';
-      }
-    } else if (minPart> minPart2) {
-      minutes = 60 - parseInt(minPart) + parseInt(minPart2); 
-      hours = hours - 1;
-      let horas = hours.toString();
-      let minutos = minutes.toString();
-      if (horas == '0') {
-        this.hoursFlight = minutos + ' minutos';
-      } else {
-        this.hoursFlight = horas + ' horas ' + minutos + ' minutos';
-      }
-    }
     if (hrPart> hrPart2) {
       hours = 24 - parseInt(hrPart) + parseInt(hrPart2);
       let horas = hours.toString();
@@ -186,8 +165,29 @@ export class PaymentComponent implements OnInit {
         } else {
           this.hoursFlight = horas + ' horas ' + minutos + ' minutos';
         }
+      }
     }
+    if (minPart2> minPart) {
+      minutes = parseInt(minPart2) - parseInt(minPart);
+      let horas = hours.toString();
+      let minutos = minutes.toString();
+      if (horas == '0') {
+        this.hoursFlight = minutos + ' minutos';
+      } else {
+        this.hoursFlight = horas + ' horas ' + minutos + ' minutos';
+      }
+    } else if (minPart> minPart2) {
+      minutes = 60 - parseInt(minPart) + parseInt(minPart2); 
+      hours = hours - 1;
+      let horas = hours.toString();
+      let minutos = minutes.toString();
+      if (horas == '0') {
+        this.hoursFlight = minutos + ' minutos';
+      } else {
+        this.hoursFlight = horas + ' horas ' + minutos + ' minutos';
+      }
     }
+    
   }
   checkIfExists() {
     this.showPrice = true;
