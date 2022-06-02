@@ -23,29 +23,29 @@ export class ExtrasComponent implements OnInit {
     this.activities = 25;
     this.pickup = 20;
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
+    this.reservation = retrievedObject;}
   back(): void {
     this.location.back()
   }
   buyPickup() {
-    let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
-    this.reservation = retrievedObject;
+    
     this.reservation.price = Number(this.reservation.price) + this.pickup;
     this.bought = true;
   
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buyActivities() {
-     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
-    this.reservation = retrievedObject;
+     /* let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
+    this.reservation = retrievedObject; */
     this.reservation.price = Number(this.reservation.price) + Number(this.activities);
     this.bought = true;
     this.local.setUsuario('reserva', JSON.stringify(this.reservation))
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buySuitcase() {
-    let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
-    this.reservation = retrievedObject;
+    /* let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
+    this.reservation = retrievedObject; */
     this.reservation.price = Number(this.reservation.price) + Number(this.suitcase);
     this.bought = true;
     this.local.setUsuario('reserva', JSON.stringify(this.reservation))
