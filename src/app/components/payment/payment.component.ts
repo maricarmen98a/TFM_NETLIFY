@@ -164,17 +164,29 @@ export class PaymentComponent implements OnInit {
         } else {
           this.hoursFlight = horas + ' horas ' + minutos + ' minutos';
         }
-      } else if (minPart> minPart2) {
-          minutes = 60 - parseInt(minPart) + parseInt(minPart2); 
-          hours = hours - 1;
-          let horas = hours.toString();
-          let minutos = minutes.toString();
-          if (horas == '0') {
-            this.hoursFlight = minutos + ' minutos';
-          } else {
-            this.hoursFlight = horas + ' horas ' + minutos + ' minutos';
-          }
-      }
+        } else if (minPart> minPart2) {
+            minutes = 60 - parseInt(minPart) + parseInt(minPart2); 
+            hours = hours - 1;
+            let horas = hours.toString();
+            let minutos = minutes.toString();
+            if (horas == '0') {
+              this.hoursFlight = minutos + ' minutos';
+            } else {
+              this.hoursFlight = horas + ' horas ' + minutos + ' minutos';
+            }
+        }
+    } else if(hrPart == hrPart2) {
+      if (minPart> minPart2) {
+        minutes = 60 - parseInt(minPart) + parseInt(minPart2); 
+        hours = hours - 1;
+        let horas = hours.toString();
+        let minutos = minutes.toString();
+        if (horas == '0') {
+          this.hoursFlight = minutos + ' minutos';
+        } else {
+          this.hoursFlight = horas + ' horas ' + minutos + ' minutos';
+        }
+    }
     }
   }
   checkIfExists() {
