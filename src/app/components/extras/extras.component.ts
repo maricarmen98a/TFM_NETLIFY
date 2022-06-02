@@ -41,18 +41,17 @@ export class ExtrasComponent implements OnInit {
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
     console.log(this.reservation.price + '    28')
-    this.reservation.price = this.reservation.price + this.pickup;
+    this.reservation.price = Number(this.reservation.price) + this.pickup;
     console.log(this.reservation.price + ' total')
     this.bought = true;
-    var numberValue = Number(this.reservation.price);
-    console.log(numberValue);
+  
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buyActivities() {
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
     console.log(this.reservation.price + '28')
-    this.reservation.price = this.reservation.price + this.activities;
+    this.reservation.price = Number(this.reservation.price) + this.activities;
     console.log(this.reservation.price + ' total')
 
     this.bought = true;
@@ -64,7 +63,7 @@ export class ExtrasComponent implements OnInit {
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
     console.log(this.reservation.price + '28')
-    this.reservation.price = this.reservation.price + this.suitcase;
+    this.reservation.price = Number(this.reservation.price) + this.suitcase;
     console.log(this.reservation.price + ' total')
 
     this.bought = true;
