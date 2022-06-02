@@ -22,13 +22,15 @@ export class ExtrasComponent implements OnInit {
     this.suitcase = 50;
     this.activities = 25;
     this.pickup = 20;
+    let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
+    this.reservation = retrievedObject;
+     console.log(this.reservation + '27')
+    console.log(this.reservation.price + '28')
   }
 
   ngOnInit(): void {
-    let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
-    this.reservation = retrievedObject;
-    console.log(this.reservation)
-    console.log(this.reservation.price)
+    
+   
   }
   back(): void {
     this.location.back()
@@ -46,9 +48,10 @@ export class ExtrasComponent implements OnInit {
   buySuitcase() {
     this.reservation.price = this.reservation.price + this.suitcase;
     this.bought = true;
-    this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
     console.log(this.reservation.price)
     console.log('this.reservation.price')
+    this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
+    
 
   }
   openSnackBar(message: string, undefined: string | undefined, className: string) {
