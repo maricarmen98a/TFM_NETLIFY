@@ -44,6 +44,8 @@ export class ExtrasComponent implements OnInit {
     this.reservation.price = this.reservation.price + this.pickup;
     console.log(this.reservation.price + ' total')
     this.bought = true;
+    this.local.setUsuario('reserva', JSON.stringify(this.reservation))
+    console.log('se ha guardado')
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buyActivities() {
@@ -54,6 +56,8 @@ export class ExtrasComponent implements OnInit {
     console.log(this.reservation.price + ' total')
 
     this.bought = true;
+    this.local.setUsuario('reserva', JSON.stringify(this.reservation))
+    console.log('se ha guardado')
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buySuitcase() {
@@ -66,6 +70,8 @@ export class ExtrasComponent implements OnInit {
     this.bought = true;
     console.log(this.reservation.price)
     console.log('this.reservation.price')
+    this.local.setUsuario('reserva', JSON.stringify(this.reservation))
+    console.log('se ha guardado')
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
     
 
@@ -75,7 +81,7 @@ export class ExtrasComponent implements OnInit {
       duration: 2000,
       panelClass: [className]
     });
-    this.local.setUsuario('reserva', JSON.stringify(this.reservation))
+    
 
   }
   continue() {
