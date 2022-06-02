@@ -29,37 +29,30 @@ export class ExtrasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
+    this.reservation = retrievedObject;
+     console.log(this.reservation + '27')
+    console.log(this.reservation.price + '28')
    
   }
   back(): void {
     this.location.back()
   }
-  loadData() {
-    if(this.bought == true) {
-      return;
-    } else {
-      let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
-    this.reservation = retrievedObject;
-     console.log(this.reservation + '27')
-    console.log(this.reservation.price + '28')
-    }
-    
-  }
+
   buyPickup() {
-    this.loadData()
+    this.ngOnInit()
     this.reservation.price = this.reservation.price + this.pickup;
     this.bought = true;
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buyActivities() {
-    this.loadData()
+    this.ngOnInit()
     this.reservation.price = this.reservation.price + this.activities;
     this.bought = true;
     this.openSnackBar('Se ha añadido correctamente', undefined, 'snackbar' )
   }
   buySuitcase() {
-    this.loadData()
+    this.ngOnInit()
     this.reservation.price = this.reservation.price + this.suitcase;
     this.bought = true;
     console.log(this.reservation.price)
