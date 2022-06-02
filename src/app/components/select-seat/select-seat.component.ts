@@ -160,6 +160,8 @@ export class SelectSeatComponent implements OnInit {
     this.reservations.seat = selectedSeat; 
     this.showReservation = true;
     this.local.setUsuario('reserva', JSON.stringify(this.reservations))
+    console.log(this.reservations)
+    console.log(reservation)
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
