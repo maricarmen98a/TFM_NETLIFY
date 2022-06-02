@@ -100,10 +100,11 @@ export class FlightComponent implements OnInit {
     let values = Object.values(this.flights);
     let merged = values.flat(1);
     let listaVuelos = merged.sort((a,b)=>new Date(b.boarding_time).valueOf() - new Date(a.boarding_time).valueOf()).reverse();
+    console.log(listaVuelos)
     if(this.startDate) {
       this.filteredFlights = listaVuelos.filter((x) => {
-        return (x.origin == this.source &&
-          x.destination == this.destination &&
+        return ((x.origin == this.source &&
+          x.destination == this.destination) &&
           x.boarding_time == this.startDate)
       });
     } else {
