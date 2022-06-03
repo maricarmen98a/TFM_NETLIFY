@@ -41,9 +41,9 @@ export class RandomFlightComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-   /*  this.flightService
+     this.flightService
     .getFlight()
-    .subscribe((flights: FlightDTO[]) => (this.flights = flights));  */   
+    .subscribe((flights: FlightDTO[]) => (this.flights = flights));    
     this.auth.userAuthState.subscribe((val) => {
         this.userConfirmado = val;
       });
@@ -56,10 +56,7 @@ export class RandomFlightComponent implements OnInit {
       .subscribe((flights: FlightDTO[]) => (this.flights = flights));
   } */
   getRandomFlight() {
-    this.flightService
-    .getFlight()
-    .subscribe((flights: FlightDTO[]) => (this.flights = flights));  
-    console.log('esta actualizado')
+    console.log('esta actualizado2')
     let values = Object.values(this.flights);
     console.log(this.flights)
     console.log('this.flights')
