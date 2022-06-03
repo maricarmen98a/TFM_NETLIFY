@@ -5,6 +5,9 @@ select {
     display: block;
     text-align: center;
 }
+.caja-mat__flex h2 {
+    padding-top: 10px;
+}
 .caja__boton {
     padding-top: 20px;
 }
