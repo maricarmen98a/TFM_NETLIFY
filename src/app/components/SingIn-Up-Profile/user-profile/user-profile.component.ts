@@ -71,10 +71,10 @@ export class UserProfileComponent implements OnInit {
     let values = Object.values(this.reservation);
     let merged = values.flat(1);
     this.bookingSearch = true;
-    this.userId = this.UserProfile.name
+    this.userId = this.UserProfile.email
     if (this.bookingSearch) {
       this.filteredReservations = merged.filter((x) => {
-        return (x.passenger_name == this.userId)
+        return (x.passenger_email == this.userId)
       });
     }
     if(this.filteredReservations.length > 0) {

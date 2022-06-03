@@ -54,10 +54,9 @@ export class RandomFlightComponent implements OnInit {
       .subscribe((flights: FlightDTO[]) => (this.flights = flights));
   }
   getRandomFlight() {
-    this.flightService
-      .getFlight()
-      .subscribe((flights: FlightDTO[]) => (this.flights = flights));
     let values = Object.values(this.flights);
+    console.log(this.flights)
+    console.log('this.flights')
     let merged = values.flat(1);
     let shuffled = merged.sort(function(){return .5 - Math.random()});
     let selected = shuffled.slice(0,4);
