@@ -46,9 +46,9 @@ export class RandomFlightComponent implements OnInit {
       });
     let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
     this.usuario = retrievedObject;
-/*     this.flightService
+     this.flightService
     .getFlight()
-    .subscribe((flights: FlightDTO[]) => (this.flights = flights));  */
+    .subscribe((flights: FlightDTO[]) => (this.flights = flights));  
   }
    private getAllContent() {
     this.flightService
@@ -56,8 +56,7 @@ export class RandomFlightComponent implements OnInit {
       .subscribe((val) => (this.flights = val));
   } 
   getRandomFlight() {
-    this.getAllContent()
-    console.log('esta actualizado5')
+    console.log('esta actualizado6')
     let values = Object.values(this.flights);
     console.log(this.flights)
     console.log('this.flights')
