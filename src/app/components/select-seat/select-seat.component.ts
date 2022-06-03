@@ -153,8 +153,6 @@ export class SelectSeatComponent implements OnInit {
     this.reservations.origin = this.reserva.origin;
     this.reservations.destination = this.reserva.destination;
     this.reservations.price = Number(this.reserva.price) + Number(this.extra); 
-    console.log(this.reservations.price)
-    console.log('encontrado')
     this.reservations.reservation_code = this.reserva.reservation_code;
     this.reservations.boarding_time = this.reserva.boarding_time;
     this.reservations.arrival_time = this.reserva.arrival_time;

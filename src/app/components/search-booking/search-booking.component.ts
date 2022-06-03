@@ -39,12 +39,12 @@ export class SearchBookingComponent implements OnInit {
       let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
       this.usuario = retrievedObject;
     }
-    this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations ));
   }
   back(): void {
     this.location.back()
   }
   loadData() {
+    this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations ));
     this.isloaded = true;
     
     if (this.usuario) {
@@ -69,6 +69,7 @@ export class SearchBookingComponent implements OnInit {
     this.local.setUsuario('reserva', JSON.stringify(reservation))
   }
   search() {
+    this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations ));
     this.searchForm = true;
     this.isloaded = true;
 
@@ -88,7 +89,7 @@ export class SearchBookingComponent implements OnInit {
     if(this.filteredReservations.length == 0 && !this.bookingSearch.hasError('required')) {
       this.emptyArray = true;
     } 
-    let seatArray = this.filteredReservations[0];
-    this.local.setUsuario('reserva', JSON.stringify(seatArray))
+    let arraySearch = this.filteredReservations[0];
+    this.local.setUsuario('reserva', JSON.stringify(arraySearch))
   }
 }

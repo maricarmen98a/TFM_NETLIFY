@@ -224,6 +224,7 @@ export class PaymentComponent implements OnInit {
         this.flightService.createReservation(this.reservation).subscribe();
       }
       this.local.setUsuario('reserva', JSON.stringify(this.reservation))
+      console.log(this.reservation)
     }
   }
   back(): void {
