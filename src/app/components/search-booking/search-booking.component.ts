@@ -76,6 +76,9 @@ export class SearchBookingComponent implements OnInit {
     let values = Object.values(this.reservation);
     let merged = values.flat(1);   
     if (this.bookingSearch) {
+      console.log(this.bookingSearch + ' existe el booking search')
+      console.log(this.bookingSearch.value + ' existe el booking search value')
+      console.log(merged[0].reservation_code + 'merged code')
       this.filteredReservations = merged.filter((x) => {
         return (x.reservation_code == this.bookingSearch.value)
       });}

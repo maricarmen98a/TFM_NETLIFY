@@ -156,8 +156,14 @@ export class PaymentComponent implements OnInit {
         }
     } else if(hrPart == hrPart2) {
       if (minPart> minPart2) {
-        minutes = 60 - parseInt(minPart) + parseInt(minPart2); 
-        hours = hours - 1;
+        minutes = 60 - parseInt(minPart2) + parseInt(minPart); 
+        hours = 23;
+        let horas = hours.toString();
+        let minutos = minutes.toString();
+        this.hoursFlight = horas + ' horas ' + minutos + ' minutos';
+      } else if (minPart2> minPart) {
+        minutes = parseInt(minPart2) - parseInt(minPart);
+        hours = 24;
         let horas = hours.toString();
         let minutos = minutes.toString();
         if (horas == '0') {
@@ -165,30 +171,9 @@ export class PaymentComponent implements OnInit {
         } else {
           this.hoursFlight = horas + ' horas ' + minutos + ' minutos';
         }
-      }
+      } 
     }
-    if (minPart2> minPart) {
-      minutes = parseInt(minPart2) - parseInt(minPart);
-      let horas = hours.toString();
-      let minutos = minutes.toString();
-      if (horas == '0') {
-        this.hoursFlight = minutos + ' minutos';
-      } else {
-        this.hoursFlight = horas + ' horas ' + minutos + ' minutos';
-      }
-    } else if (minPart> minPart2) {
-      minutes = 60 - parseInt(minPart) + parseInt(minPart2); 
-      hours = hours - 1;
-      let horas = hours.toString();
-      let minutos = minutes.toString();
-      if (horas == '0') {
-        this.hoursFlight = minutos + ' minutos';
-      } else {
-        this.hoursFlight = horas + ' horas ' + minutos + ' minutos';
-      }
-    }
-    
-  }
+}
   checkIfExists() {
     this.showPrice = true;
     let values = Object.values(this.reservas);
