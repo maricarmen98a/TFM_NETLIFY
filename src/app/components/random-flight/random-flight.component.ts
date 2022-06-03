@@ -53,11 +53,11 @@ export class RandomFlightComponent implements OnInit {
    private getAllContent() {
     this.flightService
       .getFlight()
-      .subscribe((flights: FlightDTO[]) => (this.flights = flights));
+      .subscribe((val) => (this.flights = val));
   } 
   getRandomFlight() {
     this.getAllContent()
-    console.log('esta actualizado4')
+    console.log('esta actualizado5')
     let values = Object.values(this.flights);
     console.log(this.flights)
     console.log('this.flights')
