@@ -41,18 +41,19 @@ export class RandomFlightComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.flightService.getFlight().subscribe(() => { this.getAllContent() });
-    this.auth.userAuthState.subscribe((val) => {
+    this.flightService
+    .getFlight()
+    .subscribe((flights: FlightDTO[]) => (this.flights = flights));    this.auth.userAuthState.subscribe((val) => {
         this.userConfirmado = val;
       });
     let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
     this.usuario = retrievedObject;
   }
-  private getAllContent() {
+  /* private getAllContent() {
     this.flightService
       .getFlight()
       .subscribe((flights: FlightDTO[]) => (this.flights = flights));
-  }
+  } */
   getRandomFlight() {
     let values = Object.values(this.flights);
     console.log(this.flights)
