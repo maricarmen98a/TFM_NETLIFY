@@ -51,12 +51,7 @@ export class RandomFlightComponent implements OnInit {
   }
 
   getRandomFlight() {
-    console.log(this.flights)
-    console.log('this.flights 58')
-    console.log('esta actualizado10')
     let values = Object.values(this.flights);
-    console.log(this.flights)
-    console.log('this.flights')
     let merged = values.flat(1);
     let shuffled = merged.sort(function(){return .5 - Math.random()});
     let selected = shuffled.slice(0,4);
