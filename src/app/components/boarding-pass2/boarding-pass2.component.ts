@@ -37,9 +37,10 @@ export class BoardingPass2Component implements OnInit {
       let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
       this.UserProfile = retrievedObject;
     }
-    this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations)); 
+   
   }
   check() {
+    this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations)); 
     let gates = [ "A2", "A4", "B6", "C7", "D4", "No está definida" ];
     this.gate = gates[Math.floor(Math.random()*gates.length)];
     this.local.setUsuario('gate', JSON.stringify(this.gate));
