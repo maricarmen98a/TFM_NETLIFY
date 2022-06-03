@@ -46,18 +46,18 @@ export class RandomFlightComponent implements OnInit {
       });
     let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
     this.usuario = retrievedObject;
-    this.flightService
+/*     this.flightService
     .getFlight()
-    .subscribe((flights: FlightDTO[]) => (this.flights = flights)); 
+    .subscribe((flights: FlightDTO[]) => (this.flights = flights));  */
   }
-  /* private getAllContent() {
+   private getAllContent() {
     this.flightService
       .getFlight()
       .subscribe((flights: FlightDTO[]) => (this.flights = flights));
-  } */
+  } 
   getRandomFlight() {
-    this.flightService.getFlight().subscribe((flights: FlightDTO[]) => (this.flights = flights)); 
-    console.log('esta actualizado3')
+    this.getAllContent()
+    console.log('esta actualizado4')
     let values = Object.values(this.flights);
     console.log(this.flights)
     console.log('this.flights')
