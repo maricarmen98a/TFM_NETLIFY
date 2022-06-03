@@ -3,7 +3,7 @@
     <div *ngIf="cardDetailsValidate" class="container-accepted">
       <img src="assets/payment-accepted.png" alt="Dibujo de tarjeta de crédito">
       <p>Pago confirmado. Ya puede ver su viaje en <a routerLink="/search-booking">Mis vuelos</a></p>
-      <p>Su localizador de reserva: {{reservation.reservation_code}}</p>
+      <h3>Para buscar su vuelo, necesita su localizador de reserva: {{reservation.reservation_code}}</h3>
     </div>
     <div class="container-info">
       <h2>Información del vuelo</h2>
