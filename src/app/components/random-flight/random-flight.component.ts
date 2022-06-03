@@ -53,7 +53,7 @@ export class RandomFlightComponent implements OnInit {
   getRandomFlight() {
     console.log(this.flights)
     console.log('this.flights 58')
-    console.log('esta actualizado8')
+    console.log('esta actualizado10')
     let values = Object.values(this.flights);
     console.log(this.flights)
     console.log('this.flights')
