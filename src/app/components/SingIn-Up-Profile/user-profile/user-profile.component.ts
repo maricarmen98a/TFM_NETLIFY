@@ -6,6 +6,7 @@ import { FlightService } from 'src/app/shared/Services/flight.service';
 import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
 import { AuthService } from '../../../shared/Services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FlightDTO } from 'src/app/Models/flight';
 export class User {
   name: any;
   email: any;
@@ -29,6 +30,7 @@ export class UserProfileComponent implements OnInit {
   usuario!: User;
   userId!: string;
   gate!: string;
+  flights!: FlightDTO[];
 
   constructor(public authService: AuthService, 
     public fb: FormBuilder, 
@@ -53,6 +55,7 @@ export class UserProfileComponent implements OnInit {
     let gates = [ "A2", "A4", "B6", "C7", "D4", "No está definida" ];
     this.gate = gates[Math.floor(Math.random()*gates.length)];
     this.local.setUsuario('gate', JSON.stringify(this.gate));
+    this.flightService.getFlight().subscribe((flights: FlightDTO[]) => (this.flights = flights));
   }
   step = 0;
   setStep(index: number) {
