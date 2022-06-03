@@ -4,6 +4,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/shared/Services/auth.service';
 import { AuthStateService } from 'src/app/shared/Services/auth-state.service';
 import { TokenService } from 'src/app/shared/Services/token.service';
+import { FlightService } from 'src/app/shared/Services/flight.service';
+import { FlightDTO } from 'src/app/Models/flight';
+import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
 
 @Component({
   selector: 'app-signin',
@@ -14,6 +17,7 @@ export class SigninComponent implements OnInit {
 
   loginForm: FormGroup;
   errors: any = null;
+  flights!: FlightDTO[];
   constructor(
     public router: Router,
     public fb: FormBuilder,
@@ -21,6 +25,9 @@ export class SigninComponent implements OnInit {
     private token: TokenService,
     private authState: AuthStateService,
     public tokenService: TokenService,
+    public flightService: FlightService,
+    public local: LocalStorageService,
+
   ) {
     this.loginForm = this.fb.group({
       email: [''],
@@ -39,6 +46,10 @@ export class SigninComponent implements OnInit {
       },
       () => {
         this.authState.setAuthState(true);
+        this.flightService.getFlight().subscribe((flights: FlightDTO[]) => {
+          this.flights = flights
+          this.local.setUsuario('flights', JSON.stringify(this.flights))
+        });
         this.loginForm.reset();
         this.router.navigate(['profile']);
       }
