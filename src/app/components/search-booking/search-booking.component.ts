@@ -39,12 +39,13 @@ export class SearchBookingComponent implements OnInit {
       let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
       this.usuario = retrievedObject;
     }
+     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations ));
   }
   back(): void {
     this.location.back()
   }
   loadData() {
-    this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations ));
+   
     this.isloaded = true;
     
     if (this.usuario) {
