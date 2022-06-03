@@ -48,13 +48,11 @@ export class RandomFlightComponent implements OnInit {
     this.usuario = retrievedObject;
     this.flightService.getFlight().subscribe((flights: FlightDTO[]) => (this.flights = flights));  
   }
-   private getAllContent() {
-    this.flightService
-      .getFlight()
-      .subscribe((val) => (this.flights = val));
-  } 
+
   getRandomFlight() {
-    console.log('esta actualizado7')
+    console.log(this.flights)
+    console.log('this.flights 58')
+    console.log('esta actualizado8')
     let values = Object.values(this.flights);
     console.log(this.flights)
     console.log('this.flights')
