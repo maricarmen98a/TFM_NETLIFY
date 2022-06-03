@@ -73,7 +73,8 @@ export class SearchBookingComponent implements OnInit {
    
     this.searchForm = true;
     this.isloaded = true;
-    console.log(this.reservation.values + ' console this.reservation')
+    console.log(this.reservation)
+    console.log('console this.reservation')
      
     if (this.bookingSearch) {
       let values = Object.values(this.reservation);
