@@ -46,8 +46,8 @@ export class RandomFlightComponent implements OnInit {
     });
     let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
     this.usuario = retrievedObject;
-    this.flightService.getFlight().subscribe((flights: FlightDTO[]) => (this.flights = flights));
-
+    let retrievedFlight = JSON.parse(this.local.getUsuario('flights') || '{}');
+    this.flights = retrievedFlight;
   }
 
   getRandomFlight() {

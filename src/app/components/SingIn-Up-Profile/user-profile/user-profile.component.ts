@@ -55,7 +55,10 @@ export class UserProfileComponent implements OnInit {
     let gates = [ "A2", "A4", "B6", "C7", "D4", "No está definida" ];
     this.gate = gates[Math.floor(Math.random()*gates.length)];
     this.local.setUsuario('gate', JSON.stringify(this.gate));
-    this.flightService.getFlight().subscribe((flights: FlightDTO[]) => (this.flights = flights));
+    this.flightService.getFlight().subscribe((flights: FlightDTO[]) => {
+      this.flights = flights
+      this.local.setUsuario('flights', JSON.stringify(this.flights))
+    });
   }
   step = 0;
   setStep(index: number) {
