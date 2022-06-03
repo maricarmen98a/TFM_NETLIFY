@@ -220,8 +220,10 @@ export class PaymentComponent implements OnInit {
       if(this.itExists == true) {
         this.reservation.price = this.totalPrice;
         this.flightService.updateReservation(this.reservation, this.reservation.id).subscribe();
+        console.log('se ha actualizado')
       } else {
         this.flightService.createReservation(this.reservation).subscribe();
+        console.log('se ha creado')
       }
       this.local.setUsuario('reserva', JSON.stringify(this.reservation))
       console.log(this.reservation)
