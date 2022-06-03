@@ -121,6 +121,7 @@ export class SelectSeatComponent implements OnInit {
     } else {
         this.extra = 10;
     }
+    return this.extra;
   }
   showInfo() {
     this.showIt = true;
@@ -131,7 +132,7 @@ export class SelectSeatComponent implements OnInit {
   back(): void {
     this.location.back()
   }
-  setData(reservation: any) {
+  setData() {
     let seatArray = this.checkedTickets[0];
     let selectedSeat = this.reserva.seat;
 
@@ -169,10 +170,10 @@ export class SelectSeatComponent implements OnInit {
       data: "¿Está seguro de que desea continuar?"
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result) {
-        this.setData(this.reservation)
+      
+        this.setData()
         this.router.navigate(['extras']);
       }
-    });
+    );
   }
 }
