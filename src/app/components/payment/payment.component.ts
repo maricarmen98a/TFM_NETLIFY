@@ -65,11 +65,12 @@ export class PaymentComponent implements OnInit {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
     });
+    
     this.GetMonths();
     this.GetYears(); 
     this.stringToTime();
-/*     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
- */  }
+    
+  }
 
   creditCardNumberSpacing() {
     const input = this.ccNumberField.nativeElement;
@@ -181,11 +182,12 @@ export class PaymentComponent implements OnInit {
     }
 }
   checkIfExists() {
-    this.showPrice = true;
     if(this.reservas == undefined || null) {
       this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
       return this.reservas;
     }
+    this.showPrice = true;
+    
     let values = Object.values(this.reservas);
     let merged = values.flat(1);
     this.booking = merged.filter((x) => {

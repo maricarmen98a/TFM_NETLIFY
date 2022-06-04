@@ -24,6 +24,8 @@ export class BoardingPassComponent implements OnInit {
     let string2 = string.slice(0, -3);
     this.reservation.boarding_hour = string2;
     this.gate = JSON.parse(this.local.getUsuario('gate') || '{}')
+    this.local.setUsuario('reserva', JSON.stringify(this.reservation))
+
   }
   back(): void {
     this.location.back()

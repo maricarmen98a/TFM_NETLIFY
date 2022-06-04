@@ -90,7 +90,7 @@ export class FlightComponent implements OnInit {
     this.destination = source;
   }
   onSubmit(SearchPara: any) { 
-    let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
+    let retrievedObject = JSON.parse(JSON.stringify(this.local.getUsuario('usuario') || '{}'));
     this.usuario = retrievedObject;
     if(this.flights == undefined || null){
       let retrievedFlights = JSON.parse(this.local.getUsuario('flights') || '{}');

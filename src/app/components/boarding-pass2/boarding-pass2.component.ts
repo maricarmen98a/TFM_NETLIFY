@@ -48,8 +48,9 @@ export class BoardingPass2Component implements OnInit {
     if(this.reservation == undefined || null) {
       this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations));
       return this.reservation;
-    } 
-    let values = Object.values(this.reservation);
+    }
+    if(this.UserProfile) {
+       let values = Object.values(this.reservation);
     let merged = values.flat(1);
     this.filteredReservations = merged.filter((x) => {
         return (x.user_id == this.UserProfile.id)
@@ -61,6 +62,9 @@ export class BoardingPass2Component implements OnInit {
       this.searchStatus = false;
     }
     this.local.setUsuario('reserva', JSON.stringify(this.filteredReservations))
+    }
+   
+    
   }
   step = 0;
   setStep(index: number) {

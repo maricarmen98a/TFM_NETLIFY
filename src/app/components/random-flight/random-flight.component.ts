@@ -44,13 +44,23 @@ export class RandomFlightComponent implements OnInit {
     this.auth.userAuthState.subscribe((val) => {
       this.userConfirmado = val;
     });
-    let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
+    if(this.usuario == undefined || null) {
+      let retrievedObject = JSON.parse(JSON.stringify(this.local.getUsuario('usuario') || '{}'));
     this.usuario = retrievedObject;
-    let retrievedFlight = JSON.parse(this.local.getUsuario('flights') || '{}');
+    }
+    
+    if(this.flights == undefined || null) {
+      let retrievedFlight = JSON.parse(this.local.getUsuario('flights') || '{}');
     this.flights = retrievedFlight;
+    }
+    
   }
 
   getRandomFlight() {
+    if(this.flights == undefined || null) {
+      let retrievedFlight = JSON.parse(this.local.getUsuario('flights') || '{}');
+    this.flights = retrievedFlight;
+    }
     let values = Object.values(this.flights);
     let merged = values.flat(1);
     let shuffled = merged.sort(function(){return .5 - Math.random()});
