@@ -93,6 +93,7 @@ export class UserProfileComponent implements OnInit {
     this.authService.updateUser(this.userForm.value).subscribe(
       () => {
         this.openSnackBar('Se ha actualizado correctamente', undefined, 'snackbar') 
+        
       },
       (error) => {
         this.errors = error.error;
@@ -105,10 +106,11 @@ export class UserProfileComponent implements OnInit {
           console.log('this.UserProfile en update a ver')
           console.log(this.UserProfile.id)
         });
-        this.local.setUsuario('usuario', JSON.stringify(this.UserProfile))
+        this.local.setUsuario('usuario', JSON.stringify(this.UserProfile));
 
       }
     );
+    this.local.setUsuario('usuario', JSON.stringify(this.UserProfile));
   }
   setReservation(reservation: any) {
     this.local.setUsuario('reserva', JSON.stringify(reservation))
