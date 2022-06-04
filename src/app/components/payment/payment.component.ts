@@ -40,6 +40,7 @@ export class PaymentComponent implements OnInit {
   noError: boolean = true;
   totalPrice: any;
   selectedValue: FormControl; 
+  usuario: any;
   public constructor(private location: Location, public local: LocalStorageService, private formBuilder: FormBuilder, public flightService: FlightService) {
     this.name = new FormControl('', [Validators.required]);
     this.cardNumber = new FormControl('', [Validators.required, Validators.pattern('^[ 0-9]*$'), Validators.minLength(17)]);
@@ -197,6 +198,8 @@ export class PaymentComponent implements OnInit {
     this.paymentmodel.cardYear = this.expiryYear.value;  
     this.paymentmodel.cvc = this.cvc.value; 
     this.paymentmodel.cardType = this.selectedValue.value;
+    let retrievedUser = JSON.parse(this.local.getUsuario('usuario') || '{}');
+    this.usuario = retrievedUser; 
     if(this.cvc.value == 666) {
       this.noError = false;
     }
@@ -207,8 +210,9 @@ export class PaymentComponent implements OnInit {
         this.flightService.updateReservation(this.reservation, this.reservation.id).subscribe();
         console.log('se ha actualizado')
       } else {
+        this.reservation.user_id = this.usuario.id;
         this.flightService.createReservation(this.reservation).subscribe();
-        console.log('se ha creado')
+        console.log('se ha creado con id')
       }
       this.local.setUsuario('reserva', JSON.stringify(this.reservation))
       console.log(this.reservation)
