@@ -103,6 +103,8 @@ export class UserProfileComponent implements OnInit {
           console.log('this.UserProfile en update a ver')
           console.log(this.UserProfile.id)
         });
+        this.local.setUsuario('usuario', JSON.stringify(this.UserProfile))
+
       }
     );
   }
