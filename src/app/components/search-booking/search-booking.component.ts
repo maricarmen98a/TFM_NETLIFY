@@ -53,7 +53,9 @@ export class SearchBookingComponent implements OnInit {
   loadData() {
    
     this.isloaded = true;
-    
+    if(this.reservation == undefined) {
+      this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations));
+    } 
     if (this.UserProfile) {
       this.validateForm = true;
       let values = Object.values(this.reservation);

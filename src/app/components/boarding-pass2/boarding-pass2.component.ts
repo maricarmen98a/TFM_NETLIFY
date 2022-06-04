@@ -45,6 +45,9 @@ export class BoardingPass2Component implements OnInit {
     let gates = [ "A2", "A4", "B6", "C7", "D4", "No está definida" ];
     this.gate = gates[Math.floor(Math.random()*gates.length)];
     this.local.setUsuario('gate', JSON.stringify(this.gate));
+    if(this.reservation == undefined) {
+      this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations));
+    } 
     let values = Object.values(this.reservation);
     let merged = values.flat(1);
     this.filteredReservations = merged.filter((x) => {

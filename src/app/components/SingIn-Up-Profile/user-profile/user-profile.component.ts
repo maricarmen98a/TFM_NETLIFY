@@ -71,6 +71,9 @@ export class UserProfileComponent implements OnInit {
     if(this.UserProfile == undefined) {
       alert('Tiene que iniciar sesión para visualizar esta información.');
     } 
+    if(this.reservation == undefined) {
+      this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations));
+    } 
     let values = Object.values(this.reservation);
     let merged = values.flat(1);
     this.bookingSearch = true;
