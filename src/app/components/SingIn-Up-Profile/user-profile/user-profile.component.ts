@@ -92,10 +92,7 @@ export class UserProfileComponent implements OnInit {
   update() {
     this.authService.updateUser(this.userForm.value).subscribe(
       () => {
-        this.openSnackBar('Se ha actualizado correctamente', undefined, 'snackbar')
-        let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
-        this.usuario = retrievedObject; 
-        this.UserProfile = this.usuario;  
+        this.openSnackBar('Se ha actualizado correctamente', undefined, 'snackbar') 
         console.log(this.UserProfile)   
         console.log('this.UserProfile')   
       },
