@@ -65,8 +65,8 @@ export class FlightComponent implements OnInit {
     this.auth.userAuthState.subscribe((val) => {
       this.userConfirmado = val;
     });
-     this.flightService.getFlight().subscribe((flights: FlightDTO[]) => (this.flights = flights));
-     this.flightService.getCities().subscribe((cities: CityDTO[]) => (this.cities = cities));
+/*     this.flightService.getFlight().subscribe((flights: FlightDTO[]) => (this.flights = flights));
+ */    this.flightService.getCities().subscribe((cities: CityDTO[]) => (this.cities = cities));
     this.flightService.getCountries().subscribe((countries: CountryDTO[]) => (this.countries = countries));
     this.flightService.getUnregUser().subscribe((users: UnregUserDTO[]) => (this.user = users));
   }
@@ -93,7 +93,8 @@ export class FlightComponent implements OnInit {
     let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
     this.usuario = retrievedObject;
     if(this.flights == undefined || null){
-      this.flightService.getFlight().subscribe((flights: FlightDTO[]) => (this.flights = flights));
+      let retrievedFlights = JSON.parse(this.local.getUsuario('flights') || '{}');
+      this.flights = retrievedFlights;
       return this.flights;
     }
     this.flightStatus = false;

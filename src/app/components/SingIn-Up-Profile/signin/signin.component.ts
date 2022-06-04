@@ -18,6 +18,7 @@ export class SigninComponent implements OnInit {
   loginForm: FormGroup;
   errors: any = null;
   flights!: FlightDTO[];
+  usuario!: any;
   constructor(
     public router: Router,
     public fb: FormBuilder,
@@ -49,6 +50,11 @@ export class SigninComponent implements OnInit {
         this.flightService.getFlight().subscribe((flights: FlightDTO[]) => {
           this.flights = flights
           this.local.setUsuario('flights', JSON.stringify(this.flights))
+        });
+        this.authService.profileUser().subscribe((data: any) => {
+          this.usuario = data;
+          this.local.setUsuario('usuario', JSON.stringify(this.usuario))
+
         });
         this.loginForm.reset();
         this.router.navigate(['profile']);

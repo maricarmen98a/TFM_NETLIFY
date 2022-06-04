@@ -68,8 +68,8 @@ export class PaymentComponent implements OnInit {
     this.GetMonths();
     this.GetYears(); 
     this.stringToTime();
-     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
-   }
+/*     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
+ */  }
 
   creditCardNumberSpacing() {
     const input = this.ccNumberField.nativeElement;
