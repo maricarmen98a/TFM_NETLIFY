@@ -50,7 +50,6 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
-      this.local.setUsuario('usuario', JSON.stringify(this.UserProfile))
       console.log(this.UserProfile)
       console.log('this.UserProfile')
     });
@@ -80,10 +79,6 @@ export class UserProfileComponent implements OnInit {
     this.userId = this.UserProfile.id
     if (this.bookingSearch) {
       this.filteredReservations = merged.filter((x) => {
-        console.log(x.user_id)
-        console.log('x user id')
-        console.log(this.userId)
-        console.log('this.userId')
         return (x.user_id == this.userId)
       });
     }
@@ -103,8 +98,12 @@ export class UserProfileComponent implements OnInit {
       },
       () => {
         this.userForm.reset();
-        console.log(this.UserProfile)   
-        console.log('this.UserProfile en update function') 
+        this.authService.profileUser().subscribe((data: any) => {
+          this.UserProfile = data;
+          console.log(this.UserProfile)
+          console.log('this.UserProfile en update a ver')
+          console.log(this.UserProfile.id)
+        });
       }
     );
   }
