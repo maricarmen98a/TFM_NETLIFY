@@ -71,8 +71,9 @@ export class UserProfileComponent implements OnInit {
     if(this.UserProfile == undefined) {
       alert('Tiene que iniciar sesión para visualizar esta información.');
     } 
-    if(this.reservation == undefined) {
+    if(this.reservation == undefined || null) {
       this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations));
+      return this.reservation;
     } 
     let values = Object.values(this.reservation);
     let merged = values.flat(1);
@@ -105,12 +106,12 @@ export class UserProfileComponent implements OnInit {
           console.log(this.UserProfile)
           console.log('this.UserProfile en update a ver')
           console.log(this.UserProfile.id)
+          this.local.setUsuario('usuario', JSON.stringify(this.UserProfile));
         });
-        this.local.setUsuario('usuario', JSON.stringify(this.UserProfile));
+       
 
       }
     );
-    this.local.setUsuario('usuario', JSON.stringify(this.UserProfile));
   }
   setReservation(reservation: any) {
     this.local.setUsuario('reserva', JSON.stringify(reservation))

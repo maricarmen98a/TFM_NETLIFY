@@ -53,8 +53,9 @@ export class SearchBookingComponent implements OnInit {
   loadData() {
    
     this.isloaded = true;
-    if(this.reservation == undefined) {
+    if(this.reservation == undefined || null) {
       this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations));
+      return this.reservation;
     } 
     if (this.UserProfile) {
       this.validateForm = true;
