@@ -77,10 +77,14 @@ export class UserProfileComponent implements OnInit {
     let values = Object.values(this.reservation);
     let merged = values.flat(1);
     this.bookingSearch = true;
-    this.userId = this.UserProfile
+    this.userId = this.UserProfile.id
     if (this.bookingSearch) {
       this.filteredReservations = merged.filter((x) => {
-        return (x.passenger_email == this.userId.email)
+        console.log(x.user_id)
+        console.log('x user id')
+        console.log(this.userId)
+        console.log('this.userId')
+        return (x.user_id == this.userId)
       });
     }
     if(this.filteredReservations.length > 0) {
@@ -93,18 +97,14 @@ export class UserProfileComponent implements OnInit {
     this.authService.updateUser(this.userForm.value).subscribe(
       () => {
         this.openSnackBar('Se ha actualizado correctamente', undefined, 'snackbar') 
-        console.log(this.UserProfile)   
-        console.log('this.UserProfile') 
-        this.authService.profileUser().subscribe((data: any) => {
-          this.UserProfile = data;})
-        console.log(this.UserProfile)  
-        console.log('this.UserProfile nuevo')  
       },
       (error) => {
         this.errors = error.error;
       },
       () => {
         this.userForm.reset();
+        console.log(this.UserProfile)   
+        console.log('this.UserProfile en update function') 
       }
     );
   }
