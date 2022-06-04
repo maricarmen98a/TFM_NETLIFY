@@ -200,6 +200,9 @@ export class PaymentComponent implements OnInit {
     this.paymentmodel.cardType = this.selectedValue.value;
     let retrievedUser = JSON.parse(this.local.getUsuario('usuario') || '{}');
     this.usuario = retrievedUser; 
+    this.reservation.user_id = this.usuario.id;
+    this.reservation.passenger_name = this.usuario.name;
+    this.reservation.passenger_email = this.usuario.email;
     if(this.cvc.value == 666) {
       this.noError = false;
     }
@@ -210,9 +213,7 @@ export class PaymentComponent implements OnInit {
         this.flightService.updateReservation(this.reservation, this.reservation.id).subscribe();
         console.log('se ha actualizado')
       } else {
-        this.reservation.user_id = this.usuario.id;
-        this.reservation.passenger_name = this.usuario.name;
-        this.reservation.passenger_email = this.usuario.email;
+        
         this.flightService.createReservation(this.reservation).subscribe();
         console.log('se ha creado con id')
       }
