@@ -8,6 +8,7 @@ import { AuthService } from '../../../shared/Services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FlightDTO } from 'src/app/Models/flight';
 export class User {
+  id?: number;
   name: any;
   email: any;
   phone: any;
@@ -28,7 +29,7 @@ export class UserProfileComponent implements OnInit {
   bookingSearch: boolean = false;
   filteredReservations!: any[];
   usuario!: User;
-  userId!: string;
+  userId!: any;
   gate!: string;
   flights!: FlightDTO[];
 
@@ -74,10 +75,10 @@ export class UserProfileComponent implements OnInit {
     let values = Object.values(this.reservation);
     let merged = values.flat(1);
     this.bookingSearch = true;
-    this.userId = this.UserProfile.email
+    this.userId = this.UserProfile.id
     if (this.bookingSearch) {
       this.filteredReservations = merged.filter((x) => {
-        return (x.passenger_email == this.userId)
+        return (x.user_id == this.userId.id)
       });
     }
     if(this.filteredReservations.length > 0) {
