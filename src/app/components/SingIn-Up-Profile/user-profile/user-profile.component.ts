@@ -51,6 +51,8 @@ export class UserProfileComponent implements OnInit {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
       this.local.setUsuario('usuario', JSON.stringify(this.UserProfile))
+      console.log(this.UserProfile)
+      console.log('this.UserProfile')
     });
     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations)); 
     let gates = [ "A2", "A4", "B6", "C7", "D4", "No está definida" ];
@@ -75,10 +77,10 @@ export class UserProfileComponent implements OnInit {
     let values = Object.values(this.reservation);
     let merged = values.flat(1);
     this.bookingSearch = true;
-    this.userId = this.UserProfile.id
+    this.userId = this.UserProfile
     if (this.bookingSearch) {
       this.filteredReservations = merged.filter((x) => {
-        return (x.user_id == this.userId.id)
+        return (x.passenger_email == this.userId.email)
       });
     }
     if(this.filteredReservations.length > 0) {
@@ -91,7 +93,11 @@ export class UserProfileComponent implements OnInit {
     this.authService.updateUser(this.userForm.value).subscribe(
       () => {
         this.openSnackBar('Se ha actualizado correctamente', undefined, 'snackbar')
-        console.log(this.UserProfile)
+        let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
+        this.usuario = retrievedObject; 
+        this.UserProfile = this.usuario;  
+        console.log(this.UserProfile)   
+        console.log('this.UserProfile')   
       },
       (error) => {
         this.errors = error.error;
