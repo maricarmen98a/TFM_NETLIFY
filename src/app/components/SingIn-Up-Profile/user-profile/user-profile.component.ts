@@ -94,7 +94,11 @@ export class UserProfileComponent implements OnInit {
       () => {
         this.openSnackBar('Se ha actualizado correctamente', undefined, 'snackbar') 
         console.log(this.UserProfile)   
-        console.log('this.UserProfile')   
+        console.log('this.UserProfile') 
+        this.authService.profileUser().subscribe((data: any) => {
+          this.UserProfile = data;})
+        console.log(this.UserProfile)  
+        console.log('this.UserProfile nuevo')  
       },
       (error) => {
         this.errors = error.error;
