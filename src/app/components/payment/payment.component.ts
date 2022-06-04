@@ -6,6 +6,7 @@ import { ReservationDTO } from 'src/app/Models/reservation.dto';
 import { FlightService } from 'src/app/shared/Services/flight.service';
 import { Location } from '@angular/common';
 import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
+import { AuthService } from 'src/app/shared/Services/auth.service';
 
 @Component({
   selector: 'app-payment',
@@ -41,7 +42,8 @@ export class PaymentComponent implements OnInit {
   totalPrice: any;
   selectedValue: FormControl; 
   usuario: any;
-  public constructor(private location: Location, public local: LocalStorageService, private formBuilder: FormBuilder, public flightService: FlightService) {
+  UserProfile!: any;
+  public constructor(private location: Location, public authService: AuthService, public local: LocalStorageService, private formBuilder: FormBuilder, public flightService: FlightService) {
     this.name = new FormControl('', [Validators.required]);
     this.cardNumber = new FormControl('', [Validators.required, Validators.pattern('^[ 0-9]*$'), Validators.minLength(17)]);
     this.expiryMonth = new FormControl("", Validators.required);
@@ -198,11 +200,12 @@ export class PaymentComponent implements OnInit {
     this.paymentmodel.cardYear = this.expiryYear.value;  
     this.paymentmodel.cvc = this.cvc.value; 
     this.paymentmodel.cardType = this.selectedValue.value;
-    let retrievedUser = JSON.parse(this.local.getUsuario('usuario') || '{}');
-    this.usuario = retrievedUser; 
-    this.reservation.user_id = this.usuario.id;
-    this.reservation.passenger_name = this.usuario.name;
-    this.reservation.passenger_email = this.usuario.email;
+    this.authService.profileUser().subscribe((data: any) => {
+      this.UserProfile = data;
+    });
+    this.reservation.user_id = this.UserProfile.id;
+    this.reservation.passenger_name = this.UserProfile.name;
+    this.reservation.passenger_email = this.UserProfile.email;
     if(this.cvc.value == 666) {
       this.noError = false;
     }

@@ -35,8 +35,9 @@ export class BoardingPass2Component implements OnInit {
       this.isSignedIn = val;
     });
     if(this.isSignedIn == true) {
-      let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
-      this.UserProfile = retrievedObject;
+      this.authService.profileUser().subscribe((data: any) => {
+        this.UserProfile = data;
+      });
     }
     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations));    
   }

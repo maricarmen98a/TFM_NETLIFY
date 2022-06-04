@@ -6,7 +6,12 @@ import { Location } from '@angular/common';
 import { UserDTO } from 'src/app/Models/user.dto';
 import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
 import { AuthStateService } from 'src/app/shared/Services/auth-state.service';
-
+import { AuthService } from 'src/app/shared/Services/auth.service';
+export class User {
+  id?: any;
+  name: any;
+  email: any;
+}
 @Component({
   selector: 'app-search-booking',
   templateUrl: './search-booking.component.html',
@@ -22,11 +27,11 @@ export class SearchBookingComponent implements OnInit {
   searchStatus: boolean = false;
   validateForm: boolean = false;
   searchForm: boolean = false;
-  usuario!: UserDTO;
   isloaded: boolean = false;
   isSignedIn: boolean = false;
+  UserProfile!: User;
   
-  constructor(public location: Location, private auth: AuthStateService,  public local: LocalStorageService, private flightService: FlightService) {
+  constructor(public location: Location,public authService: AuthService,  private auth: AuthStateService,  public local: LocalStorageService, private flightService: FlightService) {
     this.bookingSearch = new FormControl('', [
       Validators.required
     ]);
@@ -36,8 +41,9 @@ export class SearchBookingComponent implements OnInit {
       this.isSignedIn = val;
     });
     if(this.isSignedIn == true) {
-      let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
-      this.usuario = retrievedObject;
+      this.authService.profileUser().subscribe((data: any) => {
+        this.UserProfile = data;
+      });
     }
      this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations ));
   }
@@ -48,12 +54,12 @@ export class SearchBookingComponent implements OnInit {
    
     this.isloaded = true;
     
-    if (this.usuario) {
+    if (this.UserProfile) {
       this.validateForm = true;
       let values = Object.values(this.reservation);
       let merged = values.flat(1);
       this.filteredReservations = merged.filter((x) => {
-        return (x.user_id == this.usuario.id)
+        return (x.user_id == this.UserProfile.id)
       });
       
       if(this.filteredReservations.length > 0){
