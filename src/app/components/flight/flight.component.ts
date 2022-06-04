@@ -95,7 +95,6 @@ export class FlightComponent implements OnInit {
     if(this.flights == undefined || null){
       let retrievedFlights = JSON.parse(this.local.getUsuario('flights') || '{}');
       this.flights = retrievedFlights;
-      return this.flights;
     }
     this.flightStatus = false;
     this.source = SearchPara.source;
