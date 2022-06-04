@@ -53,7 +53,7 @@ export class SearchBookingComponent implements OnInit {
       let values = Object.values(this.reservation);
       let merged = values.flat(1);
       this.filteredReservations = merged.filter((x) => {
-        return (x.passenger_email == this.usuario.email)
+        return (x.user_id == this.usuario.id)
       });
       
       if(this.filteredReservations.length > 0){

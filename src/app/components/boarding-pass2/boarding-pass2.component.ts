@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/shared/Services/auth.service';
 import { FlightService } from 'src/app/shared/Services/flight.service';
 import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
 export class User {
+  id?: any;
   name: any;
   email: any;
 }
@@ -46,7 +47,7 @@ export class BoardingPass2Component implements OnInit {
     let values = Object.values(this.reservation);
     let merged = values.flat(1);
     this.filteredReservations = merged.filter((x) => {
-        return (x.passenger_email == this.UserProfile.email)
+        return (x.user_id == this.UserProfile.id)
     });
     if(this.filteredReservations.length > 0){
       this.searchStatus = true;
