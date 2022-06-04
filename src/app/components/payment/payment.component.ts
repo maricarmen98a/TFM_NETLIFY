@@ -62,6 +62,9 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {   
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject; 
+    this.authService.profileUser().subscribe((data: any) => {
+      this.UserProfile = data;
+    });
     this.GetMonths();
     this.GetYears(); 
     this.stringToTime();
@@ -200,9 +203,6 @@ export class PaymentComponent implements OnInit {
     this.paymentmodel.cardYear = this.expiryYear.value;  
     this.paymentmodel.cvc = this.cvc.value; 
     this.paymentmodel.cardType = this.selectedValue.value;
-    this.authService.profileUser().subscribe((data: any) => {
-      this.UserProfile = data;
-    });
     this.reservation.user_id = this.UserProfile.id;
     this.reservation.passenger_name = this.UserProfile.name;
     this.reservation.passenger_email = this.UserProfile.email;
