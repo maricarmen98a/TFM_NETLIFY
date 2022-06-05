@@ -4,7 +4,7 @@ export interface TimeFlight {
     seconds: Number
 }
 export class ReservationDTO {
-    id: number;
+    id?: number;
     user_id: number;
     flight_id: number;
     passenger_name: string;
@@ -23,7 +23,6 @@ export class ReservationDTO {
     arrival_hour: string;
   
     constructor(
-        id: number,
         user_id: number,
         flight_id: number,
         passenger_name: string,
@@ -41,7 +40,6 @@ export class ReservationDTO {
         boarding_hour: string,
         arrival_hour: string
     ) {
-        this.id = id,
         this.user_id = user_id,
         this.flight_id = flight_id,
         this.passenger_name = passenger_name,

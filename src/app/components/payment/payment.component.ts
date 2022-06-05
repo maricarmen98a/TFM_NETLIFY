@@ -222,23 +222,14 @@ export class PaymentComponent implements OnInit {
   SaveCardDetails(){    
     
     this.isSubmitted = true;
-    this.paymentmodel.fullName = this.name.value; 
-    this.paymentmodel.cardNumber = this.cardNumber.value; 
-    this.paymentmodel.cardMonth = this.expiryMonth.value;
-    this.paymentmodel.cardYear = this.expiryYear.value;  
-    this.paymentmodel.cvc = this.cvc.value; 
-    this.paymentmodel.cardType = this.selectedValue.value;
-
     if(this.cvc.value == 666) {
       this.noError = false;
     }
     if(this.paymentForm.valid && this.noError == true){
       this.cardDetailsValidate = true;
+      this.reservation.user_id = this.UserProfile.id;
+
       if(this.itExists == true) {
-        
-        this.reservation.user_id = this.UserProfile.id;
-        this.reservation.passenger_name = this.UserProfile.name;
-        this.reservation.passenger_email = this.UserProfile.email;
         this.reservation.price = this.totalPrice;
         this.flightService.updateReservation(this.reservation, this.reservation.id).subscribe();
         console.log('se ha actualizado')
