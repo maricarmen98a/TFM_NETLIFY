@@ -68,7 +68,11 @@ export class PaymentComponent implements OnInit {
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
     }); 
-    
+    if(this.isSignedIn == true) {
+      this.authService.profileUser().subscribe((data: any) => {
+        this.UserProfile = data;
+      });
+    }
     this.GetMonths();
     this.GetYears(); 
     this.stringToTime();
@@ -231,14 +235,10 @@ export class PaymentComponent implements OnInit {
     if(this.paymentForm.valid && this.noError == true){
       this.cardDetailsValidate = true;
       if(this.itExists == true) {
-        if(this.isSignedIn == true) {
-          this.authService.profileUser().subscribe((data: any) => {
-            this.UserProfile = data;
-            this.reservation.user_id = this.UserProfile.id;
-            this.reservation.passenger_name = this.UserProfile.name;
-            this.reservation.passenger_email = this.UserProfile.email;
-          });
-        }
+        
+        this.reservation.user_id = this.UserProfile.id;
+        this.reservation.passenger_name = this.UserProfile.name;
+        this.reservation.passenger_email = this.UserProfile.email;
         this.reservation.price = this.totalPrice;
         this.flightService.updateReservation(this.reservation, this.reservation.id).subscribe();
         console.log('se ha actualizado')
