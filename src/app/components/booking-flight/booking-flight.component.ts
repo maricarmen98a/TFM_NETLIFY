@@ -72,6 +72,7 @@ export class BookingFlightComponent implements OnInit {
       this.validateForm = true;
       this.reservations.passenger_email = this.users.email;
       this.reservations.passenger_name = this.users.name;
+      this.reservations.user_id = this.users.id;
       this.reservations.passenger_passport = this.userForm.value.passport;
       this.reservations.passenger_phone = this.userForm.value.phone;
       this.reservations.airline = this.flight.airline;
