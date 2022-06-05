@@ -63,11 +63,6 @@ export class PaymentComponent implements OnInit {
     });
   } 
   ngOnInit() {  
-    this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
-    if(this.reservas == undefined || null) {
-      this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
-      return this.reservas;
-    }
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject; 
     this.auth.userAuthState.subscribe((val) => {
@@ -197,7 +192,10 @@ export class PaymentComponent implements OnInit {
     }
 }
   checkIfExists() {
-    
+    if(this.reservas == undefined || null) {
+      this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
+      return this.reservas;
+    }
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject;
     let values = Object.values(this.reservas);
