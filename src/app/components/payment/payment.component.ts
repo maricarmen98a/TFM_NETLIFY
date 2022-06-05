@@ -63,11 +63,11 @@ export class PaymentComponent implements OnInit {
     });
   } 
   ngOnInit() {  
+    let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
+    this.reservation = retrievedObject; 
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
     }); 
-    let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
-    this.reservation = retrievedObject; 
     if(this.isSignedIn == true) {
       this.authService.profileUser().subscribe((data: any) => {
         this.UserProfile = data;
@@ -76,7 +76,6 @@ export class PaymentComponent implements OnInit {
         this.reservation.passenger_email = this.UserProfile.email;
       });
     }
-    
     this.GetMonths();
     this.GetYears(); 
     this.stringToTime();
