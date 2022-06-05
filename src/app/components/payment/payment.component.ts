@@ -71,6 +71,7 @@ export class PaymentComponent implements OnInit {
     if(this.isSignedIn == true) {
       this.authService.profileUser().subscribe((data: any) => {
         this.UserProfile = data;
+        this.reservation.user_id = this.UserProfile.id;
       });
     }
     
@@ -217,7 +218,6 @@ export class PaymentComponent implements OnInit {
     this.paymentmodel.cardYear = this.expiryYear.value;  
     this.paymentmodel.cvc = this.cvc.value; 
     this.paymentmodel.cardType = this.selectedValue.value;
-    this.reservation.user_id = this.UserProfile.id;
     this.reservation.passenger_name = this.UserProfile.name;
     this.reservation.passenger_email = this.UserProfile.email;
     if(this.cvc.value == 666) {
