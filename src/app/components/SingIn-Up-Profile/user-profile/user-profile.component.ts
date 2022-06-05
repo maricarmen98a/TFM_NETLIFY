@@ -51,6 +51,8 @@ export class UserProfileComponent implements OnInit {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
       this.local.setUsuario('usuario', JSON.stringify(this.UserProfile))
+      console.log(this.UserProfile)
+      console.log('ngoninit userprofile this.UserProfile')
     });
     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations)); 
     let gates = [ "A2", "A4", "B6", "C7", "D4", "No está definida" ];

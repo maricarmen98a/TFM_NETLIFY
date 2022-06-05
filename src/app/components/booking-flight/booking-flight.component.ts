@@ -44,6 +44,8 @@ export class BookingFlightComponent implements OnInit {
   ngOnInit(): void {
     let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
     this.users = retrievedObject;
+    console.log(this.users)
+    console.log('this.users booking flight')
     if(this.users == undefined) {
       this.handleAuthError();
     }
