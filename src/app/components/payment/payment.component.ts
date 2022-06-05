@@ -197,11 +197,17 @@ export class PaymentComponent implements OnInit {
       this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
       return this.reservas;
     }
+    let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
+    this.reservation = retrievedObject;
     let values = Object.values(this.reservas);
     let merged = values.flat(1);
+    console.log(merged)
+    console.log('merged')
     this.booking = merged.filter((x) => {
       return (x.reservation_code == this.reservation.reservation_code)
     })   
+    console.log(this.booking)
+    console.log('this.booking')
     if(this.booking.length > 0) {
       this.itExists = true; 
       this.totalPrice = this.reservation.price;
