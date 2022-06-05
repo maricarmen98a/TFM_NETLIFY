@@ -233,7 +233,9 @@ export class PaymentComponent implements OnInit {
         this.flightService.updateReservation(this.reservation, this.reservation.id).subscribe();
         console.log('se ha actualizado')
       } else {
-        this.reservation.user_id = this.UserProfile.id;
+        if(this.UserProfile){
+          this.reservation.user_id = this.UserProfile.id;
+        }
         console.log(this.reservation)
         console.log('payment this.reservation')
         this.flightService.createReservation(this.reservation).subscribe();
