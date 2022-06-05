@@ -62,12 +62,9 @@ export class BookingFlightComponent implements OnInit {
   }
   stringGen(len: any) {
     let text = "";
-    
     let charset = "abcdefghijklmnopqrstuvwxyz0123456789";
-    
     for (let i = 0; i < len; i++)
       text += charset.charAt(Math.floor(Math.random() * charset.length));
-    
     return text;
   }
   bookFlight() {
