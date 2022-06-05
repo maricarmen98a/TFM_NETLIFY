@@ -192,7 +192,6 @@ export class PaymentComponent implements OnInit {
     }
 }
   checkIfExists() {
-    this.showPrice = true;
     if(this.reservas == undefined || null) {
       this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
       return this.reservas;
@@ -215,6 +214,8 @@ export class PaymentComponent implements OnInit {
         this.reservation.price = this.reservation.price - this.booking[0].price;
       }
     }    
+    this.showPrice = true;
+
   }
   SaveCardDetails(){    
     this.isSubmitted = true;
