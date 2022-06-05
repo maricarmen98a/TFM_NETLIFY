@@ -7,6 +7,7 @@ import { FlightService } from 'src/app/shared/Services/flight.service';
 import { Location } from '@angular/common';
 import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
 import { AuthService } from 'src/app/shared/Services/auth.service';
+import { AuthStateService } from 'src/app/shared/Services/auth-state.service';
 
 @Component({
   selector: 'app-payment',
@@ -43,7 +44,9 @@ export class PaymentComponent implements OnInit {
   selectedValue: FormControl; 
   usuario: any;
   UserProfile!: any;
-  public constructor(private location: Location, public authService: AuthService, public local: LocalStorageService, private formBuilder: FormBuilder, public flightService: FlightService) {
+  isSignedIn: boolean = false;
+
+  public constructor(private location: Location, private auth: AuthStateService, public authService: AuthService, public local: LocalStorageService, private formBuilder: FormBuilder, public flightService: FlightService) {
     this.name = new FormControl('', [Validators.required]);
     this.cardNumber = new FormControl('', [Validators.required, Validators.pattern('^[ 0-9]*$'), Validators.minLength(17)]);
     this.expiryMonth = new FormControl("", Validators.required);
@@ -59,12 +62,17 @@ export class PaymentComponent implements OnInit {
       selectedValue: this.selectedValue
     });
   } 
-  ngOnInit() {   
+  ngOnInit() {  
+    this.auth.userAuthState.subscribe((val) => {
+      this.isSignedIn = val;
+    }); 
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject; 
-    this.authService.profileUser().subscribe((data: any) => {
-      this.UserProfile = data;
-    });
+    if(this.isSignedIn == true) {
+      this.authService.profileUser().subscribe((data: any) => {
+        this.UserProfile = data;
+      });
+    }
     
     this.GetMonths();
     this.GetYears(); 
