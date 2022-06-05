@@ -91,18 +91,19 @@ export class SearchBookingComponent implements OnInit {
       this.filteredReservations = merged.filter((x) => {
         return (x.reservation_code == this.bookingSearch.value)
       });
-    }
-    if(this.filteredReservations.length > 0){
-        this.searchStatus = true;
-        this.userHasBooking = true;
-        this.emptyArray = false;
-      } else { 
-          this.searchStatus = false;
-      }
-    if(this.filteredReservations.length == 0 && !this.bookingSearch.hasError('required')) {
-      this.emptyArray = true;
-    } 
-    let arraySearch = this.filteredReservations[0];
-    this.local.setUsuario('reserva', JSON.stringify(arraySearch))
+   
+      if(this.filteredReservations.length > 0){
+          this.searchStatus = true;
+          this.userHasBooking = true;
+          this.emptyArray = false;
+        } else { 
+            this.searchStatus = false;
+        }
+      if(this.filteredReservations.length == 0 && !this.bookingSearch.hasError('required')) {
+        this.emptyArray = true;
+      } 
+      let arraySearch = this.filteredReservations[0];
+      this.local.setUsuario('reserva', JSON.stringify(arraySearch))
+   }
   }
 }
