@@ -63,6 +63,7 @@ export class PaymentComponent implements OnInit {
     });
   } 
   ngOnInit() {  
+    this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
     if(this.reservas == undefined || null) {
       this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
       return this.reservas;
