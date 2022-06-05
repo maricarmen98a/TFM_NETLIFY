@@ -61,7 +61,8 @@ export class RandomFlightComponent implements OnInit {
       let retrievedFlight = JSON.parse(this.local.getUsuario('flights') || '{}');
     this.flights = retrievedFlight;
     }
-    let values = Object.values(this.flights);
+    if(this.flights) {
+      let values = Object.values(this.flights);
     let merged = values.flat(1);
     let shuffled = merged.sort(function(){return .5 - Math.random()});
     let selected = shuffled.slice(0,4);
@@ -69,6 +70,8 @@ export class RandomFlightComponent implements OnInit {
     this.vuelosAleatorios = true;
     let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
     this.usuario = retrievedObject; 
+    }
+    
   }
   checkUser( ) {
     this.validateForm = true;
