@@ -227,7 +227,6 @@ export class PaymentComponent implements OnInit {
     }
     if(this.paymentForm.valid && this.noError == true){
       this.cardDetailsValidate = true;
-      this.reservation.user_id = this.UserProfile.id;
 
       if(this.itExists == true) {
         this.reservation.price = this.totalPrice;

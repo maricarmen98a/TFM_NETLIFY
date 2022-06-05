@@ -29,7 +29,7 @@ export class BookingFlightComponent implements OnInit {
     public router: Router,
     public local: LocalStorageService
     ) {
-    this.reservations = new ReservationDTO( 1, 1,'', '', '', '', '', '', '', 1, '', '', new Date, new Date, '','' )
+    this.reservations = new ReservationDTO(1, 1, 1,'', '', '', '', '', '', '', 1, '', '', new Date, new Date, '','' )
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.name = new FormControl('', [Validators.required]);
     this.passport = new FormControl('', [Validators.required]);

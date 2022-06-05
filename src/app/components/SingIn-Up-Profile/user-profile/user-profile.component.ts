@@ -50,12 +50,12 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
+      this.local.setUsuario('usuario', JSON.stringify(this.UserProfile))
     });
     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations)); 
     let gates = [ "A2", "A4", "B6", "C7", "D4", "No está definida" ];
     this.gate = gates[Math.floor(Math.random()*gates.length)];
     this.local.setUsuario('gate', JSON.stringify(this.gate));
-    this.local.setUsuario('usuario', JSON.stringify(this.UserProfile));
   }
   step = 0;
   setStep(index: number) {
@@ -93,6 +93,7 @@ export class UserProfileComponent implements OnInit {
   update() {
     this.authService.updateUser(this.userForm.value).subscribe(
       () => {
+        this.local.setUsuario('usuario', JSON.stringify(this.userForm.value))
         this.openSnackBar('Se ha actualizado correctamente', undefined, 'snackbar') 
         
       },

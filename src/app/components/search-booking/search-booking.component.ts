@@ -30,7 +30,8 @@ export class SearchBookingComponent implements OnInit {
   isloaded: boolean = false;
   isSignedIn: boolean = false;
   UserProfile!: User;
-  
+  usuario!: UserDTO;
+
   constructor(public location: Location,public authService: AuthService,  private auth: AuthStateService,  public local: LocalStorageService, private flightService: FlightService) {
     this.bookingSearch = new FormControl('', [
       Validators.required
@@ -41,9 +42,8 @@ export class SearchBookingComponent implements OnInit {
       this.isSignedIn = val;
     });
     if(this.isSignedIn == true) {
-      this.authService.profileUser().subscribe((data: any) => {
-        this.UserProfile = data;
-      });
+      let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
+      this.usuario = retrievedObject;
     }
      this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations ));
   }
@@ -57,12 +57,12 @@ export class SearchBookingComponent implements OnInit {
       this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations));
       return this.reservation;
     } 
-    if (this.UserProfile) {
+    if (this.usuario) {
       this.validateForm = true;
       let values = Object.values(this.reservation);
       let merged = values.flat(1);
       this.filteredReservations = merged.filter((x) => {
-        return (x.user_id == this.UserProfile.id)
+        return (x.user_id == this.usuario.id)
       });
       
       if(this.filteredReservations.length > 0){
