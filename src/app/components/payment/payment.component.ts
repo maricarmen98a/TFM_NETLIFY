@@ -193,12 +193,11 @@ export class PaymentComponent implements OnInit {
     }
 }
   checkIfExists() {
+    this.showPrice = true;
     if(this.reservas == undefined || null) {
       this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
       return this.reservas;
     }
-    this.showPrice = true;
-    
     let values = Object.values(this.reservas);
     let merged = values.flat(1);
     this.booking = merged.filter((x) => {

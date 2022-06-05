@@ -81,7 +81,10 @@ export class SearchBookingComponent implements OnInit {
   search() {
     this.searchForm = true;
     this.isloaded = true;
-     
+    if(this.reservation == undefined || null) {
+      this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations));
+      return this.reservation;
+    }
     if (this.bookingSearch) {
       let values = Object.values(this.reservation);
       let merged = values.flat(1);  

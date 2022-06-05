@@ -9,7 +9,7 @@
       <h2>Información del vuelo</h2>
       <img src="assets/drawing-plane.png" alt="Dibujo de avión">
       <div class="details">
-          <button class="calculate" *ngIf="!showPrice" (click)="checkIfExists()">Calcular precio</button>
+          <button class="calculate" *ngIf="!showPrice" type="button" (click)="checkIfExists()">Calcular precio</button>
           <h2 *ngIf="showPrice">Total: {{ reservation.price | number : '1.2-2' }} €</h2> 
           <p>{{ reservation.origin }} - {{ reservation.destination }}</p>
           <p>{{ reservation.boarding_time | date: 'dd/MM/yyyy'}}</p>
