@@ -13,9 +13,8 @@ export class FooterComponent implements OnInit {
   faBoarding = faTicketAlt;
   faMenu = faEllipsisH;
   isSignedIn!: boolean;
-
+  
   constructor( private auth: AuthStateService) { }
-
   ngOnInit(): void {
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;

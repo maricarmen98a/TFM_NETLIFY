@@ -78,7 +78,6 @@ export class PaymentComponent implements OnInit {
     this.stringToTime();
     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
   }
-
   creditCardNumberSpacing() {
     const input = this.ccNumberField.nativeElement;
     const { selectionStart } = input;
@@ -103,13 +102,10 @@ export class PaymentComponent implements OnInit {
   GetMonths() {
     for (let i = 1; i <= 12; i++) {
       this.month = <IMonth>{};
-      if(i.toString().length == 1)
-      {
+      if(i.toString().length == 1) {
         this.month.text = "0"+i.toString();
         this.month.value = "0"+i.toString();
-      }
-      else
-      {
+      } else {
         this.month.text = i.toString();
         this.month.value = i.toString();
       }
@@ -198,13 +194,9 @@ export class PaymentComponent implements OnInit {
       this.reservation = retrievedObject;
       let values = Object.values(this.reservas);
       let merged = values.flat(1);
-      console.log(merged)
-      console.log('merged')
       this.booking = merged.filter((x) => {
         return (x.reservation_code == this.reservation.reservation_code)
       })   
-      console.log(this.booking)
-      console.log('this.booking')
       if(this.booking.length > 0) {
         this.itExists = true; 
         this.totalPrice = this.reservation.price;
@@ -216,33 +208,24 @@ export class PaymentComponent implements OnInit {
       }    
       this.showPrice = true;
     }
-    
-
   }
   SaveCardDetails(){    
-    
     this.isSubmitted = true;
     if(this.cvc.value == 666) {
       this.noError = false;
     }
     if(this.paymentForm.valid && this.noError == true){
       this.cardDetailsValidate = true;
-
       if(this.itExists == true) {
         this.reservation.price = this.totalPrice;
         this.flightService.updateReservation(this.reservation, this.reservation.id).subscribe();
-        console.log('se ha actualizado')
       } else {
         if(this.UserProfile){
           this.reservation.user_id = this.UserProfile.id;
         }
-        console.log(this.reservation)
-        console.log('payment this.reservation')
         this.flightService.createReservation(this.reservation).subscribe();
-        console.log('se ha creado con id')
       }
       this.local.setUsuario('reserva', JSON.stringify(this.reservation))
-      console.log(this.reservation)
     }
   }
   back(): void {

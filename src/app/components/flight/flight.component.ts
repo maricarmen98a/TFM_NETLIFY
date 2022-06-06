@@ -31,11 +31,7 @@ export class FlightComponent implements OnInit {
   valueStatus: boolean = false;
   source!: string;
   destination!: string;
-  price!: any;
   startDate!: Date;
-  endDate!: Date;
-  nextFlight!: FlightDTO[];
-  heightCaja!: string;
   users: UnregUserDTO;
   booked: boolean = false;
   name: FormControl;
@@ -65,8 +61,7 @@ export class FlightComponent implements OnInit {
     this.auth.userAuthState.subscribe((val) => {
       this.userConfirmado = val;
     });
-/*     this.flightService.getFlight().subscribe((flights: FlightDTO[]) => (this.flights = flights));
- */    this.flightService.getCities().subscribe((cities: CityDTO[]) => (this.cities = cities));
+    this.flightService.getCities().subscribe((cities: CityDTO[]) => (this.cities = cities));
     this.flightService.getCountries().subscribe((countries: CountryDTO[]) => (this.countries = countries));
     this.flightService.getUnregUser().subscribe((users: UnregUserDTO[]) => (this.user = users));
   }
@@ -104,7 +99,6 @@ export class FlightComponent implements OnInit {
     let values = Object.values(this.flights);
     let merged = values.flat(1);
     let listaVuelos = merged.sort((a,b)=>new Date(b.boarding_time).valueOf() - new Date(a.boarding_time).valueOf()).reverse();
-    console.log(listaVuelos)
     if(this.startDate) {
       this.filteredFlights = listaVuelos.filter((x) => {
         return ((x.origin == this.source &&
@@ -115,7 +109,7 @@ export class FlightComponent implements OnInit {
       this.filteredFlights = listaVuelos.filter((x) => {
         return (x.origin == this.source &&
           x.destination == this.destination )
-      })
+      });
     }
     if(this.filteredFlights.length == 0){
       this.searchStatus = true;
@@ -133,16 +127,15 @@ export class FlightComponent implements OnInit {
       this.users.email = this.email.value;
       this.users.name = this.name.value;
       this.users = this.userForm.value;
-      this.flightService.createUnregUser(this.users)
-        .subscribe(() => {
-          this.userConfirmado = true;
-        },
-        (error) => {
-          this.errors = error.error;
-          this.userConfirmado = false;
-        })
+      this.flightService.createUnregUser(this.users).subscribe(() => {
+        this.userConfirmado = true;
+      },
+      (error) => {
+        this.errors = error.error;
+        this.userConfirmado = false;
+      });
     }
-    this.local.setUsuario( 'usuario',JSON.stringify(this.users));  
+    this.local.setUsuario('usuario', JSON.stringify(this.users));  
   }
   setFlight(flight: any) {
     this.local.setUsuario('flight', JSON.stringify(flight)) 

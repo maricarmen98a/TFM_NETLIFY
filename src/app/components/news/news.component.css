@@ -6,9 +6,7 @@
     background-color: var(--button);
     color: white;
     text-decoration: underline;
-   
 }
-
 .covid-info a {
     color: white;
 }
@@ -36,9 +34,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
-
 .mat-card-header {
     padding-bottom: 10px;
     text-align: center;
@@ -47,7 +43,6 @@
 .news {
     padding-bottom: 80px;
     width: 100%;
-
 }
 .mat-card {
     max-width: 400px;
@@ -58,7 +53,6 @@
     justify-content: center;
     align-items: center;
     height: 400px;
-
 }
 .content {
     display: flex;
@@ -81,7 +75,6 @@
     justify-content: center;
     align-items: center;
 }
-
 .content--div {
     display: flex;
 } 

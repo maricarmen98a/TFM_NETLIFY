@@ -5,8 +5,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
-
-
 @Component({
   selector: 'app-extras',
   templateUrl: './extras.component.html',
@@ -18,6 +16,7 @@ export class ExtrasComponent implements OnInit {
   pickup: number = 25;
   activities: number = 20;
   bought: boolean = false;
+
   constructor(private location: Location, public local: LocalStorageService, public flightService: FlightService, private _snackBar: MatSnackBar, public router: Router) { 
     this.suitcase = 50;
     this.activities = 25;

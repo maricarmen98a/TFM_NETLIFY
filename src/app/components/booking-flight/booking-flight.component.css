@@ -44,13 +44,10 @@ input {
     .form-userinfo form {
         width: 400px;
     }
-    
-   
 }
 @media (min-width: 1200px) {
     .container {
         display: flex;
         justify-content: center;
     }
-
 }

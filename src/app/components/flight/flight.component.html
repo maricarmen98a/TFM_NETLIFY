@@ -6,7 +6,6 @@
       <mat-error *ngIf="valueStatus">El origen y el destino no pueden coincidir</mat-error>
     </div>
     <form class="form-flight" #OneWay="ngForm" (ngSubmit)="onSubmit(OneWay.value)" novalidate>
-
       <mat-form-field>
         <mat-label>De <fa-icon [icon]="faPlaneUp"></fa-icon></mat-label>
         <mat-select id="source" name="source" ngModel [(ngModel)]="source" (ngModelChange)="onChangeSource($event)">
@@ -15,11 +14,9 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-        
       <section>
         <button class="boton-cambiar" (click)="change(source, destination)" mat-button><fa-icon [icon]="faChange"></fa-icon></button>
       </section>
-
       <mat-form-field>
         <mat-label > A <fa-icon [icon]="faPlaneDown"></fa-icon></mat-label>
         <mat-select id="destination" name="destination" ngModel [(ngModel)]="destination" (ngModelChange)="onChangedestination($event)">
@@ -28,7 +25,6 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      
     <div class="form-group">
         <div class="form-date">
           <label class="form-date__label" for="input-date">Fecha</label>
@@ -38,7 +34,6 @@
       <button class="boton-buscar" type="submit" value="Search" >Buscar</button>
     </form>
   </div>
-
   <div *ngIf="!flightStatus">
     	<div class="title">
         <h3>
@@ -113,10 +108,9 @@
               </tr>
             </tbody>
           </table>
-            <div *ngIf="userConfirmado" class="bookingStatus">
-                <button routerLink="/booking" (click)="setFlight(flight)" >Seleccionar vuelo</button>
-            </div>
-            
+          <div *ngIf="userConfirmado" class="bookingStatus">
+            <button routerLink="/booking" (click)="setFlight(flight)" >Seleccionar vuelo</button>
+          </div>
         </div>
       </div>
       <div class="clouds">

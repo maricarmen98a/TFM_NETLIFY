@@ -37,7 +37,6 @@ h2 {
 mat-icon {
     color: white;
 }
-
 .clouds, .cloudsLaptop {
     display: flex;
     flex-direction: row;
@@ -68,36 +67,36 @@ mat-icon {
     h2 {
         font-size: 1.6rem;
     }
-     .container {
+    .container {
         display: grid;
         padding-top: 30px;
         grid-template-columns: 300px 300px 300px;
         gap: 60px;
         padding-bottom: 20px;
-     }
-     .clouds {
+    }
+    .clouds {
         display: none;
-     }
-     .text {
-         line-height: 30px;
-     }
-     .cloudsLaptop {
+    }
+    .text {
+        line-height: 30px;
+    }
+    .cloudsLaptop {
         display: flex;
         width: 600px;
         padding-bottom: 20px;
-     }
-     .mat-icon {
-         font-size: 2rem;
-         padding-top: 30px;
-     }
-     .cloudDown {
+    }
+    .mat-icon {
+        font-size: 2rem;
+        padding-top: 30px;
+    }
+    .cloudDown {
         padding-top: 45px;
     }
-     .img-container {
-         height: 200px;
-     }
-     .img-container img {
-         height: 100%;
-         width: 100%;
-     }
+    .img-container {
+        height: 200px;
+    }
+    .img-container img {
+        height: 100%;
+        width: 100%;
+    }
 }

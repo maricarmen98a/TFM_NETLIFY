@@ -14,9 +14,8 @@ export class BoardingPassComponent implements OnInit {
   public myAngularxQrCode: any = null;
 
   constructor(private location: Location,  public local: LocalStorageService) {
-    this.myAngularxQrCode = 'tutsmake.com';
+    this.myAngularxQrCode = 'tfm-mariasma.netlify.app';
   }
-
   ngOnInit(): void {
     let retrievedFlight = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedFlight;
@@ -25,7 +24,6 @@ export class BoardingPassComponent implements OnInit {
     this.reservation.boarding_hour = string2;
     this.gate = JSON.parse(this.local.getUsuario('gate') || '{}')
     this.local.setUsuario('reserva', JSON.stringify(this.reservation))
-
   }
   back(): void {
     this.location.back()

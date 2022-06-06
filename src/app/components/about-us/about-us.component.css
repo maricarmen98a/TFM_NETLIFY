@@ -36,7 +36,6 @@ h2, .grid {
     text-align: center;
     color: white;
 }
-
 @media (min-width: 768px) {
     .grid {
         grid-template-columns: 200px 200px;

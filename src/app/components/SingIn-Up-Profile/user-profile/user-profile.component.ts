@@ -40,7 +40,6 @@ export class UserProfileComponent implements OnInit {
     public local: LocalStorageService,
     private _snackBar: MatSnackBar
     ) {
-    
     this.userForm = this.fb.group({
       name: [''],
       email: [''],
@@ -51,8 +50,6 @@ export class UserProfileComponent implements OnInit {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
       this.local.setUsuario('usuario', JSON.stringify(this.UserProfile))
-      console.log(this.UserProfile)
-      console.log('ngoninit userprofile this.UserProfile')
     });
     this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations)); 
     let gates = [ "A2", "A4", "B6", "C7", "D4", "No está definida" ];
@@ -97,7 +94,6 @@ export class UserProfileComponent implements OnInit {
       () => {
         this.local.setUsuario('usuario', JSON.stringify(this.userForm.value))
         this.openSnackBar('Se ha actualizado correctamente', undefined, 'snackbar') 
-        
       },
       (error) => {
         this.errors = error.error;
@@ -106,13 +102,8 @@ export class UserProfileComponent implements OnInit {
         this.userForm.reset();
         this.authService.profileUser().subscribe((data: any) => {
           this.UserProfile = data;
-          console.log(this.UserProfile)
-          console.log('this.UserProfile en update a ver')
-          console.log(this.UserProfile.id)
           this.local.setUsuario('usuario', JSON.stringify(this.UserProfile));
         });
-       
-
       }
     );
   }

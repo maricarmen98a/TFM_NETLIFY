@@ -32,9 +32,8 @@ export class SelectSeatComponent implements OnInit {
   filteredReservations!: any[];
   checkedTickets: string[] = [];
   bntStyle: string;
-  step: boolean = false;
-  clickcounter: number = 0;
   chosenSeat: boolean = false;
+
   constructor(private location: Location, public local: LocalStorageService, public flightService: FlightService, public tokenService: TokenService, public router: Router, public dialog: MatDialog) {
     this.seat = new FormControl('');
     this.reservations = new ReservationDTO(1, 1, 1,'', '', '','', '', '', '', 1, '', '', new Date, new Date, '', '')

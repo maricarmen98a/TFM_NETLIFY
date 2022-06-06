@@ -40,7 +40,6 @@ a:hover {
 .accordion-container {
   padding-bottom: 80px;
 }
-
 .card-icon img {
   object-fit: contain;
   height: 60px;
@@ -50,20 +49,20 @@ a:hover {
 }
 @media (min-width: 768px) {
   .cloudsLaptop img {
-      max-width: 70px;
+    max-width: 70px;
   }
 }
 @media (min-width: 1200px) {
   .results {
-      border-radius: 24px;
-      width: 100%;
+    border-radius: 24px;
+    width: 100%;
   }
   .container-pass {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      min-height: 82vh;
-      padding-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 82vh;
+    padding-top: 50px;
   }
   .results div:nth-child(1) {
     padding-bottom: 20px;
@@ -71,14 +70,11 @@ a:hover {
   }
   .mat-expansion-panel {
     border-radius: 24px;
-
   }
   .mat-expansion-panel-header {
     width: 800px;
   }
-  
   .cloudsLaptop {
-      width: 600px;
+    width: 600px;
   }
-  
 }

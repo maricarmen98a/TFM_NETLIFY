@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ChangePasswordRequestComponent implements OnInit {
   resetForm: FormGroup;
   errors: any = null;
+
   constructor(
     public fb: FormBuilder,
     public authService: AuthService,
@@ -32,8 +33,8 @@ export class ChangePasswordRequestComponent implements OnInit {
       }, ()=> {
         this.resetForm.reset();
         this.errors = null
-
-      })
+      }
+    )
   }
   back(): void {
     this.location.back()

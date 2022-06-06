@@ -7,18 +7,17 @@ import { TokenService } from 'src/app/shared/Services/token.service';
 import { FlightService } from 'src/app/shared/Services/flight.service';
 import { FlightDTO } from 'src/app/Models/flight';
 import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
-
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-
   loginForm: FormGroup;
   errors: any = null;
   flights!: FlightDTO[];
   usuario!: any;
+
   constructor(
     public router: Router,
     public fb: FormBuilder,
@@ -28,7 +27,6 @@ export class SigninComponent implements OnInit {
     public tokenService: TokenService,
     public flightService: FlightService,
     public local: LocalStorageService,
-
   ) {
     this.loginForm = this.fb.group({
       email: [''],
@@ -54,8 +52,6 @@ export class SigninComponent implements OnInit {
         this.authService.profileUser().subscribe((data: any) => {
           this.usuario = data;
           this.local.setUsuario('usuario', JSON.stringify(this.usuario))
-          console.log(this.usuario)
-
         });
         this.loginForm.reset();
         this.router.navigate(['profile']);

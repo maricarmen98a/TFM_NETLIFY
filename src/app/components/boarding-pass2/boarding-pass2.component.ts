@@ -50,21 +50,19 @@ export class BoardingPass2Component implements OnInit {
       return this.reservation;
     }
     if(this.UserProfile) {
-       let values = Object.values(this.reservation);
-    let merged = values.flat(1);
-    this.filteredReservations = merged.filter((x) => {
-        return (x.user_id == this.UserProfile.id)
-    });
-    if(this.filteredReservations.length > 0){
-      this.searchStatus = true;
-      this.userHasBooking = true;
-    } else { 
-      this.searchStatus = false;
+      let values = Object.values(this.reservation);
+      let merged = values.flat(1);
+      this.filteredReservations = merged.filter((x) => {
+          return (x.user_id == this.UserProfile.id)
+      });
+      if(this.filteredReservations.length > 0){
+        this.searchStatus = true;
+        this.userHasBooking = true;
+      } else { 
+        this.searchStatus = false;
+      }
+      this.local.setUsuario('reserva', JSON.stringify(this.filteredReservations))
     }
-    this.local.setUsuario('reserva', JSON.stringify(this.filteredReservations))
-    }
-   
-    
   }
   step = 0;
   setStep(index: number) {

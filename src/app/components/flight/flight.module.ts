@@ -13,8 +13,6 @@ import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/mater
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { LOCALE_ID } from '@angular/core';
 
-
-
 export const MY_FORMATS = {
   parse: {
     dateInput: 'YYYY-MM-DD',
@@ -29,7 +27,6 @@ export const MY_FORMATS = {
 
 @NgModule({
   declarations: [
-    
   ],
   imports: [
     BrowserModule,
@@ -42,8 +39,6 @@ export const MY_FORMATS = {
     MatDatepickerModule,
     MatNativeDateModule,
     MomentDateModule,
-    
-    
   ],
   providers: [
     {

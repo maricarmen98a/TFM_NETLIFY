@@ -10,15 +10,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-
   registerForm: FormGroup;
   errors: any = null;
+
   constructor(
     public router: Router,
     public fb: FormBuilder,
     public authService: AuthService,
     private _snackBar: MatSnackBar
-
   ) {
     this.registerForm = this.fb.group({
       name: [''],

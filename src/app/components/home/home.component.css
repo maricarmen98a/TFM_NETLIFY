@@ -16,21 +16,18 @@
     border-radius: 20px;
     padding-bottom: 30px;
 }
-
 @media screen and (min-width: 540px) {
     .home-banner {
         display: flex;
         background-image: url("../../../assets/avionTablet.webp");
         padding-top: 200px;
     }  
-
 }
 @media (min-width: 1200px) {
     .caja-vuelos {
         width: 900px;
         margin-top: 350px;
         margin-bottom: 0;
-    
     }
     .home-banner {
         background-image: url("../../../assets/avionLaptop.webp");
@@ -41,6 +38,5 @@
 @media (min-width: 1400px) {
     .home-banner {
         padding-top: 150px;
-
     }
 }

@@ -1,7 +1,6 @@
 :root {
     --button: #BB1D1D;
 }
-
 body {
     display: flex;
     flex-direction: column;
@@ -18,7 +17,7 @@ body {
     margin-right: 90px;
 }
 .circle-icon {
-    background: #BB1D1D;
+    background: var(--button);
     opacity: 88%;
     padding: 9px;
     border-radius: 100%;
@@ -43,11 +42,10 @@ button {
     top: 0;
     left: 0;
     background-color: #00000057;
-  
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
 .loading img {
     animation: floating 2s infinite;
 }
@@ -59,7 +57,6 @@ button {
     margin-left: 30px;
     margin-top: 5px;
 }
- 
 @keyframes floating {
     0% { transform: translate(0,  0px); }
     50%  { transform: translate(0, 15px); }
@@ -78,12 +75,12 @@ button {
     background-color: var(--button-click);
 }
 .button-container {
-        bottom: 140px;
-        right: 0;
-        height: 0;
-        text-align: end;
-        padding-right: 20px;
-        position: fixed;
+    bottom: 140px;
+    right: 0;
+    height: 0;
+    text-align: end;
+    padding-right: 20px;
+    position: fixed;
 }
 @media (min-width: 1200px) {
     .button-container {

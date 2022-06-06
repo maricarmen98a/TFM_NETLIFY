@@ -76,7 +76,6 @@ a {
         height: 880px;
         background-position: 0 3.28%;
     }
-   
     h3 {
         font-size: 1.6rem;
     }
@@ -93,7 +92,6 @@ a {
     .info-form div {
         margin-left: 0;
     }
-    
 }
 @media (min-width: 1400px) {
     .login {

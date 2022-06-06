@@ -29,7 +29,6 @@ export class HelpFormComponent implements OnInit {
   }
   onSubmit() {
     this.validateForm = true;
-
     this.submitted = true;
     if (this.mailForm.invalid) {
       return;

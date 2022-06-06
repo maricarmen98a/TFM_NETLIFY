@@ -97,13 +97,11 @@ input {
     animation-delay: 2s;
     padding-top: 50px;
 }
-
 .cloudDown {
     padding-top: 15px;
 }
 .cloudsLaptop img {
-    max-width: 40px;
-   
+    max-width: 40px; 
 }
 @media (min-width: 768px) {
     .cloudsLaptop img {

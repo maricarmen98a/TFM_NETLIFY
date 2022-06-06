@@ -29,7 +29,6 @@ export class SearchBookingComponent implements OnInit {
   searchForm: boolean = false;
   isloaded: boolean = false;
   isSignedIn: boolean = false;
-  UserProfile!: User;
   usuario!: UserDTO;
 
   constructor(public location: Location,public authService: AuthService,  private auth: AuthStateService,  public local: LocalStorageService, private flightService: FlightService) {
@@ -51,7 +50,6 @@ export class SearchBookingComponent implements OnInit {
     this.location.back()
   }
   loadData() {
-   
     this.isloaded = true;
     if(this.reservation == undefined || null) {
       this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations));
@@ -64,13 +62,12 @@ export class SearchBookingComponent implements OnInit {
       this.filteredReservations = merged.filter((x) => {
         return (x.user_id == this.usuario.id)
       });
-      
       if(this.filteredReservations.length > 0){
-          this.searchStatus = true;
-          this.userHasBooking = true;
-          this.emptyArray = false;
+        this.searchStatus = true;
+        this.userHasBooking = true;
+        this.emptyArray = false;
       } else { 
-          this.searchStatus = false;
+        this.searchStatus = false;
       }
     }
     this.local.setUsuario('reserva', JSON.stringify(this.filteredReservations))
@@ -84,26 +81,25 @@ export class SearchBookingComponent implements OnInit {
     if(this.reservation == undefined || null) {
       this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservation = reservations));
       return this.reservation;
-    }
+    };
     if (this.bookingSearch) {
       let values = Object.values(this.reservation);
       let merged = values.flat(1);  
       this.filteredReservations = merged.filter((x) => {
         return (x.reservation_code == this.bookingSearch.value)
       });
-   
       if(this.filteredReservations.length > 0){
-          this.searchStatus = true;
-          this.userHasBooking = true;
-          this.emptyArray = false;
-        } else { 
-            this.searchStatus = false;
-        }
+        this.searchStatus = true;
+        this.userHasBooking = true;
+        this.emptyArray = false;
+      } else { 
+        this.searchStatus = false;
+      }
       if(this.filteredReservations.length == 0 && !this.bookingSearch.hasError('required')) {
         this.emptyArray = true;
       } 
       let arraySearch = this.filteredReservations[0];
       this.local.setUsuario('reserva', JSON.stringify(arraySearch))
-   }
+    }
   }
 }
