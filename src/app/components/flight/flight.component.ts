@@ -138,5 +138,4 @@ export class FlightComponent implements OnInit {
   setFlight(flight: any) {
     this.local.setUsuario('flight', JSON.stringify(flight)) 
   }   
-
 }
