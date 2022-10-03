@@ -65,7 +65,6 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {  
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject; 
-    console.log(this.reservation)
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
     }); 
