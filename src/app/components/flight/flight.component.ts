@@ -58,9 +58,7 @@ export class FlightComponent implements OnInit {
     });
   }
   ngOnInit() { 
-    this.auth.userAuthState.subscribe((val) => {
-      this.userConfirmado = val;
-    });
+    this.auth.userAuthState.subscribe((val) => { this.userConfirmado = val;});
     this.flightService.getCities().subscribe((cities: CityDTO[]) => (this.cities = cities));
     this.flightService.getCountries().subscribe((countries: CountryDTO[]) => (this.countries = countries));
     this.flightService.getUnregUser().subscribe((users: UnregUserDTO[]) => (this.user = users));

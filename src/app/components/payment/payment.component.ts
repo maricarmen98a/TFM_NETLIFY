@@ -65,6 +65,7 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {  
     let retrievedObject = JSON.parse(this.local.getUsuario('reserva') || '{}');
     this.reservation = retrievedObject; 
+    console.log(this.reservation)
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
     }); 
@@ -75,8 +76,8 @@ export class PaymentComponent implements OnInit {
     }
     this.GetMonths();
     this.GetYears(); 
-    this.stringToTime();
-    this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
+/*     this.stringToTime();
+ */    this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
   }
   creditCardNumberSpacing() {
     const input = this.ccNumberField.nativeElement;
@@ -121,7 +122,7 @@ export class PaymentComponent implements OnInit {
       this.years.push(this.year);
     }
   }
-  stringToTime() {
+  /* stringToTime() {
     var origStr = this.reservation.boarding_hour;
     var n = origStr.search(":");
     var hrPart = origStr.substring(0, n);
@@ -183,7 +184,7 @@ export class PaymentComponent implements OnInit {
         }
       } 
     }
-}
+} */
   checkIfExists() {
     if(this.reservas == undefined || null) {
       this.flightService.getReservation().subscribe((reservations: ReservationDTO[]) => (this.reservas = reservations));
