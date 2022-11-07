@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class SignupComponent implements OnInit {
   registerForm: FormGroup;
   errors: any = null;
-
+  roles: any = ['admin', 'pilot', 'passenger']
   constructor(
     public router: Router,
     public fb: FormBuilder,
@@ -24,6 +24,7 @@ export class SignupComponent implements OnInit {
       email: [''],
       password: [''],
       password_confirmation: [''],
+      role: [''],
     });
   }
   ngOnInit() {}

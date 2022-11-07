@@ -17,6 +17,7 @@ export class SigninComponent implements OnInit {
   errors: any = null;
   flights!: FlightDTO[];
   usuario!: any;
+  isLogin = false;
 
   constructor(
     public router: Router,
@@ -54,11 +55,18 @@ export class SigninComponent implements OnInit {
           this.local.setUsuario('usuario', JSON.stringify(this.usuario))
           console.log(this.usuario)
         });
-       
         this.loginForm.reset();
         this.router.navigate(['profile']);
       }
     );
+  }
+  isLoggedIn() {
+    const loggedIn = localStorage.getItem('STATE');
+    if (loggedIn == 'true')
+      this.isLogin = true;
+    else
+      this.isLogin = false;
+    return this.isLogin;
   }
   responseHandler(data:any) {
     this.token.handleData(data.access_token);

@@ -33,6 +33,14 @@
     <div class="error" *ngIf="errors?.password_confirmation">
       {{ errors?.password_confirmation }}
     </div>
+    <div class="form-group">
+      <label>Rol</label>
+      <select name="role" id="role" formControlName="role" >
+        <option value="" disabled>Elige el rol:</option>
+        <option *ngFor="let role of roles" [ngValue]="role">{{role}}</option>
+        
+      </select>
+    </div>
     <div class="boton">
       <button type="submit">
         Registrarse
