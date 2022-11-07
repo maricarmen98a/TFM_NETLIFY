@@ -61,14 +61,6 @@ export class SigninComponent implements OnInit {
       }
     );
   }
-  isLoggedIn() {
-    const loggedIn = localStorage.getItem('STATE');
-    if (loggedIn == 'true')
-      this.isLogin = true;
-    else
-      this.isLogin = false;
-    return this.isLogin;
-  }
   responseHandler(data:any) {
     this.token.handleData(data.access_token);
     console.log('aqui esta el handledata de login mas el access token ' + data.access_token)
