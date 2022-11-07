@@ -15,7 +15,6 @@ export class AuthGuard implements CanActivate {
             this.isSignedIn = val; 
         });
         if (this.isSignedIn) {
-            console.log('prueba2')
             // check if route is restricted by role
             if (route.data['role'] && route.data['role'].indexOf(retrievedObject.role) === -1) {
                 // role not authorised so redirect to home page
