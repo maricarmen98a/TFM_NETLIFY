@@ -15,30 +15,30 @@ export class FlightService {
   flights!: FlightDTO;
 
   constructor(private http: HttpClient) { }
-
+  baseUrl = 'https://stark-sands-97153.herokuapp.com/api';
   getFlight(): Observable<any> {
-    return this.http.get<FlightDTO[]>('https://stark-sands-97153.herokuapp.com/api/flights').pipe(catchError(this.handleError));
+    return this.http.get<FlightDTO[]>(this.baseUrl + '/flights').pipe(catchError(this.handleError));
   }
   getReservation(): Observable<any> {
-    return this.http.get<ReservationDTO[]>('https://stark-sands-97153.herokuapp.com/api/reservations').pipe(catchError(this.handleError));
+    return this.http.get<ReservationDTO[]>(this.baseUrl + '/reservations').pipe(catchError(this.handleError));
   }
   getUnregUser(): Observable<any> {
-    return this.http.get<UnregUserDTO[]>('  https://stark-sands-97153.herokuapp.com/api/unreguser').pipe(catchError(this.handleError));
+    return this.http.get<UnregUserDTO[]>(this.baseUrl + '/unreguser').pipe(catchError(this.handleError));
   }
   createUnregUser(data: any): Observable<any> {
-    return this.http.post('https://stark-sands-97153.herokuapp.com/api/unreguser', data)
+    return this.http.post(this.baseUrl + '/unreguser', data)
   }
   createReservation(data:any): Observable<any> {
-    return this.http.post('https://stark-sands-97153.herokuapp.com/api/reservations', data)
+    return this.http.post(this.baseUrl + '/reservations', data)
   }
   updateReservation(data:any, id:any): Observable<any> {
-    return this.http.put('https://stark-sands-97153.herokuapp.com/api/reservations/'+ id, data)
+    return this.http.put(this.baseUrl + '/reservations/'+ id, data)
   }
   getCities(): Observable<any> {
-    return this.http.get<CityDTO[]>('https://stark-sands-97153.herokuapp.com/api/cities');
+    return this.http.get<CityDTO[]>(this.baseUrl + '/cities');
   }
   getCountries(): Observable<any> {
-    return this.http.get<CountryDTO[]>('https://stark-sands-97153.herokuapp.com/api/countries');
+    return this.http.get<CountryDTO[]>(this.baseUrl + '/countries');
 }
 
 private handleError(err: HttpErrorResponse) {
