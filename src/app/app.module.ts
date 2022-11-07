@@ -53,7 +53,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-
+import { AuthGuard } from './shared/Services/auth-guard.service';
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -117,7 +117,7 @@ registerLocaleData(localeEs);
   entryComponents: [
     ConfirmationDialogComponent
   ],
-  providers: [
+  providers: [ AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

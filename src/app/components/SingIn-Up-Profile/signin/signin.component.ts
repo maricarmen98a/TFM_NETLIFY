@@ -52,7 +52,9 @@ export class SigninComponent implements OnInit {
         this.authService.profileUser().subscribe((data: any) => {
           this.usuario = data;
           this.local.setUsuario('usuario', JSON.stringify(this.usuario))
+          console.log(this.usuario)
         });
+       
         this.loginForm.reset();
         this.router.navigate(['profile']);
       }

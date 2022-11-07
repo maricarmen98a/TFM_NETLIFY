@@ -19,9 +19,11 @@ import { SigninComponent } from './components/SingIn-Up-Profile/signin/signin.co
 import { SignupComponent } from './components/SingIn-Up-Profile/signup/signup.component';
 import { UserProfileComponent } from './components/SingIn-Up-Profile/user-profile/user-profile.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { AuthGuard } from './shared/Services/auth-guard.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'login', component: SigninComponent },
   { path: 'register', component: SignupComponent },
   { path: 'profile', component: UserProfileComponent },
@@ -30,15 +32,35 @@ const routes: Routes = [
   { path: 'flights', component: FlightComponent },
   { path: 'booking', component: BookingFlightComponent },
   { path: 'extras', component: ExtrasComponent },
-  { path: 'policy', component: CookiesComponent },
-  { path: 'covid', component: CovidComponent },
+  { path: 'policy', component: CookiesComponent,
+    canActivate: [AuthGuard],
+      data: {
+        role: ['admin', 'passenger']
+      }  
+  },
+  { path: 'covid', component: CovidComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ['admin', 'pilot']
+    }  
+  },
   { path: 'select-seat', component: SelectSeatComponent },
   { path: 'search-booking', component: SearchBookingComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'boarding-pass', component: BoardingPassComponent },
   { path: 'boarding', component: BoardingPass2Component },
-  { path: 'help', component: HelpFormComponent },
-  { path: 'about-us', component: AboutUsComponent },
+  { path: 'help', component: HelpFormComponent,
+    canActivate: [AuthGuard],
+      data: {
+        role: ['admin', 'passenger']
+      }  
+  },
+  { path: 'about-us', component: AboutUsComponent, 
+    canActivate: [AuthGuard],
+    data: {
+      role: ['admin', 'pilot']
+    } 
+  },
   { path: '404', component: PagenotfoundComponent },
   {path: '**', redirectTo: '/404'}
 ];
