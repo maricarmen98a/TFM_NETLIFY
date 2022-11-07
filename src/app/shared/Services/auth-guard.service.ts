@@ -6,15 +6,20 @@ import { TokenService } from './token.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+    isSignedIn!: boolean;
 
     constructor( private router: Router, public local: LocalStorageService, private auth: AuthStateService, public token: TokenService) { }
 
     canActivate (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
-        this.token.isLoggedIn();
+        this.auth.userAuthState.subscribe((val) => {
+            this.isSignedIn = val;
+          });
+        
+        console.log(this.isSignedIn)
         console.log('pruebaaa')
         console.log(this.token.isLoggedIn())
-        if (this.token.isLoggedIn()) {
+        if (this.isSignedIn) {
             console.log('prueba2')
             // check if route is restricted by role
             if (route.data['role'] && route.data['role'].indexOf(retrievedObject.role) === -1) {
