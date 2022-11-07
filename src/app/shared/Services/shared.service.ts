@@ -17,12 +17,9 @@ export interface ResponseError {
 })
 export class SharedService {
   private loading$: ReplaySubject<boolean>;
-
   constructor() {
     this.loading$ = new ReplaySubject<boolean>(1);
-
   }
-
   async managementToast(
     element: string,
     validRequest: boolean,
@@ -52,13 +49,11 @@ export class SharedService {
             '. Status code: ' +
             error?.statusCode;
         }
-
         await this.wait(2500);
         toastMsg.className = toastMsg.className.replace('show', '');
       }
     }
   }
-
   errorLog(error: ResponseError): void {
     console.error('path:', error.path);
     console.error('timestamp:', error.timestamp);
@@ -66,7 +61,6 @@ export class SharedService {
     console.error('messageDetail:', error.messageDetail);
     console.error('statusCode:', error.statusCode);
   }
-
   async wait(ms: number) {
     return new Promise((resolve) => {
       setTimeout(resolve, ms);

@@ -15,8 +15,8 @@
           <p>{{ reservation.boarding_time | date: 'dd/MM/yyyy'}}</p>
           <p>Sin escalas</p>
           <p>{{ reservation.boarding_hour | removeDigits }} - {{ reservation.arrival_hour | removeDigits }}</p>
-<!--           <p>Duración del vuelo: {{ hoursFlight }}</p>
- -->      </div>
+          <p>Duración del vuelo: {{ hoursFlight }}</p>
+      </div>
     </div>
     <div *ngIf="!cardDetailsValidate" class="container-card" >
         <h2>Datos de la tarjeta</h2>

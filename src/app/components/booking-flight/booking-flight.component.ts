@@ -6,6 +6,7 @@ import { TokenService } from 'src/app/shared/Services/token.service';
 import { Location } from '@angular/common';
 import { LocalStorageService } from 'src/app/shared/Services/local-storage.service';
 import { UserDTO } from 'src/app/Models/user.dto';
+
 @Component({
   selector: 'app-booking-flight',
   templateUrl: './booking-flight.component.html',

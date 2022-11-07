@@ -6,12 +6,10 @@ export interface IPaymentModel{
     cvc:string;
     cardType:string;
 }
-
 export interface IMonth {
     text: string,
     value: string,
 }
-
 export interface IYear {
     text: string,
     value: string,

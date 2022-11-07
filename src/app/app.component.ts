@@ -14,20 +14,24 @@ export class AppComponent {
   constructor(private sharedService: SharedService){
     this.loading = true;
   }
+
   ngOnInit(): void {
     if(this.loading == true) {
       document.body.style.overflow = 'hidden';
     } 
+    
     setTimeout(()=>{
       this.loading = false;
       document.body.style.overflow = 'auto'
     }, 2000);
+    
     this.sharedService.getLoading().subscribe(loading => this.loading = loading);
   }
-  disableScroll() {
+   disableScroll() {
     document.body.classList.add("stop-scrolling");
-  }
-  enableScroll() {
+}
+  
+ enableScroll() {
     document.body.classList.remove("stop-scrolling");
-  }
+}
 }

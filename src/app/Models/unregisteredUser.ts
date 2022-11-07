@@ -2,7 +2,6 @@ export interface UserInterface {
   name: string;
   email: string;
   }
-
 export class UnregUserDTO {
   name: string;
   email: string;

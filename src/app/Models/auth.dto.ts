@@ -3,7 +3,6 @@ export class AuthDTO {
   access_token: string;
   email: string;
   password: string;
-
   constructor(
     user_id: string,
     access_token: string,

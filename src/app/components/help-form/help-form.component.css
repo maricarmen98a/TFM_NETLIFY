@@ -45,6 +45,7 @@ h2 {
     justify-content: center;
     padding-top: 20px;
 }
+
 label {
     padding-top: 10px;
 }
@@ -53,6 +54,7 @@ label {
         width: 60%;
         border-radius: 24px;
     }
+    
     .help-form {
         min-height: 80vh;
     } 

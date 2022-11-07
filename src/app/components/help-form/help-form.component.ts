@@ -39,7 +39,7 @@ export class HelpFormComponent implements OnInit {
       helpForm.append('myUsername', this.mailForm.value.firstname);
       helpForm.append('myEmail', this.mailForm.value.email);
       helpForm.append('textquery', this.mailForm.value.textquery);
-      return this.http.post('https://stark-sands-97153.herokuapp.com/api/send/email', helpForm).subscribe();
+      return this.http.post('http://127.0.0.1:8000/api/send/email', helpForm).subscribe();
     }
   }
   ngOnInit() {}

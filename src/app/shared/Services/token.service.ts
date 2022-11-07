@@ -37,7 +37,6 @@ export class TokenService {
     catch(Error){
       return null;
     }
-   
   }
   isLoggedIn() {
     return this.isValidToken();

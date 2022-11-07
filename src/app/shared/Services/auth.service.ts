@@ -16,29 +16,38 @@ export interface AuthToken {
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = 'https://stark-sands-97153.herokuapp.com/api/';
   getAccessToken() {
     throw new Error('Method not implemented.');
   }
   constructor(private http: HttpClient) {}
+  private isAuthenticated!: boolean;
+ 
+
+  public isRouteAuthenticated():boolean{
+    return this.isAuthenticated;
+  }
+
+  public setIsAuthenticated(isAuth:boolean):void{
+    this.isAuthenticated = isAuth;
+  }
   register(user: User): Observable<any> {
-    return this.http.post(this.baseUrl + 'auth/register', user);
+    return this.http.post('https://stark-sands-97153.herokuapp.com/api/auth/register', user);
   }
   signin(user: User): Observable<any> {
-    return this.http.post<any>(this.baseUrl + 'auth/login', user);
+    return this.http.post<any>('https://stark-sands-97153.herokuapp.com/api/auth/login', user);
   }
   profileUser() {
-    return this.http.get(this.baseUrl + 'auth/user-profile');
+    return this.http.get('https://stark-sands-97153.herokuapp.com/api/auth/user-profile');
   }
   updateUser( user: User): Observable<any> {
-    return this.http.post<any>(this.baseUrl + 'auth/user-profile', user);
+    return this.http.post<any>('https://stark-sands-97153.herokuapp.com/api/auth/user-profile', user);
   } 
   sendResetPasswordLink(data: any) {
-    return this.http.post(this.baseUrl + 'auth/reset-password-request', data)
+    return this.http.post('https://stark-sands-97153.herokuapp.com/api/auth/reset-password-request', data)
   }
   resetPassword(data: any) {
-    return this.http.post(this.baseUrl + 
-      'auth/change-password',
+    return this.http.post(
+      'https://stark-sands-97153.herokuapp.com/api/auth/change-password',
       data
     );
   }
