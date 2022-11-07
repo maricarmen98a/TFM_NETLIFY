@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { AuthStateService } from './auth-state.service';
 import { LocalStorageService } from './local-storage.service';
 import { TokenService } from './token.service';
@@ -7,25 +7,18 @@ import { TokenService } from './token.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
     isSignedIn!: boolean;
-
     constructor( private router: Router, public local: LocalStorageService, private auth: AuthStateService, public token: TokenService) { }
 
-    canActivate (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    canActivate (route: ActivatedRouteSnapshot) {
         let retrievedObject = JSON.parse(this.local.getUsuario('usuario') || '{}');
         this.auth.userAuthState.subscribe((val) => {
-            this.isSignedIn = val;
-          });
-        
-        console.log(this.isSignedIn)
-        console.log('pruebaaa')
-        console.log(this.token.isLoggedIn())
+            this.isSignedIn = val; 
+        });
         if (this.isSignedIn) {
             console.log('prueba2')
             // check if route is restricted by role
             if (route.data['role'] && route.data['role'].indexOf(retrievedObject.role) === -1) {
                 // role not authorised so redirect to home page
-                console.log(retrievedObject.role)
-
                 this.router.navigate(['/']);
                 return false;
             }
